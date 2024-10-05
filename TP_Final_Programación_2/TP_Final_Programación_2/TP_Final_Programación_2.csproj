@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AutoCamioneta.cs" />
 <Compile Include="Combustible.cs" />
+<Compile Include="Cliente.cs" />
 <Compile Include="Localidad.cs" />
 <Compile Include="Concesionaria.cs" />
 <Compile Include="Marca.cs" />

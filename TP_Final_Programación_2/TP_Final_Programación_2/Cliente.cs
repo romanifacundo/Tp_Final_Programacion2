@@ -8,5 +8,6 @@ namespace TP_Final_Programación_2
 {
     internal class Cliente
     {
+
     }
 }

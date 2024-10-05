@@ -16,12 +16,12 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Venta(int idCli, int idVehi, DateTime fechaC, DateTime fechaE)
+        public Venta(int idCli, int idVehi, string fechaC, string fechaE)
         {
             this.IdCliente = idCli;
             this.IdVehiculo = idVehi;
-            this.FechaCompra = fechaC;
-            this.FechaVenta = fechaE;
+            this.FechaCompra = DateTime.Parse(fechaC);
+            this.FechaVenta = DateTime.Parse(fechaE);
         }
 
 
