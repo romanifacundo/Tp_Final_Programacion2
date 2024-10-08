@@ -9,9 +9,22 @@ namespace TP_Final_Programación_2
     internal class Concesionaria
     {
         /// <summary>
-        /// Pensamos una estructura mas limpia de codigo y mejor organizada centralizando las collecciones en esta clase
-        /// para que sea responsable de tener la logica en las operaciones del ABM para las clases.
+        /// Pensamos una estructura mas limpia de codigo y mejor organizada centralizando las collecciones en esta clase, con los archivos .txt
+        /// almacenados en string para que sea responsable de tener la logica en las operaciones del ABM para las clases.
         /// </summary>
+
+        //__Arvhivos .txt__
+        private string _archivoVehiculos = "";
+        private string _archivoAutosCamionetas = "";
+        private string _archivoMotos = "";
+        private string _archivoCamiones = "";
+        private string _archivoMarcas = "";
+        private string _archivoVentas = "";
+        private string _archivoClientes = "";
+        private string _archivoLocalidades = "";
+        private string _archivoProvincias = "";
+        private string _archivoCombustible = "";
+        private string _archivoSegmento = "";
 
         //__Declaracion Listas privadas con relacion de ensamble a clases__ 
         private List<Vehiculo> _vehiculosList;
