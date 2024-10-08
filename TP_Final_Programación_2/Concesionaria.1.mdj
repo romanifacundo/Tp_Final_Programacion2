@@ -259,74 +259,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGSRZiLwMziylM=",
-											"_parent": {
-												"$ref": "AAAAAAGSRZOVrsx+BNg="
-											},
-											"model": {
-												"$ref": "AAAAAAGSRZiLoczfdAM="
-											},
-											"font": "Arial;13;0",
-											"left": 37,
-											"top": 182,
-											"width": 223,
-											"height": 13,
-											"text": "+cilindrada",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGSRZi1J8zp0OM=",
-											"_parent": {
-												"$ref": "AAAAAAGSRZOVrsx+BNg="
-											},
-											"model": {
-												"$ref": "AAAAAAGSRZi1CMzmYRw="
-											},
-											"font": "Arial;13;0",
-											"left": 37,
-											"top": 197,
-											"width": 223,
-											"height": 13,
-											"text": "+caja_carga",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGSRZjlsczwGzg=",
-											"_parent": {
-												"$ref": "AAAAAAGSRZOVrsx+BNg="
-											},
-											"model": {
-												"$ref": "AAAAAAGSRZjllMztFMo="
-											},
-											"font": "Arial;13;0",
-											"left": 37,
-											"top": 212,
-											"width": 223,
-											"height": 13,
-											"text": "+dimensio_caja",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGSRZkK5Mz32po=",
-											"_parent": {
-												"$ref": "AAAAAAGSRZOVrsx+BNg="
-											},
-											"model": {
-												"$ref": "AAAAAAGSRZkKxMz0ezY="
-											},
-											"font": "Arial;13;0",
-											"left": 37,
-											"top": 227,
-											"width": 223,
-											"height": 13,
-											"text": "+carga_max",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGSRZko+8z+BAU=",
 											"_parent": {
 												"$ref": "AAAAAAGSRZOVrsx+BNg="
@@ -336,7 +268,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 37,
-											"top": 242,
+											"top": 182,
 											"width": 223,
 											"height": 13,
 											"text": "+id_marca",
@@ -353,7 +285,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 37,
-											"top": 257,
+											"top": 197,
 											"width": 223,
 											"height": 13,
 											"text": "+id_segmento",
@@ -370,7 +302,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 37,
-											"top": 272,
+											"top": 212,
 											"width": 223,
 											"height": 13,
 											"text": "+id_combustible",
@@ -381,7 +313,7 @@
 									"left": 32,
 									"top": 57,
 									"width": 233,
-									"height": 233
+									"height": 173
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -394,7 +326,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 32,
-									"top": 290,
+									"top": 230,
 									"width": 233,
 									"height": 10
 								},
@@ -2090,23 +2022,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGSReKuuvh8Hig=",
-											"_parent": {
-												"$ref": "AAAAAAGSRbQHaNnchLg="
-											},
-											"model": {
-												"$ref": "AAAAAAGSReKunfhwIHM="
-											},
-											"font": "Arial;13;0",
-											"left": 781,
-											"top": 227,
-											"width": 223,
-											"height": 13,
-											"text": "-ListaMarcasMotos: List<Marcas>",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGSRd/sNPWlea0=",
 											"_parent": {
 												"$ref": "AAAAAAGSRbQHaNnchLg="
@@ -2116,7 +2031,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 781,
-											"top": 242,
+											"top": 227,
 											"width": 223,
 											"height": 13,
 											"text": "-ListaLocalidades: List<Localidad>",
@@ -2133,7 +2048,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 781,
-											"top": 257,
+											"top": 242,
 											"width": 223,
 											"height": 13,
 											"text": "-ListaProvincias: List<Provincia>",
@@ -2150,7 +2065,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 781,
-											"top": 272,
+											"top": 257,
 											"width": 223,
 											"height": 13,
 											"text": "-ListaSegmento: List<string>",
@@ -2167,7 +2082,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 781,
-											"top": 287,
+											"top": 272,
 											"width": 223,
 											"height": 13,
 											"text": "-ListaCombustible: List<string>",
@@ -2184,7 +2099,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 781,
-											"top": 302,
+											"top": 287,
 											"width": 223,
 											"height": 13,
 											"text": "-ListaTipoVehiculo: List<string>",
@@ -2195,7 +2110,7 @@
 									"left": 776,
 									"top": 57,
 									"width": 233,
-									"height": 263
+									"height": 248
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -2208,7 +2123,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 776,
-									"top": 320,
+									"top": 305,
 									"width": 233,
 									"height": 10
 								},
@@ -3244,42 +3159,6 @@
 						},
 						{
 							"_type": "UMLAttribute",
-							"_id": "AAAAAAGSRZiLoczfdAM=",
-							"_parent": {
-								"$ref": "AAAAAAGSRZOVrMx25vM="
-							},
-							"name": "cilindrada",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGSRZi1CMzmYRw=",
-							"_parent": {
-								"$ref": "AAAAAAGSRZOVrMx25vM="
-							},
-							"name": "caja_carga",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGSRZjllMztFMo=",
-							"_parent": {
-								"$ref": "AAAAAAGSRZOVrMx25vM="
-							},
-							"name": "dimensio_caja",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGSRZkKxMz0ezY=",
-							"_parent": {
-								"$ref": "AAAAAAGSRZOVrMx25vM="
-							},
-							"name": "carga_max",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
 							"_id": "AAAAAAGSRZko3Mz7Css=",
 							"_parent": {
 								"$ref": "AAAAAAGSRZOVrMx25vM="
@@ -3530,16 +3409,6 @@
 							"name": "ListaMarcas",
 							"visibility": "private",
 							"type": "List<Marca>"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGSReKunfhwIHM=",
-							"_parent": {
-								"$ref": "AAAAAAGSRbQHaNnUXrQ="
-							},
-							"name": "ListaMarcasMotos",
-							"visibility": "private",
-							"type": "List<Marcas>"
 						},
 						{
 							"_type": "UMLAttribute",

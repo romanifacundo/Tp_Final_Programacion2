@@ -20,7 +20,7 @@ namespace TP_Final_Programación_2
         private string _archivoCamiones = "";
         private string _archivoMarcas = "";
         private string _archivoVentas = "";
-        private string _archivoClientes = "";
+        private string _archivoClientes = "clientes.txt";
         private string _archivoLocalidades = "";
         private string _archivoProvincias = "";
         private string _archivoCombustible = "";
@@ -34,11 +34,11 @@ namespace TP_Final_Programación_2
         private List<Marca> _marcasList;
         private List<Venta> _ventasList;
         private List<Cliente> _clientesList;
-        private List<Localidad> _localidadesList;
-        private List<Provincia> _provinciasList;
         //__Declaracion Listas privadas y para ser inicializadas__
         private List<Combustible> _combustiblesList;
         private List<Segmento> _segmentosList;
+        private List<Localidad> _localidadesList;
+        private List<Provincia> _provinciasList;
 
 
         //__Constructores__
@@ -76,10 +76,69 @@ namespace TP_Final_Programación_2
                 new Combustible(3, "Gnc"),
                 new Combustible(4, "Electrico")
             };
+
+
+            this._localidadesList = new List<Localidad>
+            {
+                new Localidad(1,"San Nicolas",1),
+                new Localidad(2,"Rosario", 5),
+                new Localidad(3,"Pergamino",1),
+                new Localidad(4,"Ramallo", 1),
+                new Localidad(5,"San Pedro",1)
+            };
+
+
+            this._provinciasList = new List<Provincia>
+            {
+                 new Provincia(1, "Buenos Aires"),
+                 new Provincia(2, "Córdoba"),
+                 new Provincia(3, "Entre Ríos"),
+                 new Provincia(4, "San Luis"),
+                 new Provincia(5, "Santa Fe")
+            };
         }
 
 
         //__Metodos de acciones__
+
+        public void CargarCliente()
+        {
+            Console.WriteLine("**Ingresa ID del CLIENTE**");
+            int idCli = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
+            string clienteNombre = Console.ReadLine();
+
+            Console.WriteLine("**Ingresa el C.U.I.T del CLIENTE**");
+            long CUIT = long.Parse(Console.ReadLine());
+
+            Console.WriteLine("**Ingresa el DOMICILIO del CLIENTE**");
+            string domicilio = Console.ReadLine(); 
+
+            Console.WriteLine("**Ingresa el TELEFONO del CLIENTE**");
+            long tel = long.Parse(Console.ReadLine());
+
+            Console.WriteLine("**Ingresa el Correo Electronico del CLIENTE**");
+            string corrElect = Console.ReadLine();
+
+            Console.WriteLine("**Selecciona la Localidad del CLIENTE**");
+            MostrarLocalidades();
+            int idLocal = int.Parse(Console.ReadLine());
+
+   
+            Cliente cli = new Cliente(idCli, clienteNombre, CUIT, domicilio, tel, corrElect, idLocal);
+
+            this._clientesList.Add(cli);
+        }
+
+
+        private void MostrarLocalidades() 
+        {
+            for (int i = 0; i < this._localidadesList.Count; i++) 
+            {
+                Console.WriteLine(this._localidadesList[i]);
+            }
+        }
 
     }
 }
