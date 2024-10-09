@@ -145,6 +145,7 @@ namespace TP_Final_Programación_2
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
                 Console.WriteLine("\n");
+            
 
                 Console.WriteLine("╔═════════════════════════╗");
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -196,9 +197,9 @@ namespace TP_Final_Programación_2
                                         break;
                                     }
                                 case 1:
-                                    {                                                                     
+                                    {
                                         c.ListarClientes();
-                                        Console.ReadKey();
+                                        Console.ReadKey();                                       
                                         break;
                                     }
                                 case 2:

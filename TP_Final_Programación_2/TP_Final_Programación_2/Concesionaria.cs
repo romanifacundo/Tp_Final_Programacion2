@@ -15,17 +15,30 @@ namespace TP_Final_Programación_2
         /// </summary>
 
         //__Arvhivos .txt__
-        private string _archivoVehiculos = "";
-        private string _archivoAutosCamionetas = "";
-        private string _archivoMotos = "";
-        private string _archivoCamiones = "";
-        private string _archivoMarcas = "";
-        private string _archivoVentas = "";
-        private string _archivoClientes = "clientes.txt";
-        private string _archivoLocalidades = "";
-        private string _archivoProvincias = "";
-        private string _archivoCombustible = "";
-        private string _archivoSegmento = "";
+        //private string _archivoVehiculos = "";
+        //private string _archivoAutosCamionetas = "";
+        //private string _archivoMotos = "";
+        //private string _archivoCamiones = "";
+        //private string _archivoMarcas = "";
+        //private string _archivoVentas = "";
+        //private string _archivoClientes = "clientes.txt";
+        //private string _archivoLocalidades = "";
+        //private string _archivoProvincias = "";
+        //private string _archivoCombustible = "";
+        //private string _archivoSegmento = "";
+        //__Arvhivos .txt constanes para evaluar en sl SWITCH__
+        private const string _archivoClientes = "clientes.txt";
+        private const string _archivoVentas = "ventas.txt";
+        private const string _archivoVehiculos = "vehiculos.txt";
+        private const string _archivoAutosCamionetas = "autos_camionetas.txt";
+        private const string _archivoMotos = "motos.txt";
+        private const string _archivoCamiones = "camiones.txt";
+        private const string _archivoMarcas = "marcas.txt";
+        private const string _archivoLocalidades = "localidades.txt";
+        private const string _archivoProvincias = "provincias.txt";
+        private const string _archivoCombustible = "combustible.txt";
+        private const string _archivoSegmento = "segmento.txt";
+
 
         //__Declaracion Listas privadas con relacion de ensamble a clases__ 
         private List<Vehiculo> _vehiculosList;
@@ -100,7 +113,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        //__Metodos de acciones ABM__
+        //__Metodos de acciones cargar datos__
 
         public void CargarCliente()
         {
@@ -133,13 +146,20 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("\n");
             Console.WriteLine("<<<<<<<Cliente agregado con EXITO>>>>>");
+            Console.ReadKey();
 
-            GrabarArchivo(this._archivoClientes);
+            GrabarArchivo(_archivoClientes);
         }
 
-        public void ListarClientes() 
+
+        //__Metodos de acciones listar datos__
+        public void ListarClientes()
         {
-            LeerArchivo(this._archivoClientes);
+
+            if (this._clientesList.Count == 0)
+            {
+                LeerArchivo(_archivoClientes);
+            }
 
             foreach (Cliente i in this._clientesList)
             {
@@ -152,35 +172,78 @@ namespace TP_Final_Programación_2
 
         private void GrabarArchivo(string _archivo)
         {
+            LeerArchivo(_archivo);
+
             FileStream x;
             StreamWriter grabar;
 
-            if (_archivo == this._archivoClientes)
+            if (File.Exists(_archivo))
             {
-                if (File.Exists(this._archivoClientes))
+                switch (_archivo)//__refactorizar para cada .txt en switch para no usar muchos if()__
                 {
-                    x = new FileStream(this._archivoClientes, FileMode.Append);
-                    grabar = new StreamWriter(x);
+                    case _archivoClientes:
 
-                    for (int i = 0; i < this._clientesList.Count; i++)
-                    {
-                        grabar.WriteLine(this._clientesList[i].IdCliente + " | "
-                                         + this._clientesList[i].NombreCliente + " | "
-                                         + this._clientesList[i].CUIT + " | "
-                                         + this._clientesList[i].Domicilio + " | "
-                                         + this._clientesList[i].Telefono + " | "
-                                         + this._clientesList[i].CorreoElectronico + " | "
-                                         + this._clientesList[i].NombreLocalidad);
+                        x = new FileStream(_archivoClientes, FileMode.Create);
+                        grabar = new StreamWriter(x);
 
-                    }
+                        for (int i = 0; i < this._clientesList.Count; i++)
+                        {
+                            grabar.WriteLine(this._clientesList[i].IdCliente + " | "
+                                             + this._clientesList[i].NombreCliente + " | "
+                                             + this._clientesList[i].CUIT + " | "
+                                             + this._clientesList[i].Domicilio + " | "
+                                             + this._clientesList[i].Telefono + " | "
+                                             + this._clientesList[i].CorreoElectronico + " | "
+                                             + this._clientesList[i].NombreLocalidad);
 
-                    grabar.Close();
-                    x.Close();
+                        }
+                        grabar.Close();
+                        x.Close();
+
+                        break;
+
+                    case _archivoVentas:
+
+                        x = new FileStream(_archivoVentas, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        break;
+
+                    case _archivoVehiculos:
+
+                        x = new FileStream(_archivoVehiculos, FileMode.Create;
+                        grabar = new StreamWriter(x);
+
+                        break;
+
+                    case _archivoAutosCamionetas:
+
+                        x = new FileStream(_archivoAutosCamionetas, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        break;
+
+                    case _archivoMotos:
+
+                        x = new FileStream(_archivoMotos, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        break;
+
+                    case _archivoCamiones:
+
+                        x = new FileStream(_archivoCamiones, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        break;
+
+                    default:
+                        break;
                 }
-
             }
 
         }
+
 
         private void LeerArchivo(string _archivo)
         {
@@ -189,39 +252,55 @@ namespace TP_Final_Programación_2
             string cadena;
             string[] datos;
 
-            if (File.Exists(this._archivoClientes))
+            if (File.Exists(_archivoClientes))
             {
-                x = new FileStream(this._archivoClientes, FileMode.Open);
-                Leer = new StreamReader(x);
-
-                while (!Leer.EndOfStream)
+                if (this._clientesList.Count == 0) 
                 {
-                    cadena = Leer.ReadLine();
-                    datos = cadena.Split('|');
+                    x = new FileStream(_archivoClientes, FileMode.Open);
+                    Leer = new StreamReader(x);
 
-                    Cliente cli = new Cliente(
-                            int.Parse(datos[0]),
-                            datos[1],
-                            long.Parse(datos[2]),
-                            datos[3],
-                            long.Parse(datos[4]),
-                            datos[5],
-                            datos[6]);
+                    while (!Leer.EndOfStream)
+                    {
+                        cadena = Leer.ReadLine();
+                        datos = cadena.Split('|');
 
-                    this._clientesList.Add(cli);
-                }
+                        Cliente cli = new Cliente(
+                                int.Parse(datos[0]),
+                                datos[1],
+                                long.Parse(datos[2]),
+                                datos[3],
+                                long.Parse(datos[4]),
+                                datos[5],
+                                datos[6]);
 
-                Leer.Close();
-                x.Close();
+                        this._clientesList.Add(cli);
+                    }
+
+                    Leer.Close();
+                    x.Close();
+                }     
+            }
+            else
+            {
+                Console.WriteLine("\n El archivo no existe.");
             }
         }
 
+
         private void MostrarLocalidades()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
             for (int i = 0; i < this._localidadesList.Count; i++)
             {
                 Console.WriteLine(this._localidadesList[i].NombreLocalidad);
             }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
         }
 
     }
