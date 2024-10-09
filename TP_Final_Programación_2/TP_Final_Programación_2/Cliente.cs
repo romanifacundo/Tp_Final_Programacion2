@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP_Final_Programación_2
 {
-    internal class Cliente
+    internal class Cliente : EntidadBase
     {
         //__Propiedades privadas__
         private int P_IdCliente;
@@ -16,10 +16,11 @@ namespace TP_Final_Programación_2
         private long P_Telefono;
         private string P_Correo;
         private int P_IdLocalidad;
+        private string P_NombreLocalidad;
 
 
         //__Constructores__
-        public Cliente(int idCli, string NomCli, long CUIT, string dom, long tel, string correo, int idLocali) 
+        public Cliente(int idCli, string NomCli, long CUIT, string dom, long tel, string correo, string nomLocal) 
         {
             this.IdCliente = idCli;
             this.NombreCliente = NomCli;
@@ -27,7 +28,7 @@ namespace TP_Final_Programación_2
             this.Domicilio = dom;
             this.Telefono = tel;
             this.CorreoElectronico = correo;
-            this.IdLocalidad = idLocali;
+            this.NombreLocalidad = nomLocal;
         }
 
 
@@ -73,5 +74,28 @@ namespace TP_Final_Programación_2
             get { return this.P_IdLocalidad; }
             set { this.P_IdLocalidad = value; }
         }
+
+        public string NombreLocalidad
+        {
+            get { return this.P_NombreLocalidad; }
+            set { this.P_NombreLocalidad = value; }
+        }
+
+        
+        //__Implementa metodo de la clase abstracta EntidadBase__
+        public override void MostrarDatos()
+        {
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+
+                Console.WriteLine($" ID Cliente:{this.IdCliente} | Nombre:{this.NombreCliente} | CUIT:{this.CUIT} | " +
+                                  $"Domicilio:{this.Domicilio} | Teléfono:{this.Telefono} | Correo Electrónico:{this.CorreoElectronico} | " +
+                                  $" Localidad:{this.NombreLocalidad}");
+
+            Console.WriteLine("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+        }
+
     }
 }

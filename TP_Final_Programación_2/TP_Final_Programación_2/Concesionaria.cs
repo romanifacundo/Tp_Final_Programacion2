@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,7 +100,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        //__Metodos de acciones__
+        //__Metodos de acciones ABM__
 
         public void CargarCliente()
         {
@@ -113,7 +114,7 @@ namespace TP_Final_Programación_2
             long CUIT = long.Parse(Console.ReadLine());
 
             Console.WriteLine("**Ingresa el DOMICILIO del CLIENTE**");
-            string domicilio = Console.ReadLine(); 
+            string domicilio = Console.ReadLine();
 
             Console.WriteLine("**Ingresa el TELEFONO del CLIENTE**");
             long tel = long.Parse(Console.ReadLine());
@@ -121,22 +122,105 @@ namespace TP_Final_Programación_2
             Console.WriteLine("**Ingresa el Correo Electronico del CLIENTE**");
             string corrElect = Console.ReadLine();
 
-            Console.WriteLine("**Selecciona la Localidad del CLIENTE**");
+            Console.WriteLine("**Ingresa el nombre de la Localidad del CLIENTE**");
             MostrarLocalidades();
-            int idLocal = int.Parse(Console.ReadLine());
+            string local = Console.ReadLine();
 
-   
-            Cliente cli = new Cliente(idCli, clienteNombre, CUIT, domicilio, tel, corrElect, idLocal);
+
+            Cliente cli = new Cliente(idCli, clienteNombre, CUIT, domicilio, tel, corrElect, local);
 
             this._clientesList.Add(cli);
+
+            Console.WriteLine("\n");
+            Console.WriteLine("<<<<<<<Cliente agregado con EXITO>>>>>");
+
+            GrabarArchivo(this._archivoClientes);
+        }
+
+        public void ListarClientes() 
+        {
+            LeerArchivo(this._archivoClientes);
+
+            foreach (Cliente i in this._clientesList)
+            {
+                i.MostrarDatos();
+            }
         }
 
 
-        private void MostrarLocalidades() 
+        //__Metodos privados de la clase__
+
+        private void GrabarArchivo(string _archivo)
         {
-            for (int i = 0; i < this._localidadesList.Count; i++) 
+            FileStream x;
+            StreamWriter grabar;
+
+            if (_archivo == this._archivoClientes)
             {
-                Console.WriteLine(this._localidadesList[i]);
+                if (File.Exists(this._archivoClientes))
+                {
+                    x = new FileStream(this._archivoClientes, FileMode.Append);
+                    grabar = new StreamWriter(x);
+
+                    for (int i = 0; i < this._clientesList.Count; i++)
+                    {
+                        grabar.WriteLine(this._clientesList[i].IdCliente + " | "
+                                         + this._clientesList[i].NombreCliente + " | "
+                                         + this._clientesList[i].CUIT + " | "
+                                         + this._clientesList[i].Domicilio + " | "
+                                         + this._clientesList[i].Telefono + " | "
+                                         + this._clientesList[i].CorreoElectronico + " | "
+                                         + this._clientesList[i].NombreLocalidad);
+
+                    }
+
+                    grabar.Close();
+                    x.Close();
+                }
+
+            }
+
+        }
+
+        private void LeerArchivo(string _archivo)
+        {
+            FileStream x;
+            StreamReader Leer;
+            string cadena;
+            string[] datos;
+
+            if (File.Exists(this._archivoClientes))
+            {
+                x = new FileStream(this._archivoClientes, FileMode.Open);
+                Leer = new StreamReader(x);
+
+                while (!Leer.EndOfStream)
+                {
+                    cadena = Leer.ReadLine();
+                    datos = cadena.Split('|');
+
+                    Cliente cli = new Cliente(
+                            int.Parse(datos[0]),
+                            datos[1],
+                            long.Parse(datos[2]),
+                            datos[3],
+                            long.Parse(datos[4]),
+                            datos[5],
+                            datos[6]);
+
+                    this._clientesList.Add(cli);
+                }
+
+                Leer.Close();
+                x.Close();
+            }
+        }
+
+        private void MostrarLocalidades()
+        {
+            for (int i = 0; i < this._localidadesList.Count; i++)
+            {
+                Console.WriteLine(this._localidadesList[i].NombreLocalidad);
             }
         }
 

@@ -9,10 +9,14 @@ namespace TP_Final_Programación_2
 {
     internal class Program
     {
+        //__Instacias de manera global__
+        static Concesionaria c = new Concesionaria();
+
         static void Main(string[] args)
         {
-            MenuPrincipal();
 
+            MenuPrincipal();
+            
             Console.ReadKey();
         }
 
@@ -187,12 +191,14 @@ namespace TP_Final_Programación_2
                             switch (seleccion)
                             {
                                 case 0:
-                                    {
+                                    {                                       
+                                        c.CargarCliente();
                                         break;
                                     }
                                 case 1:
-                                    {
-
+                                    {                                                                     
+                                        c.ListarClientes();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 2:
