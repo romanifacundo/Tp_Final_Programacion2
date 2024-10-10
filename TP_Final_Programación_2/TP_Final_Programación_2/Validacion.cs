@@ -11,5 +11,12 @@ namespace TP_Final_Programación_2
         /// <summary>
         /// Pensamos una estructura mas limpia de codigo y mejor organizada centralizando las Validaciones en esta clase.
         /// </summary>
+        
+        //__Validaciones::__
+        //public void ValidarNumeros(int num) 
+        //{
+            
+        //}
+
     }
 }

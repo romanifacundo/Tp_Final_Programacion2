@@ -117,8 +117,10 @@ namespace TP_Final_Programación_2
 
         public void CargarCliente()
         {
+            Console.WriteLine("\n");
             Console.WriteLine("**Ingresa ID del CLIENTE**");
-            int idCli = int.Parse(Console.ReadLine());
+            string idCli = Console.ReadLine();
+            ValidarId(idCli);
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
@@ -140,7 +142,7 @@ namespace TP_Final_Programación_2
             string local = Console.ReadLine();
 
 
-            Cliente cli = new Cliente(idCli, clienteNombre, CUIT, domicilio, tel, corrElect, local);
+            Cliente cli = new Cliente(int.Parse(idCli), clienteNombre, CUIT, domicilio, tel, corrElect, local);
 
             this._clientesList.Add(cli);
 
@@ -211,7 +213,7 @@ namespace TP_Final_Programación_2
 
                     case _archivoVehiculos:
 
-                        x = new FileStream(_archivoVehiculos, FileMode.Create;
+                        x = new FileStream(_archivoVehiculos, FileMode.Create);
                         grabar = new StreamWriter(x);
 
                         break;
@@ -303,5 +305,51 @@ namespace TP_Final_Programación_2
             Console.ResetColor();
         }
 
+
+        //__Validaciones Num y ID__
+        private void ValidarId(string id)
+        {
+            LeerArchivo(_archivoClientes);
+
+            bool idValido = false; //__bandera para el bucle__ 
+            int idCli;
+
+            do
+            {
+                if (!int.TryParse(id, out idCli) || idCli <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________");
+                    Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                    Console.WriteLine("_________________________________________________");
+                    Console.ResetColor();
+                    id = Console.ReadLine();
+                }
+                else
+                {
+                    idValido = true;
+
+                    for (int i = 0; i < this._clientesList.Count; i++)
+                    {
+                        if (idCli == this._clientesList[i].IdCliente)
+                        {
+                            idValido = false;
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            Console.WriteLine("Vuelve a ingresar otro ID:");
+                            id = Console.ReadLine();
+                        }
+                    }
+                }   
+            }
+            while (!idValido);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Id CLIENTE valido");
+            Console.ResetColor();
+        }
     }
 }
