@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -114,7 +115,6 @@ namespace TP_Final_Programación_2
 
 
         //__Metodos de acciones cargar datos__
-
         public void CargarCliente()
         {
             Console.WriteLine("\n");
@@ -126,7 +126,8 @@ namespace TP_Final_Programación_2
             string clienteNombre = Console.ReadLine();
 
             Console.WriteLine("**Ingresa el C.U.I.T del CLIENTE**");
-            long CUIT = long.Parse(Console.ReadLine());
+            string CUIT = Console.ReadLine();
+            ValidarCUIT(CUIT);
 
             Console.WriteLine("**Ingresa el DOMICILIO del CLIENTE**");
             string domicilio = Console.ReadLine();
@@ -157,11 +158,7 @@ namespace TP_Final_Programación_2
         //__Metodos de acciones listar datos__
         public void ListarClientes()
         {
-
-            if (this._clientesList.Count == 0)
-            {
-                LeerArchivo(_archivoClientes);
-            }
+            LeerArchivo(_archivoClientes);
 
             foreach (Cliente i in this._clientesList)
             {
@@ -171,7 +168,6 @@ namespace TP_Final_Programación_2
 
 
         //__Metodos privados de la clase__
-
         private void GrabarArchivo(string _archivo)
         {
             LeerArchivo(_archivo);
@@ -256,7 +252,7 @@ namespace TP_Final_Programación_2
 
             if (File.Exists(_archivoClientes))
             {
-                if (this._clientesList.Count == 0) 
+                if (this._clientesList.Count == 0)
                 {
                     x = new FileStream(_archivoClientes, FileMode.Open);
                     Leer = new StreamReader(x);
@@ -269,7 +265,7 @@ namespace TP_Final_Programación_2
                         Cliente cli = new Cliente(
                                 int.Parse(datos[0]),
                                 datos[1],
-                                long.Parse(datos[2]),
+                                datos[2],
                                 datos[3],
                                 long.Parse(datos[4]),
                                 datos[5],
@@ -280,7 +276,7 @@ namespace TP_Final_Programación_2
 
                     Leer.Close();
                     x.Close();
-                }     
+                }
             }
             else
             {
@@ -307,7 +303,7 @@ namespace TP_Final_Programación_2
 
 
         //__Validaciones Num y ID__
-        private void ValidarId(string id)
+        private void ValidarId(string _id)
         {
             LeerArchivo(_archivoClientes);
 
@@ -316,18 +312,18 @@ namespace TP_Final_Programación_2
 
             do
             {
-                if (!int.TryParse(id, out idCli) || idCli <= 0)
+                if (!int.TryParse(_id, out idCli) || idCli <= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("_________________________________________________");
                     Console.WriteLine("ID no válido, deben ser solo números positivos!");
                     Console.WriteLine("_________________________________________________");
                     Console.ResetColor();
-                    id = Console.ReadLine();
+                    _id = Console.ReadLine();
                 }
                 else
                 {
-                    idValido = true;
+                    idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
 
                     for (int i = 0; i < this._clientesList.Count; i++)
                     {
@@ -340,15 +336,51 @@ namespace TP_Final_Programación_2
                             Console.WriteLine("_________________________________________________");
                             Console.ResetColor();
                             Console.WriteLine("Vuelve a ingresar otro ID:");
-                            id = Console.ReadLine();
+                            _id = Console.ReadLine();
                         }
                     }
-                }   
+                }
             }
             while (!idValido);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Id CLIENTE valido");
+            Console.ResetColor();
+        }
+
+
+        private void ValidarCUIT(string _cuit)
+        {
+            LeerArchivo(_archivoClientes);
+
+            bool CUIT_Valido = false;//__bandera de corte__
+
+            do
+            {
+                /* learn.microsoft.com/en-us/dotnet/api/system.char.isdigit?view=net-8.0 
+                 * es.stackoverflow.com/questions/107972/funcion-para-verificar-que-una-cadena-tenga-solo-letras-c-consola
+                 * de aqui se tomo el All(char.IsLetter) All(char.IsDigit) para validar que solo sean num en la cadena o solo letras */
+
+                if (!(_cuit.Length == 11 && _cuit.All(char.IsDigit)))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________________________________________");
+                    Console.WriteLine("El Numero de C.U.I.T debe contener 11 digitos y ser solo de caracter numerico.");
+                    Console.WriteLine("_________________________________________________________________________________");
+                    Console.ResetColor();
+                    Console.WriteLine("Vuelve a ingresar el C.U.I.T nuevamente:");
+                    _cuit = Console.ReadLine();
+                }
+                else
+                {
+                    CUIT_Valido = true;//__paso bandera a true saldo del do while__
+                }
+            }
+            while (!CUIT_Valido);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("El CUIT es valido");
             Console.ResetColor();
         }
     }

@@ -11,7 +11,7 @@ namespace TP_Final_Programación_2
         //__Propiedades privadas__
         private int P_IdCliente;
         private string P_NombreCliente;
-        private long P_CUIT;
+        private string P_CUIT;
         private string P_Domicilio;
         private long P_Telefono;
         private string P_Correo;
@@ -20,7 +20,7 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Cliente(int idCli, string NomCli, long CUIT, string dom, long tel, string correo, string nomLocal) 
+        public Cliente(int idCli, string NomCli, string CUIT, string dom, long tel, string correo, string nomLocal) 
         {
             this.IdCliente = idCli;
             this.NombreCliente = NomCli;
@@ -45,7 +45,7 @@ namespace TP_Final_Programación_2
             set { this.P_NombreCliente = value; }
         }
 
-        public long CUIT
+        public string CUIT
         {
             get { return this.P_CUIT; }
             set { this.P_CUIT = value; }

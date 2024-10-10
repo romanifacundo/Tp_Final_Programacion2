@@ -38,7 +38,7 @@ namespace TP_Final_Programación_2
             set { P_IdVehiculo = value; }
         }
 
-        public DateTime FechaCompra 
+        public DateTime FechaCompra
         {
             get { return this.P_FechaCompra; }
             set { P_FechaCompra = value; }
@@ -51,19 +51,24 @@ namespace TP_Final_Programación_2
         }
 
         /* __Propiedades de solo lectura__ */
-        public float Subtotal
-        {
-            get { return 10.5f /*__A desarrollar*/; }
-        }
+        //public float Subtotal
+        //{
+        //    get { return 10.5f /*__A desarrollar*/; }
+        //}
 
-        public float Iva
-        {
-            get { return 21.5f /*__A desarrollar*/; }
-        }
+        //public float Iva
+        //{
+        //    get { return 21.5f /*__A desarrollar*/; }
+        //}
 
-        public float Total
-        {
-            get { return 21.5f /*__A desarrollar*/; }
-        }
+        //public float Total
+        //{
+        //    get { return 21.5f /*__A desarrollar*/; }
+        //}
+
+        //public float Descuento
+        //{
+        //    get { return 10.5f /*__A desarrollar*/; }
+        //}
     }
 }
