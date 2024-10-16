@@ -50,6 +50,7 @@
     <Compile Include="Localidad.cs" />
     <Compile Include="Concesionaria.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Provincia.cs" />
     <Compile Include="Segmento.cs" />
     <Compile Include="Validacion.cs" />

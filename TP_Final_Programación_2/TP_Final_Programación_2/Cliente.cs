@@ -13,14 +13,14 @@ namespace TP_Final_Programación_2
         private string P_NombreCliente;
         private string P_CUIT;
         private string P_Domicilio;
-        private long P_Telefono;
+        private string P_Telefono;
         private string P_Correo;
         private int P_IdLocalidad;
         private string P_NombreLocalidad;
 
 
         //__Constructores__
-        public Cliente(int idCli, string NomCli, string CUIT, string dom, long tel, string correo, string nomLocal) 
+        public Cliente(int idCli, string NomCli, string CUIT, string dom, string tel, string correo, string nomLocal) 
         {
             this.IdCliente = idCli;
             this.NombreCliente = NomCli;
@@ -57,7 +57,7 @@ namespace TP_Final_Programación_2
             set { this.P_Domicilio = value; }
         }
 
-        public long Telefono
+        public string Telefono
         {
             get { return this.P_Telefono; }
             set { this.P_Telefono = value; }
@@ -88,13 +88,13 @@ namespace TP_Final_Programación_2
             Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine("╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
                 Console.WriteLine($" ID Cliente:{this.IdCliente} | Nombre:{this.NombreCliente} | CUIT:{this.CUIT} | " +
                                   $"Domicilio:{this.Domicilio} | Teléfono:{this.Telefono} | Correo Electrónico:{this.CorreoElectronico} | " +
                                   $" Localidad:{this.NombreLocalidad}");
 
-            Console.WriteLine("╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         }
 
     }

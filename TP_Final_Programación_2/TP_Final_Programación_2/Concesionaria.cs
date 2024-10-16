@@ -124,6 +124,7 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
+            SoloLetras(clienteNombre);
 
             Console.WriteLine("**Ingresa el C.U.I.T del CLIENTE**");
             string CUIT = Console.ReadLine();
@@ -133,15 +134,17 @@ namespace TP_Final_Programación_2
             string domicilio = Console.ReadLine();
 
             Console.WriteLine("**Ingresa el TELEFONO del CLIENTE**");
-            long tel = long.Parse(Console.ReadLine());
+            string tel = Console.ReadLine();
+            ValidarTelefono(tel);
 
             Console.WriteLine("**Ingresa el Correo Electronico del CLIENTE**");
             string corrElect = Console.ReadLine();
+            SoloLetras(corrElect);
 
             Console.WriteLine("**Ingresa el nombre de la Localidad del CLIENTE**");
             MostrarLocalidades();
             string local = Console.ReadLine();
-
+            SoloLetras(local);
 
             Cliente cli = new Cliente(int.Parse(idCli), clienteNombre, CUIT, domicilio, tel, corrElect, local);
 
@@ -154,40 +157,12 @@ namespace TP_Final_Programación_2
             GrabarArchivo(_archivoClientes);
         }
 
-        public void ActualizarCliente() //__REVISAR Metodo INCOMPLETO!!__
+
+        public void ActualizarCliente()
         {
-            ListarClientes();
-
-            Console.WriteLine("\n");
-            Console.WriteLine("**Ingresa ID del CLIENTE¨ que desea actualizar**");
-            string idCli = Console.ReadLine();
-            ValidarIdSoloNumerico(idCli);
-
-            for (int i = 0; i < this._clientesList.Count; i++)
-            {
-                if (int.Parse(idCli) == this._clientesList[i].IdCliente)
-                {
-                    Console.WriteLine("Que datos desea Actualizar? (INGRESE LA PALABRA)");
-                    string palabra = Console.ReadLine();
-
-                    switch (palabra) 
-                    {
-                        case "Nombre":
-                            Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
-                            string clienteNombre = Console.ReadLine();
-                            GrabarArchivo(_archivoClientes);
-                            break;
-                        case "CUIT":
-                            break;
-                        case "Domicilio":
-                            break;
-                    }
-
-                }
-            }
-
-            GrabarArchivo(_archivoClientes);
+            Actualizar(_archivoClientes);
         }
+
 
         public void BorrarCliente()
         {
@@ -324,7 +299,7 @@ namespace TP_Final_Programación_2
                                 datos[1],
                                 datos[2],
                                 datos[3],
-                                long.Parse(datos[4]),
+                                datos[4],
                                 datos[5],
                                 datos[6]);
 
@@ -338,6 +313,83 @@ namespace TP_Final_Programación_2
             else
             {
                 Console.WriteLine("\n El archivo no existe.");
+            }
+        }
+
+
+        private void Actualizar(string archivo)
+        {
+            LeerArchivo(archivo);
+
+            Console.WriteLine("Ingresa el ID del CLIENTE a actualizar:");
+            string idCli = Console.ReadLine();
+            ValidarIdSoloNumerico(idCli);
+
+            bool clienteEncontrado = false;  //__bandera para indicar si encontramos el cliente__
+
+            for (int i = 0; i < this._clientesList.Count; i++)
+            {
+                if (this._clientesList[i].IdCliente == int.Parse(idCli))
+                {
+                    clienteEncontrado = true;  //__encontado__
+                    Console.WriteLine("Cliente encontrado. Qué campo deseas actualizar?");
+                    Console.WriteLine("1- Nombre");
+                    Console.WriteLine("2- CUIT");
+                    Console.WriteLine("3- Domicilio");
+                    Console.WriteLine("4- Teléfono");
+                    Console.WriteLine("5- Correo Electrónico");
+                    Console.WriteLine("6- Localidad");
+
+                    int opcion = int.Parse(Console.ReadLine());
+
+                    switch (opcion)
+                    {
+                        case 1:
+                            Console.WriteLine("Ingresa el nuevo Nombre:");
+                            this._clientesList[i].NombreCliente = Console.ReadLine();
+                            SoloLetras(_clientesList[i].NombreCliente);
+                            break;
+                        case 2:
+                            Console.WriteLine("Ingresa el nuevo CUIT:");
+                            this._clientesList[i].CUIT = Console.ReadLine();
+                            ValidarCUIT(_clientesList[i].CUIT);
+                            break;
+                        case 3:
+                            Console.WriteLine("Ingresa el nuevo Domicilio:");
+                            _clientesList[i].Domicilio = Console.ReadLine();
+                            break;
+                        case 4:
+                            Console.WriteLine("Ingresa el nuevo Teléfono:");
+                            this._clientesList[i].Telefono = Console.ReadLine();
+                            ValidarTelefono(_clientesList[i].Telefono);
+                            break;
+                        case 5:
+                            Console.WriteLine("Ingresa el nuevo Correo Electrónico:");
+                            this._clientesList[i].CorreoElectronico = Console.ReadLine();
+                            SoloLetras(this._clientesList[i].CorreoElectronico);
+                            break;
+                        case 6:
+                            Console.WriteLine("Ingresa la nueva Localidad:");
+                            this._clientesList[i].NombreLocalidad = Console.ReadLine();
+                            SoloLetras(_clientesList[i].NombreLocalidad);
+                            break;
+                        default:
+                            Console.WriteLine("La opcion no es valida!");
+                            break;
+                    }
+                }
+            }
+
+            if (clienteEncontrado)
+            {
+                GrabarArchivo(archivo);
+                Console.WriteLine("Cliente actualizado correctamente");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("El CLIENTE no existe.");
+                Console.ResetColor();
             }
         }
 
@@ -408,25 +460,37 @@ namespace TP_Final_Programación_2
 
         public void ValidarIdSoloNumerico(string _id)
         {
-            LeerArchivo(_archivoClientes);
-
+            //LeerArchivo(_archivoClientes);
+            bool idValidoNum = false; //__bandera para el bucle__ 
             int idCli;
 
-            if (!int.TryParse(_id, out idCli) || idCli <= 0)
+            do
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("_________________________________________________");
-                Console.WriteLine("ID no válido, deben ser solo números positivos!");
-                Console.WriteLine("_________________________________________________");
-                Console.ResetColor();
-                _id = Console.ReadLine();
-            }
+                if (!int.TryParse(_id, out idCli) || idCli <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________");
+                    Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                    Console.WriteLine("_________________________________________________");
+                    Console.ResetColor();
+                    _id = Console.ReadLine();
+                }
+                else
+                {
+                    idValidoNum = true;
+                }
+
+            } while (!idValidoNum);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Id CLIENTE valido");
+            Console.ResetColor();
         }
 
 
         private void ValidarCUIT(string _cuit)
         {
-            LeerArchivo(_archivoClientes);
+            //LeerArchivo(_archivoClientes);
 
             bool CUIT_Valido = false;//__bandera de corte__
 
@@ -457,6 +521,58 @@ namespace TP_Final_Programación_2
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("El CUIT es valido");
             Console.ResetColor();
+        }
+
+
+        private void ValidarTelefono(string _telefono)
+        {
+
+            bool telefono_Valido = false;//__bandera de corte__
+
+            do
+            {
+                if (!(_telefono.Length == 10 && _telefono.All(char.IsDigit)))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________________________________________");
+                    Console.WriteLine("El Numero de C.U.I.T debe contener 11 digitos y ser solo de caracter numerico.");
+                    Console.WriteLine("_________________________________________________________________________________");
+                    Console.ResetColor();
+                    Console.WriteLine("Vuelve a ingresar el C.U.I.T nuevamente:");
+                    _telefono = Console.ReadLine();
+                }
+                else
+                {
+                    telefono_Valido = true;
+                }
+
+            }while (!telefono_Valido);
+        }
+        
+
+        private void SoloLetras(string _palabra) 
+        {
+            bool palabra_Valida = false;//__bandera de corte__
+
+            do 
+            {
+                if (!_palabra.All(char.IsLetter))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________");
+                    Console.WriteLine("Palabra invalida");
+                    Console.WriteLine("_________________________________________________");
+                    Console.ResetColor();
+                    Console.WriteLine("Vuelve a ingresar:");
+                    _palabra = Console.ReadLine();
+                }
+                else
+                {
+                    palabra_Valida = true;
+                }
+
+            } while (!palabra_Valida);    
         }
     }
 }
