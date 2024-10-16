@@ -16,8 +16,8 @@ namespace TP_Final_Programación_2
         //__Constuctores__
         public Combustible(int IdComb , string nomComb)
         {
-            this.P_IdCombustible = IdComb;
-            this.P_Combustible = nomComb;
+            this.IdCombustible = IdComb;
+            this.CombustibleNombre = nomComb;
         }
 
 

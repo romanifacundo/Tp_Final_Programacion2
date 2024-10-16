@@ -97,7 +97,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 1:
                                     {
-
+                                        
                                         break;
                                     }
                                 case 2:
@@ -204,10 +204,12 @@ namespace TP_Final_Programación_2
                                     }
                                 case 2:
                                     {
+                                        c.ActualizarCliente();
                                         break;
                                     }
                                 case 3:
                                     {
+                                        c.BorrarCliente();
                                         break;
                                     }
                                 case 4:

@@ -5,3 +5,10 @@ C:\Users\Facun\OneDrive - frsn.utn.edu.ar\Escritorio\TP_Final\Tp_Final_Programac
 C:\Users\Facun\OneDrive - frsn.utn.edu.ar\Escritorio\TP_Final\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.csproj.CoreCompileInputs.cache
 C:\Users\Facun\OneDrive - frsn.utn.edu.ar\Escritorio\TP_Final\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.exe
 C:\Users\Facun\OneDrive - frsn.utn.edu.ar\Escritorio\TP_Final\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.pdb
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\bin\Debug\TP_Final_Programación_2.exe.config
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\bin\Debug\TP_Final_Programación_2.exe
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\bin\Debug\TP_Final_Programación_2.pdb
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.csproj.AssemblyReference.cache
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.csproj.CoreCompileInputs.cache
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.exe
+C:\Users\fromani\Desktop\TP\Tp_Final_Programacion2\TP_Final_Programación_2\TP_Final_Programación_2\obj\Debug\TP_Final_Programación_2.pdb

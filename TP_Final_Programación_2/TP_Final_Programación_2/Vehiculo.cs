@@ -106,5 +106,12 @@ namespace TP_Final_Programación_2
             set { this.P_IdCombustible = value; }
         }
 
+
+       //__Metodos__
+        public virtual void MostrarDatos() 
+        {
+            
+        }
+
     }
 }

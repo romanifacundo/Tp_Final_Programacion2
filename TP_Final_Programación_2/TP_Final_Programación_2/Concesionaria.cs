@@ -120,7 +120,7 @@ namespace TP_Final_Programación_2
             Console.WriteLine("\n");
             Console.WriteLine("**Ingresa ID del CLIENTE**");
             string idCli = Console.ReadLine();
-            ValidarId(idCli);
+            ValidarIdNumericoOExiste(idCli);
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
@@ -152,6 +152,63 @@ namespace TP_Final_Programación_2
             Console.ReadKey();
 
             GrabarArchivo(_archivoClientes);
+        }
+
+        public void ActualizarCliente() //__REVISAR Metodo INCOMPLETO!!__
+        {
+            ListarClientes();
+
+            Console.WriteLine("\n");
+            Console.WriteLine("**Ingresa ID del CLIENTE¨ que desea actualizar**");
+            string idCli = Console.ReadLine();
+            ValidarIdSoloNumerico(idCli);
+
+            for (int i = 0; i < this._clientesList.Count; i++)
+            {
+                if (int.Parse(idCli) == this._clientesList[i].IdCliente)
+                {
+                    Console.WriteLine("Que datos desea Actualizar? (INGRESE LA PALABRA)");
+                    string palabra = Console.ReadLine();
+
+                    switch (palabra) 
+                    {
+                        case "Nombre":
+                            Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
+                            string clienteNombre = Console.ReadLine();
+                            GrabarArchivo(_archivoClientes);
+                            break;
+                        case "CUIT":
+                            break;
+                        case "Domicilio":
+                            break;
+                    }
+
+                }
+            }
+
+            GrabarArchivo(_archivoClientes);
+        }
+
+        public void BorrarCliente()
+        {
+            ListarClientes();
+            Console.ResetColor();
+            Console.WriteLine("\n");
+            Console.WriteLine("**Ingresa ID del CLIENTE¨ que desea borrar**");
+            string idCli = Console.ReadLine();
+            ValidarIdSoloNumerico(idCli);
+
+            for (int i = 0; i < this._clientesList.Count; i++)
+            {
+                if(int.Parse(idCli) == this._clientesList[i].IdCliente)
+                {
+                    this._clientesList.RemoveAt(i);
+                }
+            }
+
+            Console.WriteLine("**CLIENTE BORRADO CORRECTAMENTE**");
+            Console.ReadLine();
+            GrabarArchivo(_archivoClientes);   
         }
 
 
@@ -302,8 +359,8 @@ namespace TP_Final_Programación_2
         }
 
 
-        //__Validaciones Num y ID__
-        private void ValidarId(string _id)
+        //__Validaciones__
+        private void ValidarIdNumericoOExiste(string _id)
         {
             LeerArchivo(_archivoClientes);
 
@@ -346,6 +403,24 @@ namespace TP_Final_Programación_2
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Id CLIENTE valido");
             Console.ResetColor();
+        }
+
+
+        public void ValidarIdSoloNumerico(string _id)
+        {
+            LeerArchivo(_archivoClientes);
+
+            int idCli;
+
+            if (!int.TryParse(_id, out idCli) || idCli <= 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("_________________________________________________");
+                Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                Console.WriteLine("_________________________________________________");
+                Console.ResetColor();
+                _id = Console.ReadLine();
+            }
         }
 
 

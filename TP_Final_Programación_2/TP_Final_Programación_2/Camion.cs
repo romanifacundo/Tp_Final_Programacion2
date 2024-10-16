@@ -42,5 +42,9 @@ namespace TP_Final_Programación_2
             set { this.P_CargaMax = value; }
         }
 
+        public override void MostrarDatos()
+        {
+
+        }
     }
 }
