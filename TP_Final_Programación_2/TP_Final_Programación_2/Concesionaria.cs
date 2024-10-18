@@ -202,9 +202,15 @@ namespace TP_Final_Programación_2
             Console.ResetColor();
         }
 
+
         //__Vehiculo__
         public void CargarVehiculo()
         {
+            Console.WriteLine("\n");
+            Console.WriteLine("**QUE TIPO DE VEHICULO DESEAS CARGAR?**");
+            Console.WriteLine("**Ingresa ID del CLIENTE**");
+            
+            //__Moto - AutoCamioneta - Camion-
 
         }
 
