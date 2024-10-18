@@ -115,6 +115,7 @@ namespace TP_Final_Programación_2
 
 
         //__Metodos de acciones cargar datos__
+        //__Cliente__
         public void CargarCliente()
         {
             Console.WriteLine("\n");
@@ -199,6 +200,12 @@ namespace TP_Final_Programación_2
             }
 
             Console.ResetColor();
+        }
+
+        //__Vehiculo__
+        public void CargarVehiculo()
+        {
+
         }
 
 
