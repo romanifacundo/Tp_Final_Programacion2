@@ -171,11 +171,12 @@ namespace TP_Final_Programación_2
             Console.WriteLine("\n");
             Console.WriteLine("**Ingresa ID del CLIENTE¨ que desea borrar**");
             string idCli = Console.ReadLine();
-            ValidarIdSoloNumerico(idCli);
+            idCli = ValidarIdSoloNumerico(idCli);
+            int idCondicion = int.Parse(idCli);//__parsear para codicionar__
 
             for (int i = 0; i < this._clientesList.Count; i++)
             {
-                if(int.Parse(idCli) == this._clientesList[i].IdCliente)
+                if(idCondicion == this._clientesList[i].IdCliente)
                 {
                     this._clientesList.RemoveAt(i);
                 }
@@ -196,6 +197,8 @@ namespace TP_Final_Programación_2
             {
                 i.MostrarDatos();
             }
+
+            Console.ResetColor();
         }
 
 
@@ -319,19 +322,22 @@ namespace TP_Final_Programación_2
 
         private void Actualizar(string archivo)
         {
+            ListarClientes();
+            Console.WriteLine("\n");
             LeerArchivo(archivo);
 
             Console.WriteLine("Ingresa el ID del CLIENTE a actualizar:");
             string idCli = Console.ReadLine();
-            ValidarIdSoloNumerico(idCli);
+            idCli = ValidarIdSoloNumerico(idCli);
+            int idCondicion = int.Parse(idCli);//__parsear para codicionar__
 
             bool clienteEncontrado = false;  //__bandera para indicar si encontramos el cliente__
 
             for (int i = 0; i < this._clientesList.Count; i++)
             {
-                if (this._clientesList[i].IdCliente == int.Parse(idCli))
+                if (this._clientesList[i].IdCliente == idCondicion)
                 {
-                    clienteEncontrado = true;  //__encontado__
+                    clienteEncontrado = true;  //__encontrado__
                     Console.WriteLine("Cliente encontrado. Qué campo deseas actualizar?");
                     Console.WriteLine("1- Nombre");
                     Console.WriteLine("2- CUIT");
@@ -458,7 +464,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        public void ValidarIdSoloNumerico(string _id)
+        private string ValidarIdSoloNumerico(string _id)
         {
             //LeerArchivo(_archivoClientes);
             bool idValidoNum = false; //__bandera para el bucle__ 
@@ -485,6 +491,8 @@ namespace TP_Final_Programación_2
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Id CLIENTE valido");
             Console.ResetColor();
+
+            return _id;
         }
 
 
