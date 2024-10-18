@@ -208,8 +208,66 @@ namespace TP_Final_Programación_2
         {
             Console.WriteLine("\n");
             Console.WriteLine("**QUE TIPO DE VEHICULO DESEAS CARGAR?**");
-            Console.WriteLine("**Ingresa ID del CLIENTE**");
-            
+            Console.WriteLine("MOTO - AUTO/CAMIONETA - CAMION");
+            string tipoVehiculo = Console.ReadLine();
+
+            switch (tipoVehiculo)
+            {
+                case "MOTO":
+                    Console.WriteLine("\n");
+                    Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                    string idVhiculo = Console.ReadLine();
+                    ValidarIdNumericoOExiste(idVhiculo);
+                    Console.WriteLine("**Ingresa Cilindrada **");
+                    string cilindrada = Console.ReadLine();
+                    Console.WriteLine("**Ingresa Patente **");
+                    string patente = Console.ReadLine();
+                    Console.WriteLine("**Ingresa los Kilometros**");
+                    string km = Console.ReadLine();
+                    ValidarIdSoloNumerico(km);
+                    Console.WriteLine("**Ingresa el AÑO**");
+                    string ano = Console.ReadLine();
+                    ValidarIdSoloNumerico(ano);
+                    Console.WriteLine("**Ingresa el SEGMENTO de la lista**");
+                    MostrarSegmento();
+                    string mod = Console.ReadLine();
+                    Console.WriteLine("**Ingresa el ID del Segmento correspondiente**");
+                    string idSeg = Console.ReadLine();
+                    ValidarIdNumericoOExiste(idSeg);
+                    Console.WriteLine("**Ingresa el precio VENTA**");
+                    string pVenta = Console.ReadLine();
+                    ValidarIdSoloNumerico(pVenta);
+                    Console.WriteLine("**Ingresa Observaciones**");
+                    string observ = Console.ReadLine();
+                    Console.WriteLine("**Ingresa el Color**");
+                    string color = Console.ReadLine();
+                    Console.WriteLine("**Ingresa el ID de la Marca correspondiente**");
+                    MostrarMarca();
+                    string idMarca = Console.ReadLine();
+                    ValidarIdNumericoOExiste(idMarca);
+                    Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                    MostrarCombustible();
+                    string idCom = Console.ReadLine();
+                    ValidarIdNumericoOExiste(idCom);
+
+                    Moto moto = new Moto(int.Parse(idCom),cilindrada,patente,int.Parse(km),int.Parse(ano),mod,int.Parse(pVenta),observ,color,int.Parse(idMarca),int.Parse(idSeg),int.Parse(idCom));
+
+                    this._motosList.Add(moto);
+
+                    Console.WriteLine("\n");
+                    Console.WriteLine("<<<<<<<Cliente agregado con EXITO>>>>>");
+                    Console.ReadKey();
+
+                    GrabarArchivo(_archivoMotos);
+
+                    break;
+                case "AUTO/CAMIONETA":
+                    break;
+                case "CAMION":
+                    break;
+                default:
+                    break;
+            }
             //__Moto - AutoCamioneta - Camion-
 
         }
@@ -422,6 +480,56 @@ namespace TP_Final_Programación_2
             for (int i = 0; i < this._localidadesList.Count; i++)
             {
                 Console.WriteLine(this._localidadesList[i].NombreLocalidad);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
+        private void MostrarSegmento()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._segmentosList.Count; i++)
+            {
+                Console.WriteLine(this._segmentosList[i].SegmentoNombre);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
+        private void MostrarMarca()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._marcasList.Count; i++)
+            {
+                Console.WriteLine(this._marcasList[i].NombreMarca);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+        private void MostrarCombustible()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._combustiblesList.Count; i++)
+            {
+                Console.WriteLine(this._combustiblesList[i].CombustibleNombre);
             }
 
             Console.WriteLine("::::::::::::::::::::::::::::::::::::");
