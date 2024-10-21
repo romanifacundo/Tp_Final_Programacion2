@@ -284,7 +284,7 @@ namespace TP_Final_Programación_2
                             {
                                 case 0:
                                     {
-                                        
+                                        CargarVehiculo();
                                         break;
                                     }
                                 case 1:

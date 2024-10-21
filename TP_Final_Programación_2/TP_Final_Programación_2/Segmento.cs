@@ -16,8 +16,8 @@ namespace TP_Final_Programación_2
         //__Constructores__
         public Segmento(int idSeg, string segNom) 
         {
-            this.P_IdSegmento = idSeg;
-            this.P_Segmento = segNom;
+            this.IdSegmento = idSeg;
+            this.SegmentoNombre = segNom;
         }
 
 
