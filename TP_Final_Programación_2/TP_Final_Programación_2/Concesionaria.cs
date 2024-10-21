@@ -16,7 +16,7 @@ namespace TP_Final_Programación_2
         /// </summary>
 
         //__Arvhivos .txt__
-        //__Arvhivos .txt constanes para evaluar en sl SWITCH__
+        //__Arvhivos .txt constanes para evaluar en el SWITCH__
         private const string _archivoClientes = "clientes.txt";
         private const string _archivoVentas = "ventas.txt";
         private const string _archivoVehiculos = "vehiculos.txt";
@@ -69,7 +69,6 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
-            SoloLetras(clienteNombre);
 
             Console.WriteLine("**Ingresa el C.U.I.T del CLIENTE**");
             string CUIT = Console.ReadLine();
@@ -424,11 +423,7 @@ namespace TP_Final_Programación_2
                             }
                             Leer.Close();
                             x.Close();
-                        }
-                        else
-                        {
-                            Console.WriteLine("\n El archivo no existe.");
-                        }
+                        }                   
 
                         break;
 
@@ -488,11 +483,7 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-                        else
-                        {
-                            Console.WriteLine("\n El archivo no existe.");
-                        }
-
+      
                         break;
 
                     case _archivoLocalidades: //__Localidades__
@@ -516,10 +507,6 @@ namespace TP_Final_Programación_2
                             }
                             Leer.Close();
                             x.Close();
-                        }
-                        else
-                        {
-                            Console.WriteLine("\n El archivo no existe.");
                         }
 
                         break;
@@ -545,10 +532,6 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-                        else
-                        {
-                            Console.WriteLine("\n El archivo no existe.");
-                        }
 
                         break;
 
@@ -573,11 +556,7 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-                        else
-                        {
-                            Console.WriteLine("\n El archivo no existe.");
-                        }
-
+                      
                         break;
 
                     case _archivoMarcas: //__Marcas__
@@ -601,22 +580,22 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-                        else
-                        {
-                            Console.WriteLine("\n El archivo no existe.");
-                        }
 
                         break;
                     default:
                         break;
                 }
             }
+            else
+            {
+                Console.WriteLine("\n El archivo no existe.");
+            }
         }
 
 
         private void Actualizar(string archivo)
         {
-            ListarClientes();
+            ListarClientes(); //__falta desarrollar si se quiere actualizar en su totalidad__
             Console.WriteLine("\n");
             LeerArchivo(archivo);
 
@@ -645,9 +624,9 @@ namespace TP_Final_Programación_2
                     switch (opcion)
                     {
                         case 1:
-                            Console.WriteLine("Ingresa el nuevo Nombre:");
-                            this._clientesList[i].NombreCliente = Console.ReadLine();
-                            SoloLetras(_clientesList[i].NombreCliente);
+                            Console.WriteLine("Ingresa el nuevo Nombre:");           
+                            string pal = this._clientesList[i].NombreCliente = Console.ReadLine();
+                            SoloLetras(pal);
                             break;
                         case 2:
                             Console.WriteLine("Ingresa el nuevo CUIT:");
@@ -666,12 +645,10 @@ namespace TP_Final_Programación_2
                         case 5:
                             Console.WriteLine("Ingresa el nuevo Correo Electrónico:");
                             this._clientesList[i].CorreoElectronico = Console.ReadLine();
-                            SoloLetras(this._clientesList[i].CorreoElectronico);
                             break;
                         case 6:
                             Console.WriteLine("Ingresa la nueva Localidad:");
                             this._clientesList[i].NombreLocalidad = Console.ReadLine();
-                            SoloLetras(_clientesList[i].NombreLocalidad);
                             break;
                         default:
                             Console.WriteLine("La opcion no es valida!");
@@ -901,7 +878,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        private void SoloLetras(string _palabra)
+        private string SoloLetras(string _palabra)
         {
             bool palabra_Valida = false; // __bandera de corte__
 
@@ -915,14 +892,16 @@ namespace TP_Final_Programación_2
                     Console.WriteLine("_________________________________________________");
                     Console.ResetColor();
                     Console.WriteLine("Vuelve a ingresar:");
-                    _palabra = Console.ReadLine(); 
+                    _palabra = Console.ReadLine();
                 }
-                else
-                {
-                    palabra_Valida = true; 
-                }
-
+               else
+               {
+                    palabra_Valida = true;
+               }
+                    
             } while (!palabra_Valida);
+
+            return _palabra;
         }
 
     }
