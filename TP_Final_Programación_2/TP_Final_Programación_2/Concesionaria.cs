@@ -16,17 +16,6 @@ namespace TP_Final_Programación_2
         /// </summary>
 
         //__Arvhivos .txt__
-        //private string _archivoVehiculos = "";
-        //private string _archivoAutosCamionetas = "";
-        //private string _archivoMotos = "";
-        //private string _archivoCamiones = "";
-        //private string _archivoMarcas = "";
-        //private string _archivoVentas = "";
-        //private string _archivoClientes = "clientes.txt";
-        //private string _archivoLocalidades = "";
-        //private string _archivoProvincias = "";
-        //private string _archivoCombustible = "";
-        //private string _archivoSegmento = "";
         //__Arvhivos .txt constanes para evaluar en sl SWITCH__
         private const string _archivoClientes = "clientes.txt";
         private const string _archivoVentas = "ventas.txt";
@@ -40,7 +29,6 @@ namespace TP_Final_Programación_2
         private const string _archivoCombustible = "combustible.txt";
         private const string _archivoSegmento = "segmento.txt";
 
-
         //__Declaracion Listas privadas con relacion de ensamble a clases__ 
         private List<Vehiculo> _vehiculosList;
         private List<AutoCamioneta> _autosCamionetasList;
@@ -49,7 +37,6 @@ namespace TP_Final_Programación_2
         private List<Marca> _marcasList;
         private List<Venta> _ventasList;
         private List<Cliente> _clientesList;
-        //__Declaracion Listas privadas y para ser inicializadas__
         private List<Combustible> _combustiblesList;
         private List<Segmento> _segmentosList;
         private List<Localidad> _localidadesList;
@@ -68,49 +55,6 @@ namespace TP_Final_Programación_2
             this._clientesList = new List<Cliente>();
             this._localidadesList = new List<Localidad>();
             this._provinciasList = new List<Provincia>();
-
-
-            //__List incializadas__
-            this._segmentosList = new List<Segmento>
-            {
-                new Segmento(1, "Sedan"),
-                new Segmento(2, "Coupe"),
-                new Segmento(3, "Suv"),
-                new Segmento(4, "Pickup"),
-                new Segmento(5, "Scooter"),
-                new Segmento(6, "Enduro"),
-                new Segmento(7, "Ruta"),
-                new Segmento(8, "Camion")
-            };
-
-
-            this._combustiblesList = new List<Combustible>
-            {
-                new Combustible(1, "Nafta"),
-                new Combustible(2, "Diesel"),
-                new Combustible(3, "Gnc"),
-                new Combustible(4, "Electrico")
-            };
-
-
-            this._localidadesList = new List<Localidad>
-            {
-                new Localidad(1,"San Nicolas",1),
-                new Localidad(2,"Rosario", 5),
-                new Localidad(3,"Pergamino",1),
-                new Localidad(4,"Ramallo", 1),
-                new Localidad(5,"San Pedro",1)
-            };
-
-
-            this._provinciasList = new List<Provincia>
-            {
-                 new Provincia(1, "Buenos Aires"),
-                 new Provincia(2, "Córdoba"),
-                 new Provincia(3, "Entre Ríos"),
-                 new Provincia(4, "San Luis"),
-                 new Provincia(5, "Santa Fe")
-            };
         }
 
 
@@ -121,7 +65,7 @@ namespace TP_Final_Programación_2
             Console.WriteLine("\n");
             Console.WriteLine("**Ingresa ID del CLIENTE**");
             string idCli = Console.ReadLine();
-            ValidarIdNumericoOExiste(idCli);
+            ValidarIdNumericoOExiste(idCli, _archivoClientes);
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
@@ -140,12 +84,11 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("**Ingresa el Correo Electronico del CLIENTE**");
             string corrElect = Console.ReadLine();
-            SoloLetras(corrElect);
 
             Console.WriteLine("**Ingresa el nombre de la Localidad del CLIENTE**");
-            MostrarLocalidades();
+            LeerArchivo(_archivoLocalidades); 
+            ListarLocalidades(); 
             string local = Console.ReadLine();
-            SoloLetras(local);
 
             Cliente cli = new Cliente(int.Parse(idCli), clienteNombre, CUIT, domicilio, tel, corrElect, local);
 
@@ -203,67 +146,163 @@ namespace TP_Final_Programación_2
         }
 
 
+        public void ListarProvincias()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._provinciasList.Count; i++)
+            {
+                Console.WriteLine(this._provinciasList[i].NombreProvincia);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
+        public void ListarLocalidades()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._localidadesList.Count; i++)
+            {
+                Console.WriteLine(this._localidadesList[i].NombreLocalidad);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
+        public void ListarSegmento()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._segmentosList.Count; i++)
+            {
+                Console.WriteLine(this._segmentosList[i].SegmentoNombre);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
+        public void ListasMarca()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._marcasList.Count; i++)
+            {
+                Console.Write(this._marcasList[i].NombreMarca);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
+        public void ListarCombustible()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            for (int i = 0; i < this._combustiblesList.Count; i++)
+            {
+                Console.WriteLine(this._combustiblesList[i].CombustibleNombre);
+            }
+
+            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
+
+            Console.ResetColor();
+        }
+
+
         //__Vehiculo__
         public void CargarVehiculo()
         {
             Console.WriteLine("\n");
             Console.WriteLine("**QUE TIPO DE VEHICULO DESEAS CARGAR?**");
-            Console.WriteLine("MOTO - AUTO/CAMIONETA - CAMION");
-            string tipoVehiculo = Console.ReadLine();
+            Console.WriteLine("1) MOTO  2) AUTO/CAMIONETA  3) CAMION");
+            int tipoVehiculo = int.Parse(Console.ReadLine());
 
             switch (tipoVehiculo)
             {
-                case "MOTO":
+                case 1:
                     Console.WriteLine("\n");
                     Console.WriteLine("**Ingresa el ID del Vehiculo**");
                     string idVhiculo = Console.ReadLine();
-                    ValidarIdNumericoOExiste(idVhiculo);
+                    ValidarIdNumericoOExiste(idVhiculo, _archivoMotos);
+
                     Console.WriteLine("**Ingresa Cilindrada **");
                     string cilindrada = Console.ReadLine();
+
                     Console.WriteLine("**Ingresa Patente **");
                     string patente = Console.ReadLine();
+
                     Console.WriteLine("**Ingresa los Kilometros**");
                     string km = Console.ReadLine();
                     ValidarIdSoloNumerico(km);
+
                     Console.WriteLine("**Ingresa el AÑO**");
                     string ano = Console.ReadLine();
                     ValidarIdSoloNumerico(ano);
-                    Console.WriteLine("**Ingresa el SEGMENTO de la lista**");
-                    MostrarSegmento();
-                    string mod = Console.ReadLine();
-                    Console.WriteLine("**Ingresa el ID del Segmento correspondiente**");
+
+                    Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                    LeerArchivo(_archivoSegmento);
+                    ListarSegmento();
                     string idSeg = Console.ReadLine();
-                    ValidarIdNumericoOExiste(idSeg);
+                    ValidarIdSoloNumerico(idSeg);
+
+                    Console.WriteLine("**Ingresa el nombre del Modelo**");
+                    string mod = Console.ReadLine();
+
                     Console.WriteLine("**Ingresa el precio VENTA**");
                     string pVenta = Console.ReadLine();
                     ValidarIdSoloNumerico(pVenta);
+
                     Console.WriteLine("**Ingresa Observaciones**");
                     string observ = Console.ReadLine();
+
                     Console.WriteLine("**Ingresa el Color**");
                     string color = Console.ReadLine();
-                    Console.WriteLine("**Ingresa el ID de la Marca correspondiente**");
-                    MostrarMarca();
-                    string idMarca = Console.ReadLine();
-                    ValidarIdNumericoOExiste(idMarca);
-                    Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
-                    MostrarCombustible();
-                    string idCom = Console.ReadLine();
-                    ValidarIdNumericoOExiste(idCom);
 
+                    Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                    LeerArchivo(_archivoMarcas);
+                    ListarSegmento();
+                    string idMarca = Console.ReadLine();
+
+                    Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                    LeerArchivo(_archivoCombustible);
+                    string idCom = Console.ReadLine();
+         
                     Moto moto = new Moto(int.Parse(idCom),cilindrada,patente,int.Parse(km),int.Parse(ano),mod,int.Parse(pVenta),observ,color,int.Parse(idMarca),int.Parse(idSeg),int.Parse(idCom));
 
                     this._motosList.Add(moto);
 
                     Console.WriteLine("\n");
-                    Console.WriteLine("<<<<<<<Cliente agregado con EXITO>>>>>");
+                    Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
                     Console.ReadKey();
 
                     GrabarArchivo(_archivoMotos);
 
                     break;
-                case "AUTO/CAMIONETA":
+                case 2:
                     break;
-                case "CAMION":
+                case 3:
                     break;
                 default:
                     break;
@@ -356,37 +395,221 @@ namespace TP_Final_Programación_2
             string cadena;
             string[] datos;
 
-            if (File.Exists(_archivoClientes))
+            if (File.Exists(_archivo))
             {
-                if (this._clientesList.Count == 0)
+                switch (_archivo)
                 {
-                    x = new FileStream(_archivoClientes, FileMode.Open);
-                    Leer = new StreamReader(x);
+                    case _archivoClientes:
 
-                    while (!Leer.EndOfStream)
-                    {
-                        cadena = Leer.ReadLine();
-                        datos = cadena.Split('|');
+                        if (this._clientesList.Count == 0)
+                        {
+                            x = new FileStream(_archivoClientes, FileMode.Open);
+                            Leer = new StreamReader(x);
 
-                        Cliente cli = new Cliente(
-                                int.Parse(datos[0]),
-                                datos[1],
-                                datos[2],
-                                datos[3],
-                                datos[4],
-                                datos[5],
-                                datos[6]);
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('|');
 
-                        this._clientesList.Add(cli);
-                    }
+                                Cliente cli = new Cliente(
+                                        int.Parse(datos[0]),
+                                        datos[1],
+                                        datos[2],
+                                        datos[3],
+                                        datos[4],
+                                        datos[5],
+                                        datos[6]);
 
-                    Leer.Close();
-                    x.Close();
+                                this._clientesList.Add(cli);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n El archivo no existe.");
+                        }
+
+                        break;
+
+                    case _archivoVentas:
+
+                        x = new FileStream(_archivoVentas, FileMode.Open);
+                        Leer = new StreamReader(x);
+
+                        break;
+
+                    case _archivoVehiculos:
+
+                        x = new FileStream(_archivoVehiculos, FileMode.Open);
+                        Leer = new StreamReader(x);
+
+                        break;
+
+                    case _archivoAutosCamionetas:
+
+                        x = new FileStream(_archivoAutosCamionetas, FileMode.Open);
+                        Leer = new StreamReader(x);
+
+                        break;
+
+                    case _archivoMotos:
+
+                        x = new FileStream(_archivoMotos, FileMode.Open);
+                        Leer = new StreamReader(x);
+
+                        break;
+
+                    case _archivoCamiones:
+
+                        x = new FileStream(_archivoCamiones, FileMode.Open);
+                        Leer = new StreamReader(x);
+
+                        break;
+
+                    case _archivoProvincias: //__Provincias__
+
+                        if (this._provinciasList.Count == 0)
+                        {
+                            x = new FileStream(_archivoProvincias, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('-');
+
+                                Provincia prov = new Provincia(
+                                        int.Parse(datos[0]),
+                                        datos[1]);
+                                       
+                                this._provinciasList.Add(prov);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n El archivo no existe.");
+                        }
+
+                        break;
+
+                    case _archivoLocalidades: //__Localidades__
+
+                        if (this._localidadesList.Count == 0)
+                        {
+                            x = new FileStream(_archivoLocalidades, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('-');
+
+                                Localidad loc = new Localidad(
+                                        int.Parse(datos[0]),
+                                        datos[1],
+                                        int.Parse(datos[2]));
+
+                                this._localidadesList.Add(loc);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n El archivo no existe.");
+                        }
+
+                        break;
+
+                    case _archivoSegmento: //__Segmentos__
+
+                        if (this._segmentosList.Count == 0)
+                        {
+                            x = new FileStream(_archivoSegmento, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('-');
+
+                                Segmento seg = new Segmento(
+                                        int.Parse(datos[0]),
+                                        datos[1]);
+
+                                this._segmentosList.Add(seg);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n El archivo no existe.");
+                        }
+
+                        break;
+
+                    case _archivoCombustible: //__Combustibles__
+
+                        if (this._combustiblesList.Count == 0)
+                        {
+                            x = new FileStream(_archivoCombustible, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('-');
+
+                                Combustible com = new Combustible(
+                                        int.Parse(datos[0]),
+                                        datos[1]);
+
+                                this._combustiblesList.Add(com);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n El archivo no existe.");
+                        }
+
+                        break;
+
+                    case _archivoMarcas: //__Marcas__
+
+                        if (this._marcasList.Count == 0)
+                        {
+                            x = new FileStream(_archivoMarcas, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('-');
+
+                                Marca mar = new Marca(
+                                        int.Parse(datos[0]),
+                                        datos[1]);
+
+                                this._marcasList.Add(mar);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n El archivo no existe.");
+                        }
+
+                        break;
+                    default:
+                        break;
                 }
-            }
-            else
-            {
-                Console.WriteLine("\n El archivo no existe.");
             }
         }
 
@@ -471,117 +694,115 @@ namespace TP_Final_Programación_2
         }
 
 
-        private void MostrarLocalidades()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._localidadesList.Count; i++)
-            {
-                Console.WriteLine(this._localidadesList[i].NombreLocalidad);
-            }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            Console.ResetColor();
-        }
-
-
-        private void MostrarSegmento()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._segmentosList.Count; i++)
-            {
-                Console.WriteLine(this._segmentosList[i].SegmentoNombre);
-            }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            Console.ResetColor();
-        }
-
-
-        private void MostrarMarca()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._marcasList.Count; i++)
-            {
-                Console.WriteLine(this._marcasList[i].NombreMarca);
-            }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            Console.ResetColor();
-        }
-
-        private void MostrarCombustible()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._combustiblesList.Count; i++)
-            {
-                Console.WriteLine(this._combustiblesList[i].CombustibleNombre);
-            }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            Console.ResetColor();
-        }
-
-
         //__Validaciones__
-        private void ValidarIdNumericoOExiste(string _id)
+        private void ValidarIdNumericoOExiste(string _id, string _archivo)
         {
-            LeerArchivo(_archivoClientes);
-
             bool idValido = false; //__bandera para el bucle__ 
-            int idCli;
+            int idGenerico;
 
-            do
+            switch (_archivo)//__refactorizar para cada .txt en switch para no usar muchos if()__
             {
-                if (!int.TryParse(_id, out idCli) || idCli <= 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("_________________________________________________");
-                    Console.WriteLine("ID no válido, deben ser solo números positivos!");
-                    Console.WriteLine("_________________________________________________");
-                    Console.ResetColor();
-                    _id = Console.ReadLine();
-                }
-                else
-                {
-                    idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+                case _archivoClientes:
 
-                    for (int i = 0; i < this._clientesList.Count; i++)
+                    do
                     {
-                        if (idCli == this._clientesList[i].IdCliente)
+                        if (!int.TryParse(_id, out idGenerico) || idGenerico <= 0)
                         {
-                            idValido = false;
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("_________________________________________________");
-                            Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
                             Console.WriteLine("_________________________________________________");
                             Console.ResetColor();
-                            Console.WriteLine("Vuelve a ingresar otro ID:");
                             _id = Console.ReadLine();
                         }
-                    }
-                }
-            }
-            while (!idValido);
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Id CLIENTE valido");
-            Console.ResetColor();
+                            for (int i = 0; i < this._clientesList.Count; i++)
+                            {
+                                if (idGenerico == this._clientesList[i].IdCliente)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                    }
+                    while (!idValido);
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Id CLIENTE valido");
+                    Console.ResetColor();
+
+                    break;
+
+                case _archivoVentas:
+
+                    break;
+
+                case _archivoVehiculos:
+           
+                    do
+                    {
+                        if (!int.TryParse(_id, out idGenerico) || idGenerico <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._clientesList.Count; i++)
+                            {
+                                if (idGenerico == this._vehiculosList[i].IdVehiculo)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                    }
+                    while (!idValido);
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Id CLIENTE valido");
+                    Console.ResetColor();
+
+                    break;
+
+                case _archivoAutosCamionetas:
+
+                    break;
+
+                case _archivoMotos:
+
+                    break;
+
+                case _archivoCamiones:
+
+                    break;
+
+                default:
+                    break;
+            }      
         }
 
 
@@ -678,30 +899,31 @@ namespace TP_Final_Programación_2
 
             }while (!telefono_Valido);
         }
-        
 
-        private void SoloLetras(string _palabra) 
+
+        private void SoloLetras(string _palabra)
         {
-            bool palabra_Valida = false;//__bandera de corte__
+            bool palabra_Valida = false; // __bandera de corte__
 
-            do 
+            do
             {
                 if (!_palabra.All(char.IsLetter))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("_________________________________________________");
-                    Console.WriteLine("Palabra invalida");
+                    Console.WriteLine("Palabra inválida");
                     Console.WriteLine("_________________________________________________");
                     Console.ResetColor();
                     Console.WriteLine("Vuelve a ingresar:");
-                    _palabra = Console.ReadLine();
+                    _palabra = Console.ReadLine(); 
                 }
                 else
                 {
-                    palabra_Valida = true;
+                    palabra_Valida = true; 
                 }
 
-            } while (!palabra_Valida);    
+            } while (!palabra_Valida);
         }
+
     }
 }
