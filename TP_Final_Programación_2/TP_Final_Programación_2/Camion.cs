@@ -42,9 +42,17 @@ namespace TP_Final_Programación_2
             set { this.P_CargaMax = value; }
         }
 
+
+        //__Metodos__
         public override void MostrarDatos()
         {
+            base.MostrarDatos();
 
+            if (this.CajaCarga == "SI")
+            {
+                Console.WriteLine($"Caja de Carga: {this.CajaCarga} | Dimensiones de la Caja: {this.DimensionCaja} | Carga Máxima: {this.CargaMaxima}");
+                Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+            }
         }
     }
 }

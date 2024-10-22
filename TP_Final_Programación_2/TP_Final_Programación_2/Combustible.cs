@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP_Final_Programación_2
 {
-    internal class Combustible
+    internal class Combustible : EntidadBase
     {
         //__Propiedades privadas__
         private int P_IdCombustible;
@@ -32,6 +32,21 @@ namespace TP_Final_Programación_2
         {
             get { return this.P_Combustible; }
             set { this.P_Combustible = value; }
+        }
+
+
+        //__Metodos__
+        public override void MostrarDatos()
+        {
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($"{this.IdCombustible} | {this.CombustibleNombre} ");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.ResetColor();
         }
 
     }

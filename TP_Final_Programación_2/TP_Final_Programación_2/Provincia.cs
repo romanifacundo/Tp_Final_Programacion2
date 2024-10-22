@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP_Final_Programación_2
 {
-    internal class Provincia
+    internal class Provincia : EntidadBase
     {
         //__Propiedades privadas__
         private int P_IdProvincia;
@@ -19,7 +19,6 @@ namespace TP_Final_Programación_2
             this.IdProvincia = IdProvi;
             this.P_Provincia = prov;
         }
-        //hello world! 
 
         //__Metodos de propiedades publicas__
         public int IdProvincia
@@ -32,6 +31,21 @@ namespace TP_Final_Programación_2
         {
             get { return this.P_Provincia; }
             set { this.P_Provincia = value; }
+        }
+
+
+        //__Metodos__
+        public override void MostrarDatos()
+        {
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($" Nombre Provincia: {this.NombreProvincia} ");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.ResetColor();
         }
     }
 }

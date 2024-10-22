@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP_Final_Programación_2
 {
-    internal class Marca
+    internal class Marca : EntidadBase
     {
         //__Propiedades privadas__
         private int P_IdMarca;
@@ -32,6 +32,21 @@ namespace TP_Final_Programación_2
         {
             get { return this.P_Marca; }
             set { this.P_Marca = value; }
+        }
+
+
+        //__Metodos
+        public override void MostrarDatos()
+        {
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($"{this.IdMarca} | {this.NombreMarca} ");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.ResetColor();
         }
     }
 }

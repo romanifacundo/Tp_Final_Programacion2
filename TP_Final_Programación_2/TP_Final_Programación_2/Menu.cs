@@ -289,7 +289,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 1:
                                     {
-                                        
+                                        ListarVehiculos();
                                         Console.ReadKey();
                                         break;
                                     }

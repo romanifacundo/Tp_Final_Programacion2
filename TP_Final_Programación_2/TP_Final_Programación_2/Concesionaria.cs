@@ -26,8 +26,8 @@ namespace TP_Final_Programación_2
         private const string _archivoMarcas = "marcas.txt";
         private const string _archivoLocalidades = "localidades.txt";
         private const string _archivoProvincias = "provincias.txt";
-        private const string _archivoCombustible = "combustible.txt";
-        private const string _archivoSegmento = "segmento.txt";
+        private const string _archivoCombustible = "combustibles.txt";
+        private const string _archivoSegmento = "segmentos.txt";
 
         //__Declaracion Listas privadas con relacion de ensamble a clases__ 
         private List<Vehiculo> _vehiculosList;
@@ -55,6 +55,8 @@ namespace TP_Final_Programación_2
             this._clientesList = new List<Cliente>();
             this._localidadesList = new List<Localidad>();
             this._provinciasList = new List<Provincia>();
+            this._segmentosList = new List<Segmento>();
+            this._combustiblesList = new List<Combustible>();
         }
 
 
@@ -65,7 +67,7 @@ namespace TP_Final_Programación_2
             Console.WriteLine("\n");
             Console.WriteLine("**Ingresa ID del CLIENTE**");
             string idCli = Console.ReadLine();
-            idCli = ValidarIdNumericoOExiste(idCli,_archivoClientes);
+            idCli = ValidarIdNumericoOExiste(idCli, _archivoClientes);
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
@@ -91,11 +93,11 @@ namespace TP_Final_Programación_2
             string local = Console.ReadLine();
 
             Cliente cli = new Cliente(int.Parse(idCli),
-                                         clienteNombre, 
-                                         CUIT, 
-                                         domicilio, 
-                                         tel, 
-                                         corrElect, 
+                                         clienteNombre,
+                                         CUIT,
+                                         domicilio,
+                                         tel,
+                                         corrElect,
                                          local);
 
             this._clientesList.Add(cli);
@@ -113,10 +115,10 @@ namespace TP_Final_Programación_2
         {
             int tipoVehiculo;
             bool opcionValida = false;
-            
+
             do
             {
-              
+
                 Console.WriteLine("\n");
                 Console.WriteLine("**¿QUÉ TIPO DE VEHÍCULO DESEAS CARGAR?**");
                 Console.WriteLine("1) MOTO  2) AUTO/CAMIONETA  3) CAMIÓN");
@@ -147,7 +149,7 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
                             LeerArchivo(_archivoSegmento);
-                            ListarSegmento();
+                            ListarSegmentos();
                             string idSeg = Console.ReadLine();
                             ValidarIdSoloNumerico(idSeg);
 
@@ -167,11 +169,12 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
                             LeerArchivo(_archivoMarcas);
-                            ListarSegmento();
+                            ListarMarcas();
                             string idMarca = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
                             LeerArchivo(_archivoCombustible);
+                            ListarCombustible();
                             string idCom = Console.ReadLine();
 
                             Moto moto = new Moto(int.Parse(idCom),
@@ -194,7 +197,7 @@ namespace TP_Final_Programación_2
                             Console.ReadKey();
 
                             GrabarArchivo(_archivoMotos);
-
+                            opcionValida = true;
                             break;
 
                         case 2:
@@ -217,7 +220,7 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
                             LeerArchivo(_archivoSegmento);
-                            ListarSegmento();
+                            ListarSegmentos();
                             string idSegAC = Console.ReadLine();
                             ValidarIdSoloNumerico(idSegAC);
 
@@ -237,11 +240,12 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
                             LeerArchivo(_archivoMarcas);
-                            ListarSegmento();
+                            ListarMarcas();
                             string idMarcaAC = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
                             LeerArchivo(_archivoCombustible);
+                            ListarCombustible();
                             string idComAC = Console.ReadLine();
 
                             AutoCamioneta ac = new AutoCamioneta(
@@ -264,6 +268,7 @@ namespace TP_Final_Programación_2
                             Console.ReadKey();
 
                             GrabarArchivo(_archivoAutosCamionetas);
+                            opcionValida = true;
                             break;
 
                         case 3:
@@ -289,7 +294,7 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
                             LeerArchivo(_archivoSegmento);
-                            ListarSegmento();
+                            ListarSegmentos();
                             string idSegCA = Console.ReadLine();
                             ValidarIdSoloNumerico(idSegCA);
 
@@ -327,15 +332,14 @@ namespace TP_Final_Programación_2
                                 ValidarIdSoloNumerico(cargaMax);
                             }
 
-
-
                             Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
                             LeerArchivo(_archivoMarcas);
-                            ListarSegmento();
+                            ListarMarcas();
                             string idMarcaCA = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
                             LeerArchivo(_archivoCombustible);
+                            ListarCombustible();
                             string idComCA = Console.ReadLine();
 
                             Camion ca = new Camion(
@@ -361,6 +365,7 @@ namespace TP_Final_Programación_2
                             Console.ReadKey();
 
                             GrabarArchivo(_archivoCamiones);
+                            opcionValida = true;
 
                             break;
 
@@ -430,6 +435,74 @@ namespace TP_Final_Programación_2
         }
 
 
+        public void ListarVehiculos()
+        {
+            bool opcionValida = false;  //__bandera para verificar la opción__
+
+            do
+            {
+                Console.WriteLine("Cliente VEHICULO desea Listar");
+                Console.WriteLine("1) AUTOS/CAMIONETAS 2)CAMIONES 3)MOTOS");
+
+                if (int.TryParse(Console.ReadLine(), out int opcion))
+                {
+                    switch (opcion)
+                    {
+                        case 1:
+
+                            LeerArchivo(_archivoAutosCamionetas);
+
+                            foreach (AutoCamioneta i in this._autosCamionetasList)
+                            {
+                                i.MostrarDatos();
+                            }
+                            opcionValida = true;
+                            break;
+
+                        case 2:
+
+                            LeerArchivo(_archivoCamiones);
+
+                            foreach (Camion i in this._camionesList)
+                            {
+                                i.MostrarDatos();
+                            }
+                            opcionValida = true;
+                            break;
+
+                        case 3:
+
+                            LeerArchivo(_archivoMotos);
+
+                            foreach (Moto i in this._motosList)
+                            {
+                                i.MostrarDatos();
+                            }
+                            opcionValida = true;
+                            break;
+
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("Opción no válida. Por favor, elige una opción del 1 al 3.");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________");
+                    Console.WriteLine("Entrada no válida. Debes ingresar un número.");
+                    Console.WriteLine("_________________________________________________");
+                    Console.ResetColor();
+                }
+
+            } while (!opcionValida);
+        }
+
+
         public void ListarProvincias()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -449,6 +522,8 @@ namespace TP_Final_Programación_2
 
         public void ListarLocalidades()
         {
+            LeerArchivo(_archivoLocalidades);
+
             Console.ForegroundColor = ConsoleColor.Blue;
 
             Console.WriteLine("::::::::::::::::::::::::::::::::::::");
@@ -464,35 +539,29 @@ namespace TP_Final_Programación_2
         }
 
 
-        public void ListarSegmento()
+        public void ListarSegmentos()
         {
+            LeerArchivo(_archivoSegmento);
+
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._segmentosList.Count; i++)
+            foreach (Segmento i in this._segmentosList)
             {
-                Console.WriteLine(this._segmentosList[i].SegmentoNombre);
+                i.MostrarDatos();
             }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
 
             Console.ResetColor();
         }
 
 
-        public void ListasMarca()
+        public void ListarMarcas()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
 
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._marcasList.Count; i++)
+            foreach (Marca i in this._marcasList)
             {
-                Console.Write(this._marcasList[i].NombreMarca);
+                i.MostrarDatos();
             }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
 
             Console.ResetColor();
         }
@@ -500,16 +569,12 @@ namespace TP_Final_Programación_2
 
         public void ListarCombustible()
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            LeerArchivo(_archivoCombustible);
 
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
-
-            for (int i = 0; i < this._combustiblesList.Count; i++)
+            foreach (Combustible i in this._combustiblesList)
             {
-                Console.WriteLine(this._combustiblesList[i].CombustibleNombre);
+                i.MostrarDatos();
             }
-
-            Console.WriteLine("::::::::::::::::::::::::::::::::::::");
 
             Console.ResetColor();
         }
@@ -556,23 +621,23 @@ namespace TP_Final_Programación_2
                         break;
 
                     case _archivoMotos:
-                        
-                        x = new FileStream(_archivoVehiculos, FileMode.Create);
+
+                        x = new FileStream(_archivoMotos, FileMode.Create);
                         grabar = new StreamWriter(x);
 
-                        for (int i = 0; i < this._vehiculosList.Count; i++)
+                        for (int i = 0; i < this._motosList.Count; i++)
                         {
-                            grabar.WriteLine(this._motosList[i].IdVehiculo + "|" +  
-                                             this._motosList[i].Cilindrada + "|" +  
-                                             this._motosList[i].Patente + "|" +     
-                                             this._motosList[i].Kilometro + "|" +   
-                                             this._motosList[i].Anio + "|" +        
-                                             this._motosList[i].Modelo + "|" +     
-                                             this._motosList[i].PrecioVenta + "|" + 
-                                             this._motosList[i].Observaciones + "|" + 
-                                             this._motosList[i].Color + "|" +       
-                                             this._motosList[i].IdMarca + "|" +     
-                                             this._motosList[i].IdSegmento + "|" +  
+                            grabar.WriteLine(this._motosList[i].IdVehiculo + "|" +
+                                             this._motosList[i].Cilindrada + "|" +
+                                             this._motosList[i].Patente + "|" +
+                                             this._motosList[i].Kilometro + "|" +
+                                             this._motosList[i].Anio + "|" +
+                                             this._motosList[i].Modelo + "|" +
+                                             this._motosList[i].PrecioVenta + "|" +
+                                             this._motosList[i].Observaciones + "|" +
+                                             this._motosList[i].Color + "|" +
+                                             this._motosList[i].IdMarca + "|" +
+                                             this._motosList[i].IdSegmento + "|" +
                                              this._motosList[i].IdCombustible);
 
                         }
@@ -628,9 +693,9 @@ namespace TP_Final_Programación_2
                             //__si el camión tiene datos de caja, dimensión y carga máxima__
                             if (this._camionesList[i].CajaCarga == "si")
                             {
-                                grabar.Write(this._camionesList[i].CajaCarga + "|" + 
-                                             this._camionesList[i].DimensionCaja + "|" + 
-                                             this._camionesList[i].CargaMaxima); 
+                                grabar.Write(this._camionesList[i].CajaCarga + "|" +
+                                             this._camionesList[i].DimensionCaja + "|" +
+                                             this._camionesList[i].CargaMaxima);
                             }
                         }
 
@@ -782,7 +847,7 @@ namespace TP_Final_Programación_2
                             while (!Leer.EndOfStream)
                             {
                                 cadena = Leer.ReadLine();
-                                datos = cadena.Split('-');
+                                datos = cadena.Split(';');
 
                                 Segmento seg = new Segmento(
                                         int.Parse(datos[0]),
@@ -969,9 +1034,9 @@ namespace TP_Final_Programación_2
 
 
         //__Validaciones__
-        private string ValidarIdNumericoOExiste(string _id , string _archivo)
+        private string ValidarIdNumericoOExiste(string _id, string _archivo)
         {
-            
+
             bool idValido = false; //__bandera para el bucle__ 
             int idCli;
             switch (_archivo)
@@ -1007,7 +1072,7 @@ namespace TP_Final_Programación_2
                                     Console.ResetColor();
                                     Console.WriteLine("Vuelve a ingresar otro ID:");
                                     _id = Console.ReadLine();
-                                }                         
+                                }
                             }
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Id CLIENTE valido");
@@ -1022,7 +1087,7 @@ namespace TP_Final_Programación_2
                     break;
 
                 case _archivoVehiculos:
-                        
+
                     break;
 
                 case _archivoLocalidades:
@@ -1043,7 +1108,7 @@ namespace TP_Final_Programación_2
                 default:
                     break;
             }
-            
+
 
             return _id;
         }
@@ -1061,7 +1126,7 @@ namespace TP_Final_Programación_2
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("_________________________________________________");
-                    Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                    Console.WriteLine("No válido, deben ser solo números positivos!");
                     Console.WriteLine("_________________________________________________");
                     Console.ResetColor();
                     _id = Console.ReadLine();
@@ -1074,7 +1139,7 @@ namespace TP_Final_Programación_2
             } while (!idValidoNum);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Id CLIENTE valido");
+            Console.WriteLine("Valido");
             Console.ResetColor();
 
             return _id;

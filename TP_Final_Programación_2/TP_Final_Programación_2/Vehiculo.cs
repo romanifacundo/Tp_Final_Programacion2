@@ -107,10 +107,21 @@ namespace TP_Final_Programación_2
         }
 
 
-       //__Metodos__
-        public virtual void MostrarDatos() 
+        //__Metodos__
+        public virtual void MostrarDatos()
         {
-            
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($" ID Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | Kilómetros: {this.Kilometro} | Año: {this.Anio} | " +
+                              $"Modelo: {this.Modelo} | Precio de Venta: {this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
+                              $"Color: {this.Color} | Marca: {this.IdMarca} | Segmento: {this.IdSegmento} | Combustible: {this.IdCombustible}");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.ResetColor(); 
         }
 
     }

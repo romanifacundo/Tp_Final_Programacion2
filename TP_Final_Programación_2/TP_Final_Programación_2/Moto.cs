@@ -25,5 +25,15 @@ namespace TP_Final_Programación_2
             get { return this.P_Cilindrada; }
             set { this.P_Cilindrada = value; }
         }
+
+
+        public override void MostrarDatos()
+        {
+            base.MostrarDatos(); 
+
+            Console.WriteLine($"Cilindrada: {this.Cilindrada}");
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+        }
+
     }
 }
