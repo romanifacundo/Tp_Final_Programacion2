@@ -65,10 +65,11 @@ namespace TP_Final_Programación_2
             Console.WriteLine("\n");
             Console.WriteLine("**Ingresa ID del CLIENTE**");
             string idCli = Console.ReadLine();
-            ValidarIdNumericoOExiste(idCli, _archivoClientes);
+            idCli = ValidarIdNumericoOExiste(idCli);
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
+            SoloLetras(clienteNombre);
 
             Console.WriteLine("**Ingresa el C.U.I.T del CLIENTE**");
             string CUIT = Console.ReadLine();
@@ -85,11 +86,17 @@ namespace TP_Final_Programación_2
             string corrElect = Console.ReadLine();
 
             Console.WriteLine("**Ingresa el nombre de la Localidad del CLIENTE**");
-            LeerArchivo(_archivoLocalidades); 
-            ListarLocalidades(); 
+            LeerArchivo(_archivoLocalidades);
+            ListarLocalidades();
             string local = Console.ReadLine();
 
-            Cliente cli = new Cliente(int.Parse(idCli), clienteNombre, CUIT, domicilio, tel, corrElect, local);
+            Cliente cli = new Cliente(int.Parse(idCli),
+                                         clienteNombre, 
+                                         CUIT, 
+                                         domicilio, 
+                                         tel, 
+                                         corrElect, 
+                                         local);
 
             this._clientesList.Add(cli);
 
@@ -98,6 +105,190 @@ namespace TP_Final_Programación_2
             Console.ReadKey();
 
             GrabarArchivo(_archivoClientes);
+        }
+
+
+        //__Vehiculo__
+        public void CargarVehiculo()
+        {
+            int tipoVehiculo;
+            bool opcionValida = false;
+
+            do
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("**¿QUÉ TIPO DE VEHÍCULO DESEAS CARGAR?**");
+                Console.WriteLine("1) MOTO  2) AUTO/CAMIONETA  3) CAMIÓN");
+
+                if (int.TryParse(Console.ReadLine(), out tipoVehiculo))
+                {
+                    switch (tipoVehiculo)
+                    {
+                        case 1:
+                            Console.WriteLine("\n");
+                            Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                            string idVhiculo = Console.ReadLine();
+                            //ValidarIdNumericoOExiste(idVhiculo);
+
+                            Console.WriteLine("**Ingresa Cilindrada **");
+                            string cilindrada = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa Patente **");
+                            string patente = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa los Kilometros**");
+                            string km = Console.ReadLine();
+                            ValidarIdSoloNumerico(km);
+
+                            Console.WriteLine("**Ingresa el AÑO**");
+                            string ano = Console.ReadLine();
+                            ValidarIdSoloNumerico(ano);
+
+                            Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                            LeerArchivo(_archivoSegmento);
+                            ListarSegmento();
+                            string idSeg = Console.ReadLine();
+                            ValidarIdSoloNumerico(idSeg);
+
+                            Console.WriteLine("**Ingresa el nombre del Modelo**");
+                            string mod = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa el precio VENTA**");
+                            string pVenta = Console.ReadLine();
+                            ValidarIdSoloNumerico(pVenta);
+
+                            Console.WriteLine("**Ingresa Observaciones**");
+                            string observ = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa el Color**");
+                            string color = Console.ReadLine();
+                            SoloLetras(color);
+
+                            Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                            LeerArchivo(_archivoMarcas);
+                            ListarSegmento();
+                            string idMarca = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                            LeerArchivo(_archivoCombustible);
+                            string idCom = Console.ReadLine();
+
+                            Moto moto = new Moto(int.Parse(idCom),
+                                                       cilindrada,
+                                                       patente,
+                                                       int.Parse(km),
+                                                       int.Parse(ano),
+                                                       mod,
+                                                       int.Parse(pVenta),
+                                                       observ,
+                                                       color,
+                                                       int.Parse(idMarca),
+                                                       int.Parse(idSeg),
+                                                       int.Parse(idCom));
+
+                            this._motosList.Add(moto);
+
+                            Console.WriteLine("\n");
+                            Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
+                            Console.ReadKey();
+
+                            GrabarArchivo(_archivoMotos);
+
+                            break;
+
+                        case 2:
+
+                            Console.WriteLine("\n");
+                            Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                            string idVhiculoAC = Console.ReadLine();
+                            //ValidarIdNumericoOExiste(idVhiculoAC);
+
+                            Console.WriteLine("**Ingresa Patente **");
+                            string patenteAC = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa los Kilometros**");
+                            string kmAC = Console.ReadLine();
+                            ValidarIdSoloNumerico(kmAC);
+
+                            Console.WriteLine("**Ingresa el AÑO**");
+                            string anoAC = Console.ReadLine();
+                            ValidarIdSoloNumerico(anoAC);
+
+                            Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                            LeerArchivo(_archivoSegmento);
+                            ListarSegmento();
+                            string idSegAC = Console.ReadLine();
+                            ValidarIdSoloNumerico(idSegAC);
+
+                            Console.WriteLine("**Ingresa el nombre del Modelo**");
+                            string modAC = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa el precio VENTA**");
+                            string pVentaAC = Console.ReadLine();
+                            ValidarIdSoloNumerico(pVentaAC);
+
+                            Console.WriteLine("**Ingresa Observaciones**");
+                            string observAC = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa el Color**");
+                            string colorAC = Console.ReadLine();
+                            SoloLetras(colorAC);
+
+                            Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                            LeerArchivo(_archivoMarcas);
+                            ListarSegmento();
+                            string idMarcaAC = Console.ReadLine();
+
+                            Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                            LeerArchivo(_archivoCombustible);
+                            string idComAC = Console.ReadLine();
+
+                            AutoCamioneta ac = new AutoCamioneta(
+                                                    int.Parse(idVhiculoAC),
+                                                    patenteAC,
+                                                    int.Parse(kmAC),
+                                                    int.Parse(anoAC),
+                                                    modAC,
+                                                    int.Parse(pVentaAC),
+                                                    observAC,
+                                                    colorAC,
+                                                    int.Parse(idMarcaAC),
+                                                    int.Parse(idSegAC),
+                                                    int.Parse(idComAC));
+
+                            this._autosCamionetasList.Add(ac);
+
+                            Console.WriteLine("\n");
+                            Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
+                            Console.ReadKey();
+
+                            GrabarArchivo(_archivoMotos);
+                            break;
+
+                        case 3:
+                            break;
+
+                        default:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("Opción no válida. Por favor, elige una opción del 1 al 6.");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________");
+                    Console.WriteLine("Entrada no válida. Debes ingresar un número.");
+                    Console.WriteLine("_________________________________________________");
+                    Console.ResetColor();
+                }
+            } while (!opcionValida);
+
+            //__Moto - AutoCamioneta - Camion-
+
         }
 
 
@@ -119,7 +310,7 @@ namespace TP_Final_Programación_2
 
             for (int i = 0; i < this._clientesList.Count; i++)
             {
-                if(idCondicion == this._clientesList[i].IdCliente)
+                if (idCondicion == this._clientesList[i].IdCliente)
                 {
                     this._clientesList.RemoveAt(i);
                 }
@@ -127,7 +318,7 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("**CLIENTE BORRADO CORRECTAMENTE**");
             Console.ReadLine();
-            GrabarArchivo(_archivoClientes);   
+            GrabarArchivo(_archivoClientes);
         }
 
 
@@ -230,87 +421,6 @@ namespace TP_Final_Programación_2
         }
 
 
-        //__Vehiculo__
-        public void CargarVehiculo()
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine("**QUE TIPO DE VEHICULO DESEAS CARGAR?**");
-            Console.WriteLine("1) MOTO  2) AUTO/CAMIONETA  3) CAMION");
-            int tipoVehiculo = int.Parse(Console.ReadLine());
-
-            switch (tipoVehiculo)
-            {
-                case 1:
-                    Console.WriteLine("\n");
-                    Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                    string idVhiculo = Console.ReadLine();
-                    ValidarIdNumericoOExiste(idVhiculo, _archivoMotos);
-
-                    Console.WriteLine("**Ingresa Cilindrada **");
-                    string cilindrada = Console.ReadLine();
-
-                    Console.WriteLine("**Ingresa Patente **");
-                    string patente = Console.ReadLine();
-
-                    Console.WriteLine("**Ingresa los Kilometros**");
-                    string km = Console.ReadLine();
-                    ValidarIdSoloNumerico(km);
-
-                    Console.WriteLine("**Ingresa el AÑO**");
-                    string ano = Console.ReadLine();
-                    ValidarIdSoloNumerico(ano);
-
-                    Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
-                    LeerArchivo(_archivoSegmento);
-                    ListarSegmento();
-                    string idSeg = Console.ReadLine();
-                    ValidarIdSoloNumerico(idSeg);
-
-                    Console.WriteLine("**Ingresa el nombre del Modelo**");
-                    string mod = Console.ReadLine();
-
-                    Console.WriteLine("**Ingresa el precio VENTA**");
-                    string pVenta = Console.ReadLine();
-                    ValidarIdSoloNumerico(pVenta);
-
-                    Console.WriteLine("**Ingresa Observaciones**");
-                    string observ = Console.ReadLine();
-
-                    Console.WriteLine("**Ingresa el Color**");
-                    string color = Console.ReadLine();
-
-                    Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
-                    LeerArchivo(_archivoMarcas);
-                    ListarSegmento();
-                    string idMarca = Console.ReadLine();
-
-                    Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
-                    LeerArchivo(_archivoCombustible);
-                    string idCom = Console.ReadLine();
-         
-                    Moto moto = new Moto(int.Parse(idCom),cilindrada,patente,int.Parse(km),int.Parse(ano),mod,int.Parse(pVenta),observ,color,int.Parse(idMarca),int.Parse(idSeg),int.Parse(idCom));
-
-                    this._motosList.Add(moto);
-
-                    Console.WriteLine("\n");
-                    Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
-                    Console.ReadKey();
-
-                    GrabarArchivo(_archivoMotos);
-
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default:
-                    break;
-            }
-            //__Moto - AutoCamioneta - Camion-
-
-        }
-
-
         //__Metodos privados de la clase__
         private void GrabarArchivo(string _archivo)
         {
@@ -330,12 +440,12 @@ namespace TP_Final_Programación_2
 
                         for (int i = 0; i < this._clientesList.Count; i++)
                         {
-                            grabar.WriteLine(this._clientesList[i].IdCliente + " | "
-                                             + this._clientesList[i].NombreCliente + " | "
-                                             + this._clientesList[i].CUIT + " | "
-                                             + this._clientesList[i].Domicilio + " | "
-                                             + this._clientesList[i].Telefono + " | "
-                                             + this._clientesList[i].CorreoElectronico + " | "
+                            grabar.WriteLine(this._clientesList[i].IdCliente + "|"
+                                             + this._clientesList[i].NombreCliente + "|"
+                                             + this._clientesList[i].CUIT + "|"
+                                             + this._clientesList[i].Domicilio + "|"
+                                             + this._clientesList[i].Telefono + "|"
+                                             + this._clientesList[i].CorreoElectronico + "|"
                                              + this._clientesList[i].NombreLocalidad);
 
                         }
@@ -423,7 +533,7 @@ namespace TP_Final_Programación_2
                             }
                             Leer.Close();
                             x.Close();
-                        }                   
+                        }
 
                         break;
 
@@ -477,13 +587,13 @@ namespace TP_Final_Programación_2
                                 Provincia prov = new Provincia(
                                         int.Parse(datos[0]),
                                         datos[1]);
-                                       
+
                                 this._provinciasList.Add(prov);
                             }
                             Leer.Close();
                             x.Close();
                         }
-      
+
                         break;
 
                     case _archivoLocalidades: //__Localidades__
@@ -556,7 +666,7 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-                      
+
                         break;
 
                     case _archivoMarcas: //__Marcas__
@@ -611,49 +721,85 @@ namespace TP_Final_Programación_2
                 if (this._clientesList[i].IdCliente == idCondicion)
                 {
                     clienteEncontrado = true;  //__encontrado__
-                    Console.WriteLine("Cliente encontrado. Qué campo deseas actualizar?");
-                    Console.WriteLine("1- Nombre");
-                    Console.WriteLine("2- CUIT");
-                    Console.WriteLine("3- Domicilio");
-                    Console.WriteLine("4- Teléfono");
-                    Console.WriteLine("5- Correo Electrónico");
-                    Console.WriteLine("6- Localidad");
+                    bool opcionValida = false;  //__bandera para verificar la opción__
 
-                    int opcion = int.Parse(Console.ReadLine());
-
-                    switch (opcion)
+                    do
                     {
-                        case 1:
-                            Console.WriteLine("Ingresa el nuevo Nombre:");           
-                            string pal = this._clientesList[i].NombreCliente = Console.ReadLine();
-                            SoloLetras(pal);
-                            break;
-                        case 2:
-                            Console.WriteLine("Ingresa el nuevo CUIT:");
-                            this._clientesList[i].CUIT = Console.ReadLine();
-                            ValidarCUIT(_clientesList[i].CUIT);
-                            break;
-                        case 3:
-                            Console.WriteLine("Ingresa el nuevo Domicilio:");
-                            _clientesList[i].Domicilio = Console.ReadLine();
-                            break;
-                        case 4:
-                            Console.WriteLine("Ingresa el nuevo Teléfono:");
-                            this._clientesList[i].Telefono = Console.ReadLine();
-                            ValidarTelefono(_clientesList[i].Telefono);
-                            break;
-                        case 5:
-                            Console.WriteLine("Ingresa el nuevo Correo Electrónico:");
-                            this._clientesList[i].CorreoElectronico = Console.ReadLine();
-                            break;
-                        case 6:
-                            Console.WriteLine("Ingresa la nueva Localidad:");
-                            this._clientesList[i].NombreLocalidad = Console.ReadLine();
-                            break;
-                        default:
-                            Console.WriteLine("La opcion no es valida!");
-                            break;
-                    }
+                        Console.WriteLine("Cliente encontrado. Qué campo deseas actualizar?");
+                        Console.WriteLine("1- Nombre");
+                        Console.WriteLine("2- CUIT");
+                        Console.WriteLine("3- Domicilio");
+                        Console.WriteLine("4- Teléfono");
+                        Console.WriteLine("5- Correo Electrónico");
+                        Console.WriteLine("6- Localidad");
+
+                        if (int.TryParse(Console.ReadLine(), out int opcion))
+                        {
+                            switch (opcion)
+                            {
+                                case 1:
+                                    Console.WriteLine("Ingresa el nuevo Nombre:");
+                                    string nuevoNombre = Console.ReadLine();
+                                    nuevoNombre = SoloLetras(nuevoNombre);
+                                    this._clientesList[i].NombreCliente = nuevoNombre;
+                                    opcionValida = true; //__la opción es válida salir del bucle__
+                                    break;
+
+                                case 2:
+                                    Console.WriteLine("Ingresa el nuevo CUIT:");
+                                    string nuevoCUIT = Console.ReadLine();
+                                    nuevoCUIT = ValidarCUIT(nuevoCUIT);
+                                    this._clientesList[i].CUIT = nuevoCUIT;
+                                    opcionValida = true;
+                                    break;
+
+                                case 3:
+                                    Console.WriteLine("Ingresa el nuevo Domicilio:");
+                                    this._clientesList[i].Domicilio = Console.ReadLine();
+                                    opcionValida = true;
+                                    break;
+
+                                case 4:
+                                    Console.WriteLine("Ingresa el nuevo Teléfono:");
+                                    string nuevoTelefono = Console.ReadLine();
+                                    nuevoTelefono = ValidarTelefono(nuevoTelefono);
+                                    this._clientesList[i].Telefono = nuevoTelefono;
+                                    opcionValida = true;
+                                    break;
+
+                                case 5:
+                                    Console.WriteLine("Ingresa el nuevo Correo Electrónico:");
+                                    this._clientesList[i].CorreoElectronico = Console.ReadLine();
+                                    opcionValida = true;
+                                    break;
+
+                                case 6:
+                                    Console.WriteLine("Ingresa la nueva Localidad:");
+                                    string nuevaLocalidad = Console.ReadLine();
+                                    nuevaLocalidad = SoloLetras(nuevaLocalidad);
+                                    this._clientesList[i].NombreLocalidad = nuevaLocalidad;
+                                    opcionValida = true;
+                                    break;
+
+                                default:
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Opción no válida. Por favor, elige una opción del 1 al 6.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("Entrada no válida. Debes ingresar un número.");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                        }
+
+                    } while (!opcionValida);
                 }
             }
 
@@ -672,114 +818,47 @@ namespace TP_Final_Programación_2
 
 
         //__Validaciones__
-        private void ValidarIdNumericoOExiste(string _id, string _archivo)
+        private string ValidarIdNumericoOExiste(string _id)
         {
+            LeerArchivo(_archivoClientes);
             bool idValido = false; //__bandera para el bucle__ 
-            int idGenerico;
+            int idCli;
 
-            switch (_archivo)//__refactorizar para cada .txt en switch para no usar muchos if()__
+            do
             {
-                case _archivoClientes:
-
-                    do
+                if (!int.TryParse(_id, out idCli) || idCli <= 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("_________________________________________________");
+                    Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                    Console.WriteLine("_________________________________________________");
+                    Console.ResetColor();
+                    _id = Console.ReadLine();
+                }
+                else
+                {
+                    idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+       
+                    for (int i = 0; i < this._clientesList.Count; i++)
                     {
-                        if (!int.TryParse(_id, out idGenerico) || idGenerico <= 0)
+                        Console.WriteLine($"Comprobando ID: {idCli} contra ID en la lista: {this._clientesList[i].IdCliente}");
+                        if (idCli == this._clientesList[i].IdCliente)
                         {
+                            idValido = false;
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("_________________________________________________");
-                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
                             Console.WriteLine("_________________________________________________");
                             Console.ResetColor();
+                            Console.WriteLine("Vuelve a ingresar otro ID:");
                             _id = Console.ReadLine();
                         }
-                        else
-                        {
-                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
-
-                            for (int i = 0; i < this._clientesList.Count; i++)
-                            {
-                                if (idGenerico == this._clientesList[i].IdCliente)
-                                {
-                                    idValido = false;
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("_________________________________________________");
-                                    Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
-                                    Console.WriteLine("_________________________________________________");
-                                    Console.ResetColor();
-                                    Console.WriteLine("Vuelve a ingresar otro ID:");
-                                    _id = Console.ReadLine();
-                                }
-                            }
-                        }
                     }
-                    while (!idValido);
+                }
+            }
+            while (!idValido);
 
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Id CLIENTE valido");
-                    Console.ResetColor();
-
-                    break;
-
-                case _archivoVentas:
-
-                    break;
-
-                case _archivoVehiculos:
-           
-                    do
-                    {
-                        if (!int.TryParse(_id, out idGenerico) || idGenerico <= 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("_________________________________________________");
-                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
-                            Console.WriteLine("_________________________________________________");
-                            Console.ResetColor();
-                            _id = Console.ReadLine();
-                        }
-                        else
-                        {
-                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
-
-                            for (int i = 0; i < this._clientesList.Count; i++)
-                            {
-                                if (idGenerico == this._vehiculosList[i].IdVehiculo)
-                                {
-                                    idValido = false;
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("_________________________________________________");
-                                    Console.WriteLine("Ya existe un CLIENTE con ese número de ID.");
-                                    Console.WriteLine("_________________________________________________");
-                                    Console.ResetColor();
-                                    Console.WriteLine("Vuelve a ingresar otro ID:");
-                                    _id = Console.ReadLine();
-                                }
-                            }
-                        }
-                    }
-                    while (!idValido);
-
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Id CLIENTE valido");
-                    Console.ResetColor();
-
-                    break;
-
-                case _archivoAutosCamionetas:
-
-                    break;
-
-                case _archivoMotos:
-
-                    break;
-
-                case _archivoCamiones:
-
-                    break;
-
-                default:
-                    break;
-            }      
+            return _id;
         }
 
 
@@ -815,7 +894,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        private void ValidarCUIT(string _cuit)
+        private string ValidarCUIT(string _cuit)
         {
             //LeerArchivo(_archivoClientes);
 
@@ -848,10 +927,12 @@ namespace TP_Final_Programación_2
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("El CUIT es valido");
             Console.ResetColor();
+
+            return _cuit;
         }
 
 
-        private void ValidarTelefono(string _telefono)
+        private string ValidarTelefono(string _telefono)
         {
 
             bool telefono_Valido = false;//__bandera de corte__
@@ -874,7 +955,9 @@ namespace TP_Final_Programación_2
                     telefono_Valido = true;
                 }
 
-            }while (!telefono_Valido);
+            } while (!telefono_Valido);
+
+            return _telefono;
         }
 
 
@@ -894,11 +977,11 @@ namespace TP_Final_Programación_2
                     Console.WriteLine("Vuelve a ingresar:");
                     _palabra = Console.ReadLine();
                 }
-               else
-               {
+                else
+                {
                     palabra_Valida = true;
-               }
-                    
+                }
+
             } while (!palabra_Valida);
 
             return _palabra;
