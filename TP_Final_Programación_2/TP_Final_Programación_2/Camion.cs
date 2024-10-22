@@ -15,7 +15,7 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Camion(string cajaCar, int dimCaja, int carMax, int cil, int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, int idMar, int idSeg, int idCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
+        public Camion(int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, string cajaCar, int dimCaja, int carMax, int idMar, int idSeg, int idCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
         {
             this.CajaCarga = cajaCar;
             this.DimensionCaja = dimCaja;
