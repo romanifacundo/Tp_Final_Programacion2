@@ -38,14 +38,8 @@ namespace TP_Final_Programación_2
         //__Metodos__
         public override void MostrarDatos()
         {
-            Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.WriteLine($"{this.IdCombustible} | {this.CombustibleNombre} ");
-
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.ResetColor();
         }
 

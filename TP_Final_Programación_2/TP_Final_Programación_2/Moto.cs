@@ -9,18 +9,18 @@ namespace TP_Final_Programación_2
     internal class Moto : Vehiculo
     {
         //__Propiedades privadas__
-        private string P_Cilindrada;
+        private int P_Cilindrada;
 
 
         //__Constructores__
-        public Moto(int idVehi, string cil, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, int idMar, int idSeg, int idCom) : base (idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
+        public Moto(int idVehi, int cil, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, int idMar, int idSeg, int idCom) : base (idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
         {
             this.Cilindrada = cil;
         }
 
 
         //__Metodos de propiedades publicas__
-        public string Cilindrada
+        public int Cilindrada
         {
             get { return this.P_Cilindrada; }
             set { this.P_Cilindrada = value; }
@@ -29,10 +29,10 @@ namespace TP_Final_Programación_2
 
         public override void MostrarDatos()
         {
-            base.MostrarDatos(); 
-
+            base.MostrarDatos();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"Cilindrada: {this.Cilindrada}");
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+            Console.ResetColor();
         }
 
     }

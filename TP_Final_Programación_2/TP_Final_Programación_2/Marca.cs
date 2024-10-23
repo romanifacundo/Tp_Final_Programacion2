@@ -38,14 +38,8 @@ namespace TP_Final_Programación_2
         //__Metodos
         public override void MostrarDatos()
         {
-            Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.WriteLine($"{this.IdMarca} | {this.NombreMarca} ");
-
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.ResetColor();
         }
     }

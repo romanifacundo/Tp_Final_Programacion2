@@ -131,10 +131,11 @@ namespace TP_Final_Programación_2
                             Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el ID del Vehiculo**");
                             string idVhiculo = Console.ReadLine();
-                            ValidarIdNumericoOExiste(idVhiculo, _archivoVehiculos);
+                            ValidarIdNumericoOExiste(idVhiculo, _archivoMotos);
 
                             Console.WriteLine("**Ingresa Cilindrada **");
                             string cilindrada = Console.ReadLine();
+                            ValidarIdSoloNumerico(cilindrada);
 
                             Console.WriteLine("**Ingresa Patente **");
                             string patente = Console.ReadLine();
@@ -146,12 +147,6 @@ namespace TP_Final_Programación_2
                             Console.WriteLine("**Ingresa el AÑO**");
                             string ano = Console.ReadLine();
                             ValidarIdSoloNumerico(ano);
-
-                            Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
-                            LeerArchivo(_archivoSegmento);
-                            ListarSegmentos();
-                            string idSeg = Console.ReadLine();
-                            ValidarIdSoloNumerico(idSeg);
 
                             Console.WriteLine("**Ingresa el nombre del Modelo**");
                             string mod = Console.ReadLine();
@@ -172,23 +167,30 @@ namespace TP_Final_Programación_2
                             ListarMarcas();
                             string idMarca = Console.ReadLine();
 
+                            Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                            LeerArchivo(_archivoSegmento);
+                            ListarSegmentos();
+                            string idSeg = Console.ReadLine();
+                            ValidarIdSoloNumerico(idSeg);
+
                             Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
                             LeerArchivo(_archivoCombustible);
                             ListarCombustible();
                             string idCom = Console.ReadLine();
 
-                            Moto moto = new Moto(int.Parse(idCom),
-                                                       cilindrada,
-                                                       patente,
-                                                       int.Parse(km),
-                                                       int.Parse(ano),
-                                                       mod,
-                                                       int.Parse(pVenta),
-                                                       observ,
-                                                       color,
-                                                       int.Parse(idMarca),
-                                                       int.Parse(idSeg),
-                                                       int.Parse(idCom));
+                            Moto moto = new Moto(
+                                                  int.Parse(idCom),
+                                                  int.Parse(cilindrada),
+                                                  patente,
+                                                  int.Parse(km),
+                                                  int.Parse(ano),
+                                                  mod,
+                                                  int.Parse(pVenta),
+                                                  observ,
+                                                  color,
+                                                  int.Parse(idMarca),
+                                                  int.Parse(idSeg),
+                                                  int.Parse(idCom));
 
                             this._motosList.Add(moto);
 
@@ -205,7 +207,7 @@ namespace TP_Final_Programación_2
                             Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el ID del Vehiculo**");
                             string idVhiculoAC = Console.ReadLine();
-                            ValidarIdNumericoOExiste(idVhiculoAC, _archivoVehiculos);
+                            ValidarIdNumericoOExiste(idVhiculoAC, _archivoAutosCamionetas);
 
                             Console.WriteLine("**Ingresa Patente **");
                             string patenteAC = Console.ReadLine();
@@ -279,7 +281,7 @@ namespace TP_Final_Programación_2
                             Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el ID del Vehiculo**");
                             string idVhiculoCA = Console.ReadLine();
-                            ValidarIdNumericoOExiste(idVhiculoCA, _archivoVehiculos);
+                            ValidarIdNumericoOExiste(idVhiculoCA, _archivoCamiones);
 
                             Console.WriteLine("**Ingresa Patente **");
                             string patenteCA = Console.ReadLine();
@@ -471,7 +473,7 @@ namespace TP_Final_Programación_2
                             break;
 
                         case 3:
-
+                           
                             LeerArchivo(_archivoMotos);
 
                             foreach (Moto i in this._motosList)
@@ -580,6 +582,51 @@ namespace TP_Final_Programación_2
         }
 
 
+        private string ObtenerNombreCombustible(int idCombustible, List<Combustible> combustibles)
+        {
+            LeerArchivo(_archivoCombustible);
+
+            foreach (Combustible c in this._combustiblesList)
+            {
+                if (c.IdCombustible == idCombustible)
+                {
+                    return c.CombustibleNombre;
+                }
+            }
+            return "xx"; 
+        }
+
+
+        private string ObtenerNombreMarca(int idMarca, List<Marca> marcas)
+        {
+            LeerArchivo(_archivoMarcas);
+
+            foreach (Marca m in this._marcasList)
+            {
+                if (m.IdMarca == idMarca)
+                {
+                    return m.NombreMarca;
+                }
+            }
+            return "xx";
+        }
+
+
+        private string ObtenerNombreSegmento(int idSegmento, List<Segmento> segmentos)
+        {
+            LeerArchivo(_archivoSegmento);
+
+            foreach (Segmento s in this._segmentosList)
+            {
+                if (s.IdSegmento == idSegmento)
+                {
+                    return s.SegmentoNombre;
+                }
+            }
+            return "xx";
+        }
+
+
         //__Metodos privados de la clase__
         private void GrabarArchivo(string _archivo)
         {
@@ -627,48 +674,61 @@ namespace TP_Final_Programación_2
 
                         for (int i = 0; i < this._motosList.Count; i++)
                         {
-                            grabar.WriteLine(this._motosList[i].IdVehiculo + "|" +
-                                             this._motosList[i].Cilindrada + "|" +
-                                             this._motosList[i].Patente + "|" +
-                                             this._motosList[i].Kilometro + "|" +
-                                             this._motosList[i].Anio + "|" +
-                                             this._motosList[i].Modelo + "|" +
-                                             this._motosList[i].PrecioVenta + "|" +
-                                             this._motosList[i].Observaciones + "|" +
-                                             this._motosList[i].Color + "|" +
-                                             this._motosList[i].IdMarca + "|" +
-                                             this._motosList[i].IdSegmento + "|" +
-                                             this._motosList[i].IdCombustible);
+                            //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
+                            Moto m = this._motosList[i];
 
+                            //__obtener nombres correspondientes a los IDs__
+                            string nombreCombustible = ObtenerNombreCombustible(m.IdCombustible, this._combustiblesList);
+                            string nombreMarca = ObtenerNombreMarca(m.IdMarca, this._marcasList);
+                            string nombreSegmento = ObtenerNombreSegmento(m.IdSegmento, this._segmentosList);
+
+                            grabar.WriteLine(m.IdVehiculo + "|"
+                                             + m.Cilindrada + "|"
+                                             + m.Patente + "|"
+                                             + m.Kilometro + "|"
+                                             + m.Anio + "|"
+                                             + m.Modelo + "|"
+                                             + m.PrecioVenta + "|"
+                                             + m.Observaciones + "|"
+                                             + m.Color + "|"
+                                             + nombreMarca + "|"
+                                             + nombreSegmento + "|"
+                                             + nombreCombustible);
                         }
                         grabar.Close();
                         x.Close();
-
                         break;
 
                     case _archivoAutosCamionetas:
-
+                        
                         x = new FileStream(_archivoAutosCamionetas, FileMode.Create);
                         grabar = new StreamWriter(x);
 
                         for (int i = 0; i < this._autosCamionetasList.Count; i++)
                         {
-                            grabar.WriteLine(this._autosCamionetasList[i].IdVehiculo + "|" +
-                                             this._autosCamionetasList[i].Patente + "|" +
-                                             this._autosCamionetasList[i].Kilometro + "|" +
-                                             this._autosCamionetasList[i].Anio + "|" +
-                                             this._autosCamionetasList[i].Modelo + "|" +
-                                             this._autosCamionetasList[i].PrecioVenta + "|" +
-                                             this._autosCamionetasList[i].Observaciones + "|" +
-                                             this._autosCamionetasList[i].Color + "|" +
-                                             this._autosCamionetasList[i].IdMarca + "|" +
-                                             this._autosCamionetasList[i].IdSegmento + "|" +
-                                             this._autosCamionetasList[i].IdCombustible + "|"
-                            );
+                            //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
+                            AutoCamioneta ac = this._autosCamionetasList[i]; 
+
+                            //__obtener nombres correspondientes a los IDs__
+                            string nombreCombustible = ObtenerNombreCombustible(ac.IdCombustible, this._combustiblesList);
+                            string nombreMarca = ObtenerNombreMarca(ac.IdMarca, this._marcasList);
+                            string nombreSegmento = ObtenerNombreSegmento(ac.IdSegmento, this._segmentosList);
+                
+                            grabar.WriteLine(ac.IdVehiculo + "|"
+                                             + ac.Patente + "|"
+                                             + ac.Kilometro + "|"
+                                             + ac.Anio + "|"
+                                             + ac.Modelo + "|"
+                                             + ac.PrecioVenta + "|"
+                                             + ac.Observaciones + "|"
+                                             + ac.Color + "|"
+                                             + nombreMarca + "|"
+                                             + nombreSegmento + "|"
+                                             + nombreCombustible);
                         }
+
                         grabar.Close();
                         x.Close();
-
                         break;
 
                     case _archivoCamiones:
@@ -678,32 +738,38 @@ namespace TP_Final_Programación_2
 
                         for (int i = 0; i < this._camionesList.Count; i++)
                         {
-                            grabar.WriteLine(this._camionesList[i].IdVehiculo + "|" +
-                                             this._camionesList[i].Patente + "|" +
-                                             this._camionesList[i].Kilometro + "|" +
-                                             this._camionesList[i].Anio + "|" +
-                                             this._camionesList[i].Modelo + "|" +
-                                             this._camionesList[i].PrecioVenta + "|" +
-                                             this._camionesList[i].Observaciones + "|" +
-                                             this._camionesList[i].Color + "|" +
-                                             this._camionesList[i].IdMarca + "|" +
-                                             this._camionesList[i].IdSegmento + "|" +
-                                             this._camionesList[i].IdCombustible);
+                            //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
+                            Camion c = this._camionesList[i];
 
-                            //__si el camión tiene datos de caja, dimensión y carga máxima__
-                            if (this._camionesList[i].CajaCarga == "si")
+                            //__obtener nombres correspondientes a los IDs__
+                            string nombreCombustible = ObtenerNombreCombustible(c.IdCombustible, this._combustiblesList);
+                            string nombreMarca = ObtenerNombreMarca(c.IdMarca, this._marcasList);
+                            string nombreSegmento = ObtenerNombreSegmento(c.IdSegmento, this._segmentosList);
+                           
+                            grabar.WriteLine(c.IdVehiculo + "|"
+                                             + c.Patente + "|"
+                                             + c.Kilometro + "|"
+                                             + c.Anio + "|"
+                                             + c.Modelo + "|"
+                                             + c.PrecioVenta + "|"
+                                             + c.Observaciones + "|"
+                                             + c.Color + "|"
+                                             + nombreMarca + "|"
+                                             + nombreSegmento + "|"
+                                             + nombreCombustible);
+
+
+                            if (c.CajaCarga == "si")
                             {
-                                grabar.Write(this._camionesList[i].CajaCarga + "|" +
-                                             this._camionesList[i].DimensionCaja + "|" +
-                                             this._camionesList[i].CargaMaxima);
+                                grabar.Write("|" + c.CajaCarga + "|"
+                                              + c.DimensionCaja + "|"
+                                              + c.CargaMaxima);
                             }
-                        }
 
+                        }
                         grabar.Close();
                         x.Close();
-
                         break;
-
 
                     default:
                         break;
@@ -750,7 +816,7 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-
+                        
                         break;
 
                     case _archivoVentas:
@@ -776,9 +842,36 @@ namespace TP_Final_Programación_2
 
                     case _archivoMotos:
 
-                        x = new FileStream(_archivoMotos, FileMode.Open);
-                        Leer = new StreamReader(x);
+                        if (this._motosList.Count == 0) 
+                        {
+                            x = new FileStream(_archivoMotos, FileMode.Open);
+                            Leer = new StreamReader(x);
 
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('|');
+
+                                Moto mo = new Moto(
+                                            int.Parse(datos[0]), 
+                                            int.Parse(datos[1]),           
+                                            datos[2],           
+                                            int.Parse(datos[3]), 
+                                            int.Parse(datos[4]), 
+                                            datos[5],            
+                                            int.Parse(datos[6]), 
+                                            datos[7],            
+                                            datos[8],           
+                                            ObtenerIdMarca(datos[9]),
+                                            ObtenerIdSegmento(datos[10]), 
+                                            ObtenerIdCombustible(datos[11])); 
+
+                                this._motosList.Add(mo);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
+                        
                         break;
 
                     case _archivoCamiones:
@@ -1086,7 +1179,45 @@ namespace TP_Final_Programación_2
 
                     break;
 
-                case _archivoVehiculos:
+                case _archivoMotos:
+
+                    LeerArchivo(_archivoMotos);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out idCli) || idCli <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._motosList.Count; i++)
+                            {
+                                if (idCli == this._motosList[i].IdVehiculo)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un VEHICULO con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("valido");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
 
                     break;
 
@@ -1238,6 +1369,46 @@ namespace TP_Final_Programación_2
 
             return _palabra;
         }
+
+
+        public int ObtenerIdMarca(string nombreMarca)
+        {
+            for (int i = 0; i < this._marcasList.Count; i++)
+            {
+                if (this._marcasList[i].NombreMarca == nombreMarca) 
+                {
+                    return this._marcasList[i].IdMarca; 
+                }
+            }
+            return 0;
+        }
+
+
+        public int ObtenerIdSegmento(string nombreSegmento)
+        {
+            for (int i = 0; i < this._segmentosList.Count; i++)
+            {
+                if (this._segmentosList[i].SegmentoNombre == nombreSegmento)
+                {
+                    return this._segmentosList[i].IdSegmento;
+                }
+            }
+            return 0; 
+        }
+
+
+        public int ObtenerIdCombustible(string nombreCombustible)
+        {
+            for (int i = 0; i < this._combustiblesList.Count; i++)
+            {
+                if (this._combustiblesList[i].CombustibleNombre == nombreCombustible)
+                {
+                    return this._combustiblesList[i].IdCombustible ;
+                }
+            }
+            return 0; 
+        }
+
 
     }
 }
