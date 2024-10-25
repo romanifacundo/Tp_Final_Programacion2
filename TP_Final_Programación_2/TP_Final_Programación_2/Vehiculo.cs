@@ -115,7 +115,7 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
-            Console.WriteLine($" ID Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | Kilómetros: {this.Kilometro} | Año: {this.Anio} | " +
+            Console.WriteLine($"Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | KLM: {this.Kilometro} | Año: {this.Anio} | " +
                               $"Modelo: {this.Modelo} | Precio de Venta: {this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
                               $"Color: {this.Color} | Marca: {this.IdMarca} | Segmento: {this.IdSegmento} | Combustible: {this.IdCombustible}");
 

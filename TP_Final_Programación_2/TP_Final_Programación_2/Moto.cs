@@ -29,11 +29,22 @@ namespace TP_Final_Programación_2
 
         public override void MostrarDatos()
         {
-            base.MostrarDatos();
+            Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Cilindrada: {this.Cilindrada}");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($" Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | KLM: {this.Kilometro} | Año: {this.Anio} | " +
+                              $"Modelo: {this.Modelo} | Precio de Venta: {this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
+                              $"Color: {this.Color} | Marca: {this.IdMarca} | Segmento: {this.IdSegmento} | Combustible: {this.IdCombustible} | Cilindrada: {this.Cilindrada}");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
             Console.ResetColor();
         }
 
     }
+
+
 }
+

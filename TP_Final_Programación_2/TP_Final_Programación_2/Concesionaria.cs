@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -22,7 +23,8 @@ namespace TP_Final_Programación_2
         private const string _archivoVehiculos = "vehiculos.txt";
         private const string _archivoAutosCamionetas = "autos_camionetas.txt";
         private const string _archivoMotos = "motos.txt";
-        private const string _archivoCamiones = "camiones.txt";
+        private const string _archivoCamionesConCaja = "camionesConCaja.txt";
+        private const string _archivoCamionesSinCaja = "camionesSinCaja.txt";
         private const string _archivoMarcas = "marcas.txt";
         private const string _archivoLocalidades = "localidades.txt";
         private const string _archivoProvincias = "provincias.txt";
@@ -33,7 +35,8 @@ namespace TP_Final_Programación_2
         private List<Vehiculo> _vehiculosList;
         private List<AutoCamioneta> _autosCamionetasList;
         private List<Moto> _motosList;
-        private List<Camion> _camionesList;
+        private List<Camion> _camionesConCajaList;
+        private List<Camion> _camionesSinCajaList;
         private List<Marca> _marcasList;
         private List<Venta> _ventasList;
         private List<Cliente> _clientesList;
@@ -49,7 +52,8 @@ namespace TP_Final_Programación_2
             this._vehiculosList = new List<Vehiculo>();
             this._autosCamionetasList = new List<AutoCamioneta>();
             this._motosList = new List<Moto>();
-            this._camionesList = new List<Camion>();
+            this._camionesConCajaList = new List<Camion>();
+            this._camionesSinCajaList = new List<Camion>();
             this._marcasList = new List<Marca>();
             this._ventasList = new List<Venta>();
             this._clientesList = new List<Cliente>();
@@ -71,18 +75,18 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("**Ingresa el Nombre del CLIENTE**");
             string clienteNombre = Console.ReadLine();
-            SoloLetras(clienteNombre);
+            clienteNombre = SoloLetras(clienteNombre);
 
             Console.WriteLine("**Ingresa el C.U.I.T del CLIENTE**");
             string CUIT = Console.ReadLine();
-            ValidarCUIT(CUIT);
+            CUIT = ValidarCUIT(CUIT);
 
             Console.WriteLine("**Ingresa el DOMICILIO del CLIENTE**");
             string domicilio = Console.ReadLine();
 
             Console.WriteLine("**Ingresa el TELEFONO del CLIENTE**");
             string tel = Console.ReadLine();
-            ValidarTelefono(tel);
+            tel = ValidarTelefono(tel);
 
             Console.WriteLine("**Ingresa el Correo Electronico del CLIENTE**");
             string corrElect = Console.ReadLine();
@@ -130,8 +134,8 @@ namespace TP_Final_Programación_2
                         case 1:
                             Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                            string idVhiculo = Console.ReadLine();
-                            ValidarIdNumericoOExiste(idVhiculo, _archivoMotos);
+                            string idVehiculo = Console.ReadLine();
+                            idVehiculo = ValidarIdNumericoOExiste(idVehiculo, _archivoMotos);
 
                             Console.WriteLine("**Ingresa Cilindrada **");
                             string cilindrada = Console.ReadLine();
@@ -142,25 +146,25 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("**Ingresa los Kilometros**");
                             string km = Console.ReadLine();
-                            ValidarIdSoloNumerico(km);
+                            km = ValidarIdSoloNumerico(km);
 
                             Console.WriteLine("**Ingresa el AÑO**");
                             string ano = Console.ReadLine();
-                            ValidarIdSoloNumerico(ano);
+                            ano = ValidarIdSoloNumerico(ano);
 
                             Console.WriteLine("**Ingresa el nombre del Modelo**");
                             string mod = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el precio VENTA**");
                             string pVenta = Console.ReadLine();
-                            ValidarIdSoloNumerico(pVenta);
+                            pVenta = ValidarIdSoloNumerico(pVenta);
 
                             Console.WriteLine("**Ingresa Observaciones**");
                             string observ = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el Color**");
                             string color = Console.ReadLine();
-                            SoloLetras(color);
+                            color = SoloLetras(color);
 
                             Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
                             LeerArchivo(_archivoMarcas);
@@ -179,7 +183,7 @@ namespace TP_Final_Programación_2
                             string idCom = Console.ReadLine();
 
                             Moto moto = new Moto(
-                                                  int.Parse(idCom),
+                                                  int.Parse(idVehiculo),
                                                   int.Parse(cilindrada),
                                                   patente,
                                                   int.Parse(km),
@@ -206,39 +210,39 @@ namespace TP_Final_Programación_2
 
                             Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                            string idVhiculoAC = Console.ReadLine();
-                            ValidarIdNumericoOExiste(idVhiculoAC, _archivoAutosCamionetas);
+                            string idVehiculoAC = Console.ReadLine();
+                            idVehiculoAC = ValidarIdNumericoOExiste(idVehiculoAC, _archivoAutosCamionetas);
 
                             Console.WriteLine("**Ingresa Patente **");
                             string patenteAC = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa los Kilometros**");
                             string kmAC = Console.ReadLine();
-                            ValidarIdSoloNumerico(kmAC);
+                            kmAC = ValidarIdSoloNumerico(kmAC);
 
                             Console.WriteLine("**Ingresa el AÑO**");
                             string anoAC = Console.ReadLine();
-                            ValidarIdSoloNumerico(anoAC);
+                            anoAC = ValidarIdSoloNumerico(anoAC);
 
                             Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
                             LeerArchivo(_archivoSegmento);
                             ListarSegmentos();
                             string idSegAC = Console.ReadLine();
-                            ValidarIdSoloNumerico(idSegAC);
+                            idSegAC = ValidarIdSoloNumerico(idSegAC);
 
                             Console.WriteLine("**Ingresa el nombre del Modelo**");
                             string modAC = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el precio VENTA**");
                             string pVentaAC = Console.ReadLine();
-                            ValidarIdSoloNumerico(pVentaAC);
+                            pVentaAC = ValidarIdSoloNumerico(pVentaAC);
 
                             Console.WriteLine("**Ingresa Observaciones**");
                             string observAC = Console.ReadLine();
 
                             Console.WriteLine("**Ingresa el Color**");
                             string colorAC = Console.ReadLine();
-                            SoloLetras(colorAC);
+                            colorAC = SoloLetras(colorAC);
 
                             Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
                             LeerArchivo(_archivoMarcas);
@@ -251,7 +255,7 @@ namespace TP_Final_Programación_2
                             string idComAC = Console.ReadLine();
 
                             AutoCamioneta ac = new AutoCamioneta(
-                                                    int.Parse(idVhiculoAC),
+                                                    int.Parse(idVehiculoAC),
                                                     patenteAC,
                                                     int.Parse(kmAC),
                                                     int.Parse(anoAC),
@@ -275,98 +279,166 @@ namespace TP_Final_Programación_2
 
                         case 3:
 
-                            string dimension = "";
-                            string cargaMax = "";
+                            Console.WriteLine("**¿Qué tipo de camión desea cargar?**");
+                            Console.WriteLine("1. Camión con caja de carga");
+                            Console.WriteLine("2. Camión sin caja de carga");
+                            string tipoCamion = Console.ReadLine();
+                            tipoCamion = ValidarIdSoloNumerico(tipoCamion);
 
-                            Console.WriteLine("\n");
-                            Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                            string idVhiculoCA = Console.ReadLine();
-                            ValidarIdNumericoOExiste(idVhiculoCA, _archivoCamiones);
-
-                            Console.WriteLine("**Ingresa Patente **");
-                            string patenteCA = Console.ReadLine();
-
-                            Console.WriteLine("**Ingresa los Kilometros**");
-                            string kmCA = Console.ReadLine();
-                            ValidarIdSoloNumerico(kmCA);
-
-                            Console.WriteLine("**Ingresa el AÑO**");
-                            string anoCA = Console.ReadLine();
-                            ValidarIdSoloNumerico(anoCA);
-
-                            Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
-                            LeerArchivo(_archivoSegmento);
-                            ListarSegmentos();
-                            string idSegCA = Console.ReadLine();
-                            ValidarIdSoloNumerico(idSegCA);
-
-                            Console.WriteLine("**Ingresa el nombre del Modelo**");
-                            string modCA = Console.ReadLine();
-
-                            Console.WriteLine("**Ingresa el precio VENTA**");
-                            string pVentaCA = Console.ReadLine();
-                            ValidarIdSoloNumerico(pVentaCA);
-
-                            Console.WriteLine("**Ingresa Observaciones**");
-                            string observCA = Console.ReadLine();
-
-                            Console.WriteLine("**Ingresa el Color**");
-                            string colorCA = Console.ReadLine();
-                            SoloLetras(colorCA);
-
-                            Console.WriteLine("**Tiene caja de carga? INGRESA (SI o NO)**");
-                            string cajaCarga = Console.ReadLine();
-
-                            while (cajaCarga != "SI" && cajaCarga != "NO")
+                            if (tipoCamion == "1")
                             {
-                                Console.WriteLine("**Respuesta inválida. INGRESA (SI o NO) con Mayusculas**");
-                                cajaCarga = Console.ReadLine();
-                            }
+                                Console.WriteLine("\n");
+                                Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                                string idVehiculoCA = Console.ReadLine();
+                                idVehiculoCA = ValidarIdNumericoOExiste(idVehiculoCA, _archivoCamionesConCaja);
 
-                            if (cajaCarga == "SI")
-                            {
+                                Console.WriteLine("**Ingresa Patente **");
+                                string patenteCA = Console.ReadLine();
+
+                                Console.WriteLine("**Ingresa los Kilometros**");
+                                string kmCA = Console.ReadLine();
+                                kmCA = ValidarIdSoloNumerico(kmCA);
+
+                                Console.WriteLine("**Ingresa el AÑO**");
+                                string anoCA = Console.ReadLine();
+                                ValidarIdSoloNumerico(anoCA);
+
+                                Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                                LeerArchivo(_archivoSegmento);
+                                ListarSegmentos();
+                                string idSegCA = Console.ReadLine();
+                                ValidarIdSoloNumerico(idSegCA);
+
+                                Console.WriteLine("**Ingresa el nombre del Modelo**");
+                                string modCA = Console.ReadLine();
+
+                                Console.WriteLine("**Ingresa el precio VENTA**");
+                                string pVentaCA = Console.ReadLine();
+                                pVentaCA = ValidarIdSoloNumerico(pVentaCA);
+
+                                Console.WriteLine("**Ingresa Observaciones**");
+                                string observCA = Console.ReadLine();
+
+                                Console.WriteLine("**Ingresa el Color**");
+                                string colorCA = Console.ReadLine();
+                                colorCA = SoloLetras(colorCA);
+
+                                string cajaCarga = "SI";
+
                                 Console.WriteLine("**INGRESA dimensión de la caja**");
-                                dimension = Console.ReadLine();
-                                ValidarIdSoloNumerico(dimension);
+                                string dimension = Console.ReadLine();
+                                dimension = ValidarIdSoloNumerico(dimension);
 
                                 Console.WriteLine("**INGRESA la carga máxima**");
-                                cargaMax = Console.ReadLine();
-                                ValidarIdSoloNumerico(cargaMax);
+                                string cargaMax = Console.ReadLine();
+                                cargaMax = ValidarIdSoloNumerico(cargaMax);
+
+                                Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                                LeerArchivo(_archivoMarcas);
+                                ListarMarcas();
+                                string idMarcaCA = Console.ReadLine();
+
+                                Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                                LeerArchivo(_archivoCombustible);
+                                ListarCombustible();
+                                string idComCA = Console.ReadLine();
+
+                                Camion ca = new Camion(
+                                                        int.Parse(idVehiculoCA),
+                                                        patenteCA,
+                                                        int.Parse(kmCA),
+                                                        int.Parse(anoCA),
+                                                        modCA,
+                                                        int.Parse(pVentaCA),
+                                                        observCA,
+                                                        colorCA,
+                                                        cajaCarga,
+                                                        int.Parse(dimension),
+                                                        int.Parse(cargaMax),
+                                                        int.Parse(idMarcaCA),
+                                                        int.Parse(idSegCA),
+                                                        int.Parse(idComCA));
+
+                                this._camionesConCajaList.Add(ca);
+                                Console.WriteLine("\n");
+                                Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
+                                Console.ReadKey();
+
+                                GrabarArchivo(_archivoCamionesConCaja);
+
                             }
+                            else
+                            {
+                                Console.WriteLine("\n");
+                                Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                                string idVehiculoCA = Console.ReadLine();
+                                idVehiculoCA = ValidarIdNumericoOExiste(idVehiculoCA, _archivoCamionesConCaja);
 
-                            Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
-                            LeerArchivo(_archivoMarcas);
-                            ListarMarcas();
-                            string idMarcaCA = Console.ReadLine();
+                                Console.WriteLine("**Ingresa Patente **");
+                                string patenteCA = Console.ReadLine();
 
-                            Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
-                            LeerArchivo(_archivoCombustible);
-                            ListarCombustible();
-                            string idComCA = Console.ReadLine();
+                                Console.WriteLine("**Ingresa los Kilometros**");
+                                string kmCA = Console.ReadLine();
+                                ValidarIdSoloNumerico(kmCA);
 
-                            Camion ca = new Camion(
-                                                    int.Parse(idVhiculoCA),
-                                                    patenteCA,
-                                                    int.Parse(kmCA),
-                                                    int.Parse(anoCA),
-                                                    modCA,
-                                                    int.Parse(pVentaCA),
-                                                    observCA,
-                                                    colorCA,
-                                                    cajaCarga,
-                                                    int.Parse(dimension),
-                                                    int.Parse(cargaMax),
-                                                    int.Parse(idMarcaCA),
-                                                    int.Parse(idSegCA),
-                                                    int.Parse(idComCA));
+                                Console.WriteLine("**Ingresa el AÑO**");
+                                string anoCA = Console.ReadLine();
+                                anoCA = ValidarIdSoloNumerico(anoCA);
 
-                            this._camionesList.Add(ca);
+                                Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                                LeerArchivo(_archivoSegmento);
+                                ListarSegmentos();
+                                string idSegCA = Console.ReadLine();
+                                idSegCA = ValidarIdSoloNumerico(idSegCA);
 
-                            Console.WriteLine("\n");
-                            Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
-                            Console.ReadKey();
+                                Console.WriteLine("**Ingresa el nombre del Modelo**");
+                                string modCA = Console.ReadLine();
 
-                            GrabarArchivo(_archivoCamiones);
+                                Console.WriteLine("**Ingresa el precio VENTA**");
+                                string pVentaCA = Console.ReadLine();
+                                pVentaCA = ValidarIdSoloNumerico(pVentaCA);
+
+                                Console.WriteLine("**Ingresa Observaciones**");
+                                string observCA = Console.ReadLine();
+
+                                Console.WriteLine("**Ingresa el Color**");
+                                string colorCA = Console.ReadLine();
+                                colorCA = SoloLetras(colorCA);
+
+                                string cajaCarga = "NO";
+
+                                Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                                LeerArchivo(_archivoMarcas);
+                                ListarMarcas();
+                                string idMarcaCA = Console.ReadLine();
+
+                                Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                                LeerArchivo(_archivoCombustible);
+                                ListarCombustible();
+                                string idComCA = Console.ReadLine();
+
+                                Camion ca = new Camion(
+                                                        int.Parse(idVehiculoCA),
+                                                        patenteCA,
+                                                        int.Parse(kmCA),
+                                                        int.Parse(anoCA),
+                                                        modCA,
+                                                        int.Parse(pVentaCA),
+                                                        observCA,
+                                                        colorCA,
+                                                        cajaCarga,
+                                                        int.Parse(idMarcaCA),
+                                                        int.Parse(idSegCA),
+                                                        int.Parse(idComCA));
+
+                                this._camionesSinCajaList.Add(ca);
+                                Console.WriteLine("\n");
+                                Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
+                                Console.ReadKey();
+
+                                GrabarArchivo(_archivoCamionesSinCaja);
+
+                            }
                             opcionValida = true;
 
                             break;
@@ -463,17 +535,41 @@ namespace TP_Final_Programación_2
 
                         case 2:
 
-                            LeerArchivo(_archivoCamiones);
+                            Console.WriteLine("QUE TIPO DE CAMIONES DESEA LISTAR CON CAJA/SIN CAJA");
+                            Console.WriteLine("**Tiene caja de carga? INGRESA (SI o NO)**");
+                            string respuesta = Console.ReadLine().ToUpper();
 
-                            foreach (Camion i in this._camionesList)
+                            while (respuesta != "SI" && respuesta != "NO")
                             {
-                                i.MostrarDatos();
+                                Console.WriteLine("**Respuesta inválida. INGRESA (SI o NO) con Mayusculas**");
+                                respuesta = Console.ReadLine().ToUpper();
                             }
+
+                            if (respuesta == "SI")
+                            {
+                                LeerArchivo(_archivoCamionesConCaja);
+
+                                foreach (Camion i in this._camionesConCajaList)
+                                {
+                                    i.MostrarDatos();
+                                }
+
+                            }
+
+                            if (respuesta == "NO")
+                            {
+                                foreach (Camion i in this._camionesSinCajaList)
+                                {
+                                    i.MostrarDatos();
+                                }
+                            }
+
                             opcionValida = true;
+
                             break;
 
                         case 3:
-                           
+
                             LeerArchivo(_archivoMotos);
 
                             foreach (Moto i in this._motosList)
@@ -593,7 +689,7 @@ namespace TP_Final_Programación_2
                     return c.CombustibleNombre;
                 }
             }
-            return "xx"; 
+            return "xx";
         }
 
 
@@ -677,10 +773,10 @@ namespace TP_Final_Programación_2
                             //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
                             Moto m = this._motosList[i];
 
-                            //__obtener nombres correspondientes a los IDs__
-                            string nombreCombustible = ObtenerNombreCombustible(m.IdCombustible, this._combustiblesList);
+                            //__obtener nombres correspondientes a los IDs__                        
                             string nombreMarca = ObtenerNombreMarca(m.IdMarca, this._marcasList);
                             string nombreSegmento = ObtenerNombreSegmento(m.IdSegmento, this._segmentosList);
+                            string nombreCombustible = ObtenerNombreCombustible(m.IdCombustible, this._combustiblesList);
 
                             grabar.WriteLine(m.IdVehiculo + "|"
                                              + m.Cilindrada + "|"
@@ -700,20 +796,20 @@ namespace TP_Final_Programación_2
                         break;
 
                     case _archivoAutosCamionetas:
-                        
+
                         x = new FileStream(_archivoAutosCamionetas, FileMode.Create);
                         grabar = new StreamWriter(x);
 
                         for (int i = 0; i < this._autosCamionetasList.Count; i++)
                         {
                             //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
-                            AutoCamioneta ac = this._autosCamionetasList[i]; 
+                            AutoCamioneta ac = this._autosCamionetasList[i];
 
                             //__obtener nombres correspondientes a los IDs__
-                            string nombreCombustible = ObtenerNombreCombustible(ac.IdCombustible, this._combustiblesList);
                             string nombreMarca = ObtenerNombreMarca(ac.IdMarca, this._marcasList);
                             string nombreSegmento = ObtenerNombreSegmento(ac.IdSegmento, this._segmentosList);
-                
+                            string nombreCombustible = ObtenerNombreCombustible(ac.IdCombustible, this._combustiblesList);
+
                             grabar.WriteLine(ac.IdVehiculo + "|"
                                              + ac.Patente + "|"
                                              + ac.Kilometro + "|"
@@ -731,21 +827,22 @@ namespace TP_Final_Programación_2
                         x.Close();
                         break;
 
-                    case _archivoCamiones:
+                    case _archivoCamionesConCaja:
 
-                        x = new FileStream(_archivoCamiones, FileMode.Create);
+                        x = new FileStream(_archivoCamionesConCaja, FileMode.Create);
                         grabar = new StreamWriter(x);
 
-                        for (int i = 0; i < this._camionesList.Count; i++)
+                        for (int i = 0; i < this._camionesConCajaList.Count; i++)
                         {
                             //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
-                            Camion c = this._camionesList[i];
+                            Camion c = this._camionesConCajaList[i];
 
                             //__obtener nombres correspondientes a los IDs__
-                            string nombreCombustible = ObtenerNombreCombustible(c.IdCombustible, this._combustiblesList);
+
                             string nombreMarca = ObtenerNombreMarca(c.IdMarca, this._marcasList);
                             string nombreSegmento = ObtenerNombreSegmento(c.IdSegmento, this._segmentosList);
-                           
+                            string nombreCombustible = ObtenerNombreCombustible(c.IdCombustible, this._combustiblesList);
+
                             grabar.WriteLine(c.IdVehiculo + "|"
                                              + c.Patente + "|"
                                              + c.Kilometro + "|"
@@ -754,17 +851,47 @@ namespace TP_Final_Programación_2
                                              + c.PrecioVenta + "|"
                                              + c.Observaciones + "|"
                                              + c.Color + "|"
+                                             + c.CajaCarga + "|"
+                                             + c.DimensionCaja + "|"
+                                             + c.CargaMaxima + "|"
                                              + nombreMarca + "|"
                                              + nombreSegmento + "|"
                                              + nombreCombustible);
 
 
-                            if (c.CajaCarga == "si")
-                            {
-                                grabar.Write("|" + c.CajaCarga + "|"
-                                              + c.DimensionCaja + "|"
-                                              + c.CargaMaxima);
-                            }
+                        }
+                        grabar.Close();
+                        x.Close();
+                        break;
+
+                    case _archivoCamionesSinCaja:
+
+                        x = new FileStream(_archivoCamionesSinCaja, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._camionesConCajaList.Count; i++)
+                        {
+                            //__nos permite trabajar con las prop de los objetos y darle los parametros a ObtenerNombreCombustible()__
+                            Camion c = this._camionesSinCajaList[i];
+
+                            //__obtener nombres correspondientes a los IDs__
+                            string nombreMarca = ObtenerNombreMarca(c.IdMarca, this._marcasList);
+                            string nombreSegmento = ObtenerNombreSegmento(c.IdSegmento, this._segmentosList);
+                            string nombreCombustible = ObtenerNombreCombustible(c.IdCombustible, this._combustiblesList);
+
+                            grabar.WriteLine(c.IdVehiculo + "|"
+                                             + c.Patente + "|"
+                                             + c.Kilometro + "|"
+                                             + c.Anio + "|"
+                                             + c.Modelo + "|"
+                                             + c.PrecioVenta + "|"
+                                             + c.Observaciones + "|"
+                                             + c.Color + "|"
+                                             + c.CajaCarga + "|"
+                                             + nombreMarca + "|"
+                                             + nombreSegmento + "|"
+                                             + nombreCombustible);
+
 
                         }
                         grabar.Close();
@@ -816,7 +943,7 @@ namespace TP_Final_Programación_2
                             Leer.Close();
                             x.Close();
                         }
-                        
+
                         break;
 
                     case _archivoVentas:
@@ -835,14 +962,39 @@ namespace TP_Final_Programación_2
 
                     case _archivoAutosCamionetas:
 
-                        x = new FileStream(_archivoAutosCamionetas, FileMode.Open);
-                        Leer = new StreamReader(x);
+                        if (this._autosCamionetasList.Count == 0)
+                        {
+                            x = new FileStream(_archivoAutosCamionetas, FileMode.Open);
+                            Leer = new StreamReader(x);
 
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('|');
+
+                                AutoCamioneta ac = new AutoCamioneta(
+                                        int.Parse(datos[0]),
+                                        datos[1],
+                                        int.Parse(datos[2]),
+                                        int.Parse(datos[3]),
+                                        datos[4],
+                                        int.Parse(datos[5]),
+                                        datos[6],
+                                        datos[7],
+                                        ObtenerIdMarca(datos[8]),
+                                        ObtenerIdSegmento(datos[9]),
+                                        ObtenerIdCombustible(datos[10]));
+
+                                this._autosCamionetasList.Add(ac);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
                         break;
 
                     case _archivoMotos:
 
-                        if (this._motosList.Count == 0) 
+                        if (this._motosList.Count == 0)
                         {
                             x = new FileStream(_archivoMotos, FileMode.Open);
                             Leer = new StreamReader(x);
@@ -853,31 +1005,95 @@ namespace TP_Final_Programación_2
                                 datos = cadena.Split('|');
 
                                 Moto mo = new Moto(
-                                            int.Parse(datos[0]), 
-                                            int.Parse(datos[1]),           
-                                            datos[2],           
-                                            int.Parse(datos[3]), 
-                                            int.Parse(datos[4]), 
-                                            datos[5],            
-                                            int.Parse(datos[6]), 
-                                            datos[7],            
-                                            datos[8],           
-                                            ObtenerIdMarca(datos[9]),
-                                            ObtenerIdSegmento(datos[10]), 
-                                            ObtenerIdCombustible(datos[11])); 
+                                        int.Parse(datos[0]),
+                                        int.Parse(datos[1]),
+                                        datos[2],
+                                        int.Parse(datos[3]),
+                                        int.Parse(datos[4]),
+                                        datos[5],
+                                        int.Parse(datos[6]),
+                                        datos[7],
+                                        datos[8],
+                                        ObtenerIdMarca(datos[9]),
+                                        ObtenerIdSegmento(datos[10]),
+                                        ObtenerIdCombustible(datos[11]));
 
                                 this._motosList.Add(mo);
                             }
                             Leer.Close();
                             x.Close();
                         }
-                        
                         break;
 
-                    case _archivoCamiones:
+                    case _archivoCamionesConCaja:
 
-                        x = new FileStream(_archivoCamiones, FileMode.Open);
-                        Leer = new StreamReader(x);
+                        if (this._camionesConCajaList.Count == 0)
+                        {
+                            x = new FileStream(_archivoCamionesConCaja, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('|');
+
+                                Camion ca = new Camion(
+                                        int.Parse(datos[0]),
+                                        datos[1],
+                                        int.Parse(datos[2]),
+                                        int.Parse(datos[3]),
+                                        datos[4],
+                                        int.Parse(datos[5]),
+                                        datos[6],
+                                        datos[7],
+                                        datos[8],
+                                        int.Parse(datos[9]),
+                                        int.Parse(datos[10]),
+                                        ObtenerIdMarca(datos[11]),
+                                        ObtenerIdSegmento(datos[12]),
+                                        ObtenerIdCombustible(datos[13]));
+
+                                this._camionesConCajaList.Add(ca);
+                            }
+                            Leer.Close();
+                            x.Close();
+
+                        }
+
+                        break;
+
+                    case _archivoCamionesSinCaja:
+
+                        if (this._camionesSinCajaList.Count == 0)
+                        {
+                            x = new FileStream(_archivoCamionesSinCaja, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('|');
+
+                                Camion ca = new Camion(
+                                        int.Parse(datos[0]),
+                                        datos[1],
+                                        int.Parse(datos[2]),
+                                        int.Parse(datos[3]),
+                                        datos[4],
+                                        int.Parse(datos[5]),
+                                        datos[6],
+                                        datos[7],
+                                        datos[8],
+                                        ObtenerIdMarca(datos[9]),
+                                        ObtenerIdSegmento(datos[10]),
+                                        ObtenerIdCombustible(datos[11]));
+
+                                this._camionesSinCajaList.Add(ca);
+                            }
+                            Leer.Close();
+                            x.Close();
+
+                        }
 
                         break;
 
@@ -1167,6 +1383,9 @@ namespace TP_Final_Programación_2
                                     _id = Console.ReadLine();
                                 }
                             }
+                        }
+                        if (idValido)
+                        {
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Id CLIENTE valido");
                             Console.ResetColor();
@@ -1212,8 +1431,11 @@ namespace TP_Final_Programación_2
                                     _id = Console.ReadLine();
                                 }
                             }
+                        }
+                        if (idValido)
+                        {
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("valido");
+                            Console.WriteLine("ID válido.");
                             Console.ResetColor();
                         }
                     }
@@ -1375,9 +1597,9 @@ namespace TP_Final_Programación_2
         {
             for (int i = 0; i < this._marcasList.Count; i++)
             {
-                if (this._marcasList[i].NombreMarca == nombreMarca) 
+                if (this._marcasList[i].NombreMarca == nombreMarca)
                 {
-                    return this._marcasList[i].IdMarca; 
+                    return this._marcasList[i].IdMarca;
                 }
             }
             return 0;
@@ -1393,7 +1615,7 @@ namespace TP_Final_Programación_2
                     return this._segmentosList[i].IdSegmento;
                 }
             }
-            return 0; 
+            return 0;
         }
 
 
@@ -1403,10 +1625,10 @@ namespace TP_Final_Programación_2
             {
                 if (this._combustiblesList[i].CombustibleNombre == nombreCombustible)
                 {
-                    return this._combustiblesList[i].IdCombustible ;
+                    return this._combustiblesList[i].IdCombustible;
                 }
             }
-            return 0; 
+            return 0;
         }
 
 

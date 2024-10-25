@@ -22,6 +22,11 @@ namespace TP_Final_Programación_2
             this.CargaMaxima = carMax;
         }
 
+        public Camion(int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, string cajaCar, int idMar, int idSeg, int idCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
+        {
+            this.CajaCarga = cajaCar;
+        }
+
 
         //__Metodos de propiedades publicas__
         public string CajaCarga
@@ -46,13 +51,25 @@ namespace TP_Final_Programación_2
         //__Metodos__
         public override void MostrarDatos()
         {
-            base.MostrarDatos();
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
 
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($"Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | KLM: {this.Kilometro} | Año: {this.Anio} | " +
+                              $"Modelo: {this.Modelo} | Precio de Venta: {this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
+                              $"Color: {this.Color} | Marca: {this.IdMarca} | Segmento: {this.IdSegmento} | Combustible: {this.IdCombustible} | Caja de Carga: {this.CajaCarga}");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+     
             if (this.CajaCarga == "SI")
             {
                 Console.WriteLine($"Caja de Carga: {this.CajaCarga} | Dimensiones de la Caja: {this.DimensionCaja} | Carga Máxima: {this.CargaMaxima}");
                 Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
             }
+
+            Console.ResetColor();
         }
     }
 }
