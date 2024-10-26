@@ -676,7 +676,7 @@ namespace TP_Final_Programación_2
 
             do
             {
-                Console.WriteLine("Cliente VEHICULO desea Listar");
+                Console.WriteLine("Que VEHICULO desea Listar");
                 Console.WriteLine("1) AUTOS/CAMIONETAS 2)CAMIONES 3)MOTOS");
 
                 if (int.TryParse(Console.ReadLine(), out int opcion))
@@ -1889,7 +1889,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        public int ObtenerIdMarca(string nombreMarca)
+        private int ObtenerIdMarca(string nombreMarca)
         {
             for (int i = 0; i < this._marcasList.Count; i++)
             {
@@ -1902,7 +1902,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        public int ObtenerIdSegmento(string nombreSegmento)
+        private int ObtenerIdSegmento(string nombreSegmento)
         {
             for (int i = 0; i < this._segmentosList.Count; i++)
             {
@@ -1915,7 +1915,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        public int ObtenerIdCombustible(string nombreCombustible)
+        private int ObtenerIdCombustible(string nombreCombustible)
         {
             for (int i = 0; i < this._combustiblesList.Count; i++)
             {
