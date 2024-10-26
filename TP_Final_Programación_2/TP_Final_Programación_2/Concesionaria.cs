@@ -279,166 +279,182 @@ namespace TP_Final_Programación_2
 
                         case 3:
 
-                            Console.WriteLine("**¿Qué tipo de camión desea cargar?**");
-                            Console.WriteLine("1. Camión con caja de carga");
-                            Console.WriteLine("2. Camión sin caja de carga");
-                            string tipoCamion = Console.ReadLine();
-                            tipoCamion = ValidarIdSoloNumerico(tipoCamion);
+                            bool controlBucle = false;
 
-                            if (tipoCamion == "1")
+                            while (!controlBucle)
                             {
-                                Console.WriteLine("\n");
-                                Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                                string idVehiculoCA = Console.ReadLine();
-                                idVehiculoCA = ValidarIdNumericoOExiste(idVehiculoCA, _archivoCamionesConCaja);
+                                Console.WriteLine("**¿Qué tipo de camión desea cargar?**");
+                                Console.WriteLine("1. Camión con caja de carga");
+                                Console.WriteLine("2. Camión sin caja de carga");
+                                string tipoCamion = Console.ReadLine();
+                                tipoCamion = ValidarIdSoloNumerico(tipoCamion);
 
-                                Console.WriteLine("**Ingresa Patente **");
-                                string patenteCA = Console.ReadLine();
+                                if (tipoCamion == "1")
+                                {
+                                    controlBucle = true;
 
-                                Console.WriteLine("**Ingresa los Kilometros**");
-                                string kmCA = Console.ReadLine();
-                                kmCA = ValidarIdSoloNumerico(kmCA);
+                                    Console.WriteLine("\n");
+                                    Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                                    string idVehiculoCA = Console.ReadLine();
+                                    idVehiculoCA = ValidarIdNumericoOExiste(idVehiculoCA, _archivoCamionesConCaja);
 
-                                Console.WriteLine("**Ingresa el AÑO**");
-                                string anoCA = Console.ReadLine();
-                                ValidarIdSoloNumerico(anoCA);
+                                    Console.WriteLine("**Ingresa Patente **");
+                                    string patenteCA = Console.ReadLine();
 
-                                Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
-                                LeerArchivo(_archivoSegmento);
-                                ListarSegmentos();
-                                string idSegCA = Console.ReadLine();
-                                ValidarIdSoloNumerico(idSegCA);
+                                    Console.WriteLine("**Ingresa los Kilometros**");
+                                    string kmCA = Console.ReadLine();
+                                    kmCA = ValidarIdSoloNumerico(kmCA);
 
-                                Console.WriteLine("**Ingresa el nombre del Modelo**");
-                                string modCA = Console.ReadLine();
+                                    Console.WriteLine("**Ingresa el AÑO**");
+                                    string anoCA = Console.ReadLine();
+                                    ValidarIdSoloNumerico(anoCA);
 
-                                Console.WriteLine("**Ingresa el precio VENTA**");
-                                string pVentaCA = Console.ReadLine();
-                                pVentaCA = ValidarIdSoloNumerico(pVentaCA);
+                                    Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                                    LeerArchivo(_archivoSegmento);
+                                    ListarSegmentos();
+                                    string idSegCA = Console.ReadLine();
+                                    ValidarIdSoloNumerico(idSegCA);
 
-                                Console.WriteLine("**Ingresa Observaciones**");
-                                string observCA = Console.ReadLine();
+                                    Console.WriteLine("**Ingresa el nombre del Modelo**");
+                                    string modCA = Console.ReadLine();
 
-                                Console.WriteLine("**Ingresa el Color**");
-                                string colorCA = Console.ReadLine();
-                                colorCA = SoloLetras(colorCA);
+                                    Console.WriteLine("**Ingresa el precio VENTA**");
+                                    string pVentaCA = Console.ReadLine();
+                                    pVentaCA = ValidarIdSoloNumerico(pVentaCA);
 
-                                string cajaCarga = "SI";
+                                    Console.WriteLine("**Ingresa Observaciones**");
+                                    string observCA = Console.ReadLine();
 
-                                Console.WriteLine("**INGRESA dimensión de la caja**");
-                                string dimension = Console.ReadLine();
-                                dimension = ValidarIdSoloNumerico(dimension);
+                                    Console.WriteLine("**Ingresa el Color**");
+                                    string colorCA = Console.ReadLine();
+                                    colorCA = SoloLetras(colorCA);
 
-                                Console.WriteLine("**INGRESA la carga máxima**");
-                                string cargaMax = Console.ReadLine();
-                                cargaMax = ValidarIdSoloNumerico(cargaMax);
+                                    string cajaCarga = "SI";
 
-                                Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
-                                LeerArchivo(_archivoMarcas);
-                                ListarMarcas();
-                                string idMarcaCA = Console.ReadLine();
+                                    Console.WriteLine("**INGRESA dimensión de la caja**");
+                                    string dimension = Console.ReadLine();
+                                    dimension = ValidarIdSoloNumerico(dimension);
 
-                                Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
-                                LeerArchivo(_archivoCombustible);
-                                ListarCombustible();
-                                string idComCA = Console.ReadLine();
+                                    Console.WriteLine("**INGRESA la carga máxima**");
+                                    string cargaMax = Console.ReadLine();
+                                    cargaMax = ValidarIdSoloNumerico(cargaMax);
 
-                                Camion ca = new Camion(
-                                                        int.Parse(idVehiculoCA),
-                                                        patenteCA,
-                                                        int.Parse(kmCA),
-                                                        int.Parse(anoCA),
-                                                        modCA,
-                                                        int.Parse(pVentaCA),
-                                                        observCA,
-                                                        colorCA,
-                                                        cajaCarga,
-                                                        int.Parse(dimension),
-                                                        int.Parse(cargaMax),
-                                                        int.Parse(idMarcaCA),
-                                                        int.Parse(idSegCA),
-                                                        int.Parse(idComCA));
+                                    Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                                    LeerArchivo(_archivoMarcas);
+                                    ListarMarcas();
+                                    string idMarcaCA = Console.ReadLine();
 
-                                this._camionesConCajaList.Add(ca);
-                                Console.WriteLine("\n");
-                                Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
-                                Console.ReadKey();
+                                    Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                                    LeerArchivo(_archivoCombustible);
+                                    ListarCombustible();
+                                    string idComCA = Console.ReadLine();
 
-                                GrabarArchivo(_archivoCamionesConCaja);
+                                    Camion ca = new Camion(
+                                                            int.Parse(idVehiculoCA),
+                                                            patenteCA,
+                                                            int.Parse(kmCA),
+                                                            int.Parse(anoCA),
+                                                            modCA,
+                                                            int.Parse(pVentaCA),
+                                                            observCA,
+                                                            colorCA,
+                                                            cajaCarga,
+                                                            int.Parse(dimension),
+                                                            int.Parse(cargaMax),
+                                                            int.Parse(idMarcaCA),
+                                                            int.Parse(idSegCA),
+                                                            int.Parse(idComCA));
 
+                                    this._camionesConCajaList.Add(ca);
+                                    Console.WriteLine("\n");
+                                    Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
+                                    Console.ReadKey();
+
+                                    GrabarArchivo(_archivoCamionesConCaja);
+
+                                }
+                                else if (tipoCamion == "2")
+                                {
+                                    controlBucle = true;
+
+                                    Console.WriteLine("\n");
+                                    Console.WriteLine("**Ingresa el ID del Vehiculo**");
+                                    string idVehiculoCA = Console.ReadLine();
+                                    idVehiculoCA = ValidarIdNumericoOExiste(idVehiculoCA, _archivoCamionesConCaja);
+
+                                    Console.WriteLine("**Ingresa Patente **");
+                                    string patenteCA = Console.ReadLine();
+
+                                    Console.WriteLine("**Ingresa los Kilometros**");
+                                    string kmCA = Console.ReadLine();
+                                    ValidarIdSoloNumerico(kmCA);
+
+                                    Console.WriteLine("**Ingresa el AÑO**");
+                                    string anoCA = Console.ReadLine();
+                                    anoCA = ValidarIdSoloNumerico(anoCA);
+
+                                    Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
+                                    LeerArchivo(_archivoSegmento);
+                                    ListarSegmentos();
+                                    string idSegCA = Console.ReadLine();
+                                    idSegCA = ValidarIdSoloNumerico(idSegCA);
+
+                                    Console.WriteLine("**Ingresa el nombre del Modelo**");
+                                    string modCA = Console.ReadLine();
+
+                                    Console.WriteLine("**Ingresa el precio VENTA**");
+                                    string pVentaCA = Console.ReadLine();
+                                    pVentaCA = ValidarIdSoloNumerico(pVentaCA);
+
+                                    Console.WriteLine("**Ingresa Observaciones**");
+                                    string observCA = Console.ReadLine();
+
+                                    Console.WriteLine("**Ingresa el Color**");
+                                    string colorCA = Console.ReadLine();
+                                    colorCA = SoloLetras(colorCA);
+
+                                    string cajaCarga = "NO";
+
+                                    Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
+                                    LeerArchivo(_archivoMarcas);
+                                    ListarMarcas();
+                                    string idMarcaCA = Console.ReadLine();
+
+                                    Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
+                                    LeerArchivo(_archivoCombustible);
+                                    ListarCombustible();
+                                    string idComCA = Console.ReadLine();
+
+                                    Camion ca = new Camion(
+                                                            int.Parse(idVehiculoCA),
+                                                            patenteCA,
+                                                            int.Parse(kmCA),
+                                                            int.Parse(anoCA),
+                                                            modCA,
+                                                            int.Parse(pVentaCA),
+                                                            observCA,
+                                                            colorCA,
+                                                            cajaCarga,
+                                                            int.Parse(idMarcaCA),
+                                                            int.Parse(idSegCA),
+                                                            int.Parse(idComCA));
+
+                                    this._camionesSinCajaList.Add(ca);
+                                    Console.WriteLine("\n");
+                                    Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
+                                    Console.ReadKey();
+
+                                    GrabarArchivo(_archivoCamionesSinCaja);
+
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("<<<<<<<LA OPCION DEBE SER (1 0 2)>>>>>");
+                                    Console.ResetColor();
+                                }
                             }
-                            else
-                            {
-                                Console.WriteLine("\n");
-                                Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                                string idVehiculoCA = Console.ReadLine();
-                                idVehiculoCA = ValidarIdNumericoOExiste(idVehiculoCA, _archivoCamionesConCaja);
 
-                                Console.WriteLine("**Ingresa Patente **");
-                                string patenteCA = Console.ReadLine();
-
-                                Console.WriteLine("**Ingresa los Kilometros**");
-                                string kmCA = Console.ReadLine();
-                                ValidarIdSoloNumerico(kmCA);
-
-                                Console.WriteLine("**Ingresa el AÑO**");
-                                string anoCA = Console.ReadLine();
-                                anoCA = ValidarIdSoloNumerico(anoCA);
-
-                                Console.WriteLine("**Ingresa el numero de SEGMENTO de la correspondiente a la lista**");
-                                LeerArchivo(_archivoSegmento);
-                                ListarSegmentos();
-                                string idSegCA = Console.ReadLine();
-                                idSegCA = ValidarIdSoloNumerico(idSegCA);
-
-                                Console.WriteLine("**Ingresa el nombre del Modelo**");
-                                string modCA = Console.ReadLine();
-
-                                Console.WriteLine("**Ingresa el precio VENTA**");
-                                string pVentaCA = Console.ReadLine();
-                                pVentaCA = ValidarIdSoloNumerico(pVentaCA);
-
-                                Console.WriteLine("**Ingresa Observaciones**");
-                                string observCA = Console.ReadLine();
-
-                                Console.WriteLine("**Ingresa el Color**");
-                                string colorCA = Console.ReadLine();
-                                colorCA = SoloLetras(colorCA);
-
-                                string cajaCarga = "NO";
-
-                                Console.WriteLine("**Ingresa el numero de la MARCA correspondiente a la Lista**");
-                                LeerArchivo(_archivoMarcas);
-                                ListarMarcas();
-                                string idMarcaCA = Console.ReadLine();
-
-                                Console.WriteLine("**Ingresa el numero correspondiente al TIPO del Combustible**");
-                                LeerArchivo(_archivoCombustible);
-                                ListarCombustible();
-                                string idComCA = Console.ReadLine();
-
-                                Camion ca = new Camion(
-                                                        int.Parse(idVehiculoCA),
-                                                        patenteCA,
-                                                        int.Parse(kmCA),
-                                                        int.Parse(anoCA),
-                                                        modCA,
-                                                        int.Parse(pVentaCA),
-                                                        observCA,
-                                                        colorCA,
-                                                        cajaCarga,
-                                                        int.Parse(idMarcaCA),
-                                                        int.Parse(idSegCA),
-                                                        int.Parse(idComCA));
-
-                                this._camionesSinCajaList.Add(ca);
-                                Console.WriteLine("\n");
-                                Console.WriteLine("<<<<<<<Vehiculo agregado con EXITO>>>>>");
-                                Console.ReadKey();
-
-                                GrabarArchivo(_archivoCamionesSinCaja);
-
-                            }
                             opcionValida = true;
 
                             break;
@@ -492,6 +508,151 @@ namespace TP_Final_Programación_2
             Console.WriteLine("**CLIENTE BORRADO CORRECTAMENTE**");
             Console.ReadLine();
             GrabarArchivo(_archivoClientes);
+        }
+
+
+        public void BorrarVehiculo()
+        {
+            ListarVehiculos();
+
+            Console.ResetColor();
+            Console.WriteLine("\n");
+            bool controlDeWhilePrincipal = false;
+            int tipoVehiculo;
+
+            while (!controlDeWhilePrincipal)
+            {
+                Console.WriteLine("**¿QUÉ TIPO DE VEHÍCULO DESEAS BORRAR?**");
+                Console.WriteLine("1) MOTOS");
+                Console.WriteLine("2) AUTOS/CAMIONETAS");
+                Console.WriteLine("3) CAMIONES");
+
+                if (int.TryParse(Console.ReadLine(), out tipoVehiculo) && (tipoVehiculo == 1 || tipoVehiculo == 2 || tipoVehiculo == 3))
+                {
+                    
+                    switch (tipoVehiculo)
+                    {
+                        case 1:
+
+                            Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
+                            string idMoto = Console.ReadLine();
+                            idMoto = ValidarIdSoloNumerico(idMoto);
+                            int idCondicion1 = int.Parse(idMoto);//__parsear para codicionar__
+
+                            for (int i = 0; i < this._motosList.Count; i++)
+                            {
+                                if (idCondicion1 == this._motosList[i].IdVehiculo)
+                                {
+                                    this._motosList.RemoveAt(i);
+                                }
+                            }
+
+                            Console.WriteLine("**MOTO BORRADA CORRECTAMENTE**");
+                            Console.ReadLine();
+                            GrabarArchivo(_archivoMotos);
+                            controlDeWhilePrincipal = true;
+
+                            break;
+
+                        case 2:
+
+                            Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
+                            string idAC = Console.ReadLine();
+                            idAC = ValidarIdSoloNumerico(idAC);
+                            int idCondicion2 = int.Parse(idAC);//__parsear para codicionar__
+
+                            for (int i = 0; i < this._motosList.Count; i++)
+                            {
+                                if (idCondicion2 == this._autosCamionetasList[i].IdVehiculo)
+                                {
+                                    this._autosCamionetasList.RemoveAt(i);
+                                }
+                            }
+
+                            Console.WriteLine("**AUTO/CAMIONETA BORRADA CORRECTAMENTE**");
+                            Console.ReadLine();
+                            GrabarArchivo(_archivoAutosCamionetas);
+                            controlDeWhilePrincipal = true;
+
+                            break;
+
+                        case 3:
+
+                            bool controlBucle = false;
+
+                            while (!controlBucle)
+                            {
+                                Console.WriteLine("**¿Qué tipo de camión desea BORRAR?**");
+                                Console.WriteLine("1. Camión con caja de carga");
+                                Console.WriteLine("2. Camión sin caja de carga");
+                                string tipoCamion = Console.ReadLine();
+                                tipoCamion = ValidarIdSoloNumerico(tipoCamion);
+
+                                if (tipoCamion == "1")
+                                {
+                                    controlBucle = true;
+
+                                    Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
+                                    string idCA = Console.ReadLine();
+                                    idCA = ValidarIdSoloNumerico(idCA);
+                                    int idCondicion3 = int.Parse(idCA);//__parsear para codicionar__
+
+                                    for (int i = 0; i < this._camionesConCajaList.Count; i++)
+                                    {
+                                        if (idCondicion3 == this._camionesConCajaList[i].IdVehiculo)
+                                        {
+                                            this._camionesConCajaList.RemoveAt(i);
+                                        }
+                                    }
+
+                                    Console.WriteLine("**CAMION BORRADO CORRECTAMENTE**");
+                                    Console.ReadLine();
+                                    GrabarArchivo(_archivoCamionesConCaja);
+
+                                }
+                                else if (tipoCamion == "2")
+                                {
+                                    controlBucle = true;
+
+                                    Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
+                                    string idCA = Console.ReadLine();
+                                    idCA = ValidarIdSoloNumerico(idCA);
+                                    int idCondicion3 = int.Parse(idCA);//__parsear para codicionar__
+
+                                    for (int i = 0; i < this._camionesSinCajaList.Count; i++)
+                                    {
+                                        if (idCondicion3 == this._camionesSinCajaList[i].IdVehiculo)
+                                        {
+                                            this._camionesSinCajaList.RemoveAt(i);
+                                        }
+                                    }
+
+                                    Console.WriteLine("**CAMION BORRADO CORRECTAMENTE**");
+                                    Console.ReadLine();
+                                    GrabarArchivo(_archivoCamionesSinCaja);
+
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("<<<<<<<LA OPCION DEBE SER (1 0 2)>>>>>");
+                                    Console.ResetColor();
+                                }
+                            }
+                            controlDeWhilePrincipal = true;
+                            break;
+                        
+                    }    
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Por favor, ingresa un número válido.");
+                    Console.ResetColor();
+                }
+
+            }
+
         }
 
 
@@ -1347,7 +1508,7 @@ namespace TP_Final_Programación_2
         {
 
             bool idValido = false; //__bandera para el bucle__ 
-            int idCli;
+            int id;
             switch (_archivo)
             {
                 case _archivoClientes:
@@ -1356,7 +1517,7 @@ namespace TP_Final_Programación_2
 
                     do
                     {
-                        if (!int.TryParse(_id, out idCli) || idCli <= 0)
+                        if (!int.TryParse(_id, out id) || id <= 0)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("_________________________________________________");
@@ -1371,7 +1532,7 @@ namespace TP_Final_Programación_2
 
                             for (int i = 0; i < this._clientesList.Count; i++)
                             {
-                                if (idCli == this._clientesList[i].IdCliente)
+                                if (id == this._clientesList[i].IdCliente)
                                 {
                                     idValido = false;
                                     Console.ForegroundColor = ConsoleColor.Red;
@@ -1404,7 +1565,7 @@ namespace TP_Final_Programación_2
 
                     do
                     {
-                        if (!int.TryParse(_id, out idCli) || idCli <= 0)
+                        if (!int.TryParse(_id, out id) || id <= 0)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("_________________________________________________");
@@ -1419,7 +1580,142 @@ namespace TP_Final_Programación_2
 
                             for (int i = 0; i < this._motosList.Count; i++)
                             {
-                                if (idCli == this._motosList[i].IdVehiculo)
+                                if (id == this._motosList[i].IdVehiculo)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un VEHICULO con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
+
+                    break;
+
+                case _archivoCamionesConCaja:
+
+                    LeerArchivo(_archivoCamionesConCaja);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._camionesConCajaList.Count; i++)
+                            {
+                                if (id == this._camionesConCajaList[i].IdVehiculo)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un VEHICULO con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
+
+                    break;
+
+                case _archivoCamionesSinCaja:
+
+                    LeerArchivo(_archivoCamionesSinCaja);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._camionesSinCajaList.Count; i++)
+                            {
+                                if (id == this._camionesSinCajaList[i].IdVehiculo)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un VEHICULO con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
+
+                    break;
+
+                case _archivoAutosCamionetas:
+
+                    LeerArchivo(_archivoAutosCamionetas);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._autosCamionetasList.Count; i++)
+                            {
+                                if (id == this._autosCamionetasList[i].IdVehiculo)
                                 {
                                     idValido = false;
                                     Console.ForegroundColor = ConsoleColor.Red;

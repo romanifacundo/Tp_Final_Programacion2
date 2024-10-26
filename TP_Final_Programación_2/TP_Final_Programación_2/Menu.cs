@@ -300,7 +300,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 3:
                                     {
-                                        
+                                        BorrarVehiculo();
                                         break;
                                     }
                                 case 4:
