@@ -295,7 +295,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 2:
                                     {
-                                       
+                                        AtualizarVehiculo(); 
                                         break;
                                     }
                                 case 3:

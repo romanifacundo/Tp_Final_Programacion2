@@ -47,12 +47,7 @@ namespace TP_Final_Programación_2
         {
             Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.WriteLine($" Nombre Localidad: {this.NombreLocalidad}");
-
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.ResetColor();
         }
 

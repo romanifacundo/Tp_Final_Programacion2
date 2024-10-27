@@ -39,12 +39,7 @@ namespace TP_Final_Programación_2
         {
             Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.WriteLine($" Nombre Provincia: {this.NombreProvincia} ");
-
-            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-
             Console.ResetColor();
         }
     }
