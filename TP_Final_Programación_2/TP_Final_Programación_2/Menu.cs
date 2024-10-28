@@ -295,12 +295,12 @@ namespace TP_Final_Programación_2
                                     }
                                 case 2:
                                     {
-                                       
+                                        ActualizarVenta();
                                         break;
                                     }
                                 case 3:
                                     {
-                                        
+                                        BorrarVenta();
                                         break;
                                     }
                                 case 4:

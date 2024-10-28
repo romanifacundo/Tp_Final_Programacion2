@@ -42,13 +42,11 @@ namespace TP_Final_Programación_2
         private List<Segmento> _segmentosList;
         private List<Localidad> _localidadesList;
         private List<Provincia> _provinciasList;
-        private List<Vehiculo> _vehiculoList;
 
 
         //__Constructores__
         public Concesionaria()
         {
-            this._vehiculoList = new List<Vehiculo>();
             this._autosCamionetasList = new List<AutoCamioneta>();
             this._motosList = new List<Moto>();
             this._camionesConCajaList = new List<Camion>();
@@ -63,7 +61,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        //__Metodos de acciones cargar datos__
+        //Metodos de acciones cargar datos__
         //__Cliente__
         public void CargarCliente()
         {
@@ -113,6 +111,50 @@ namespace TP_Final_Programación_2
         }
 
 
+        //__Venta__
+        public void CargarVenta()
+        {
+            Console.WriteLine("\n**Ingresa el ID VENTA**");
+            Console.WriteLine("\n___________________________________");
+            string idVen = Console.ReadLine();
+            idVen = ValidarIdSoloNumerico(idVen);
+
+            Console.WriteLine("\n**Ingresa el ID del CLIENTE de la lista para cargar la VENTA**");
+            ListarClientes();
+            Console.WriteLine("\n___________________________________");
+            string idCli = Console.ReadLine();
+            idCli = ValidarIdSoloNumerico(idCli);
+
+            ListarVehiculos();
+            Console.WriteLine("\n");
+            Console.WriteLine("**Ingresa el ID del VEHÍCULO de la lista para cargar la VENTA**");
+            Console.WriteLine("\n___________________________________");
+            string idVehi = Console.ReadLine();
+            idVehi = ValidarIdSoloNumerico(idVehi);
+
+            Console.WriteLine("**Ingresa la FECHA DE COMPRA (formato: DD-MM-YYYY)**");
+            Console.WriteLine("\n___________________________________");
+            string fechaC = Console.ReadLine();
+
+            Console.WriteLine("**Ingresa la FECHA DE ENTREGA (formato: DD-MM-YYYY)**");
+            Console.WriteLine("\n___________________________________");
+            string fechaE = Console.ReadLine();
+
+            Venta nuevaVenta = new Venta(int.Parse(idVen),
+                                        int.Parse(idCli),
+                                        int.Parse(idVehi),
+                                        fechaC,
+                                        fechaE);
+
+            this._ventasList.Add(nuevaVenta);
+
+            Console.WriteLine("\nRegistro de venta creado exitosamente!");
+            Console.ReadKey();
+            GrabarArchivo(_archivoVentas);
+
+        }
+
+
         //__Vehiculo__
         public void CargarVehiculo()
         {
@@ -133,8 +175,8 @@ namespace TP_Final_Programación_2
                         case 1:
                             Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el ID del Vehiculo**");
-                            string idVehiculo = Console.ReadLine();
-                            idVehiculo = ValidarIdNumericoOExiste(idVehiculo, _archivoMotos);
+                            string idVehiculo1 = Console.ReadLine();
+                            idVehiculo1 = ValidarIdNumericoOExiste(idVehiculo1, _archivoMotos);
 
                             Console.WriteLine("**Ingresa Cilindrada **");
                             string cilindrada = Console.ReadLine();
@@ -182,7 +224,7 @@ namespace TP_Final_Programación_2
                             string idCom = Console.ReadLine();
 
                             Moto moto = new Moto(
-                                                  int.Parse(idVehiculo),
+                                                  int.Parse(idVehiculo1),
                                                   int.Parse(cilindrada),
                                                   patente,
                                                   int.Parse(km),
@@ -480,41 +522,16 @@ namespace TP_Final_Programación_2
         }
 
 
-        public void CargarVenta()
-        {
-            Console.WriteLine("\n**Ingresa el ID del CLIENTE**");
-            ListarClientes();
-            string idCli = Console.ReadLine();
-            idCli = ValidarIdNumericoOExiste(idCli, _archivoVentas); 
-
-            Console.WriteLine("**Ingresa el ID del VEHÍCULO**");
-            ListarVehiculos();
-            string idVehi = Console.ReadLine();
-            idVehi = ValidarIdNumericoOExiste(idVehi, _archivoVentas); 
-     
-            Console.WriteLine("**Ingresa la FECHA DE COMPRA (formato: YYYY-MM-DD)**");
-            string fechaC = Console.ReadLine();
-               
-            Console.WriteLine("**Ingresa la FECHA DE ENTREGA (formato: YYYY-MM-DD)**");
-            string fechaE = Console.ReadLine();
-        
-            Venta nuevaVenta = new Venta(int.Parse(idCli), 
-                                        int.Parse(idVehi), 
-                                        fechaC, 
-                                        fechaE);
-
-            this._ventasList.Add(nuevaVenta);
-
-            Console.WriteLine("\nRegistro de venta creado exitosamente!");
-
-            GrabarArchivo(_archivoVentas);
-
-        }
-
-
+        //__Metodos de acciones actualizar datos__
         public void ActualizarCliente()
         {
             Actualizar(_archivoClientes);
+        }
+
+
+        public void ActualizarVenta()
+        {
+            Actualizar(_archivoVentas);
         }
 
 
@@ -1145,6 +1162,7 @@ namespace TP_Final_Programación_2
         }
 
 
+        //__Metodos de acciones borrar datos__
         public void BorrarCliente()
         {
             ListarClientes();
@@ -1166,6 +1184,29 @@ namespace TP_Final_Programación_2
             Console.WriteLine("**CLIENTE BORRADO CORRECTAMENTE**");
             Console.ReadLine();
             GrabarArchivo(_archivoClientes);
+        }
+
+
+        public void BorrarVenta()
+        {
+            ListarVentas();
+            Console.ResetColor();
+            Console.WriteLine("\n");
+            Console.WriteLine("**Ingresa el ID de la VENTA que deseas borrar**");
+            string idVen = Console.ReadLine();
+            idVen = ValidarIdSoloNumerico(idVen);
+            int idCondicionVenta = int.Parse(idVen); 
+
+            for (int i = 0; i < this._ventasList.Count; i++)
+            {
+                if (idCondicionVenta == this._ventasList[i].IdVenta)
+                {
+                    this._ventasList.RemoveAt(i);
+                }
+            }
+            Console.WriteLine("**VENTA BORRADA CORRECTAMENTE**");
+            Console.ReadLine();
+            GrabarArchivo(_archivoVentas);
         }
 
 
@@ -1219,7 +1260,7 @@ namespace TP_Final_Programación_2
                             idAC = ValidarIdSoloNumerico(idAC);
                             int idCondicion2 = int.Parse(idAC);//__parsear para codicionar__
 
-                            for (int i = 0; i < this._motosList.Count; i++)
+                            for (int i = 0; i < this._autosCamionetasList.Count; i++)
                             {
                                 if (idCondicion2 == this._autosCamionetasList[i].IdVehiculo)
                                 {
@@ -1571,18 +1612,7 @@ namespace TP_Final_Programación_2
         }
 
 
-        //private string ObtenerNombreVehiculo(int idVehi, List<Vehiculo> list)
-        //{
-       
-
-        //    return "xx";
-        //}
-
-
-
         //__Metodos privados de la clase__
-
-
         private void GrabarArchivo(string _archivo)
         {
             LeerArchivo(_archivo);
@@ -1622,14 +1652,8 @@ namespace TP_Final_Programación_2
 
                         for (int i = 0; i < this._ventasList.Count; i++)
                         {
-                            //for (int z = 0; z < this._clientesList.Count; z++)
-                            //{
-                            //    Cliente cli = this._clientesList[z];
-                            //    string nombreCliente = ObtenerNombreCliente(cli.IdCliente, this._clientesList);
-     
-                            //}
-
-                            grabar.WriteLine(+ this._ventasList[i].IdCliente + "|"
+                            grabar.WriteLine(+this._ventasList[i].IdVenta + "|"
+                                             + this._ventasList[i].IdCliente + "|"
                                              + this._ventasList[i].IdVehiculo + "|"
                                              + this._ventasList[i].FechaCompra + "|"
                                              + this._ventasList[i].FechaVenta);
@@ -1742,7 +1766,7 @@ namespace TP_Final_Programación_2
 
                     case _archivoCamionesSinCaja:
 
-                        x = new FileStream(_archivoCamionesSinCaja, FileMode.Create);
+                        x = new FileStream(_archivoCamionesSinCaja, FileMode.Open);
                         grabar = new StreamWriter(x);
 
                         for (int i = 0; i < this._camionesConCajaList.Count; i++)
@@ -1835,10 +1859,11 @@ namespace TP_Final_Programación_2
                                 datos = cadena.Split('|');
 
                                 Venta venta = new Venta(
-                                    int.Parse(datos[0]),  
+                                    int.Parse(datos[0]),
                                     int.Parse(datos[1]),
-                                    datos[2],
-                                    datos[3]);
+                                    int.Parse(datos[2]),
+                                    datos[3],
+                                    datos[4]);
 
                                 this._ventasList.Add(venta);
                             }
@@ -2236,6 +2261,101 @@ namespace TP_Final_Programación_2
                     break;
 
                 case _archivoVentas:
+
+                    ListarVentas();
+                    Console.WriteLine("\n");
+
+                    LeerArchivo(_archivoVentas);
+
+                    Console.WriteLine("Ingresa el ID de la VENTA a actualizar:");
+                    string idVenta = Console.ReadLine();
+                    idVenta = ValidarIdSoloNumerico(idVenta);
+                    int idCondicion2 = int.Parse(idVenta);
+
+                    bool ventaEncontrada = false;
+
+                    for (int i = 0; i < this._ventasList.Count; i++)
+                    {
+                        if (this._ventasList[i].IdCliente == idCondicion2)
+                        {
+                            ventaEncontrada = true;
+                            bool opcionValida = false;
+
+                            do
+                            {
+                                Console.WriteLine("Venta encontrada. ¿Qué campo deseas actualizar?");
+                                Console.WriteLine("1- ID Cliente");
+                                Console.WriteLine("2- ID Vehículo");
+                                Console.WriteLine("3- Fecha de Compra");
+                                Console.WriteLine("4- Fecha de Entrega");
+
+                                if (int.TryParse(Console.ReadLine(), out int opcion))
+                                {
+                                    switch (opcion)
+                                    {
+                                        case 1:
+                                            Console.WriteLine("Ingresa el nuevo ID Cliente:");
+                                            string nuevoIdCliente = Console.ReadLine();
+                                            nuevoIdCliente = ValidarIdSoloNumerico(nuevoIdCliente);
+                                            this._ventasList[i].IdCliente = int.Parse(nuevoIdCliente);
+                                            opcionValida = true;
+                                            break;
+
+                                        case 2:
+                                            Console.WriteLine("Ingresa el nuevo ID Vehículo:");
+                                            string nuevoIdVehiculo = Console.ReadLine();
+                                            nuevoIdVehiculo = ValidarIdSoloNumerico(nuevoIdVehiculo);
+                                            this._ventasList[i].IdVehiculo = int.Parse(nuevoIdVehiculo);
+                                            opcionValida = true;
+                                            break;
+
+                                        case 3:
+                                            Console.WriteLine("Ingresa la nueva Fecha de Compra (dd/mm/yyyy):");
+                                            string nuevaFechaCompra = Console.ReadLine();
+                                            this._ventasList[i].FechaCompra = DateTime.Parse(nuevaFechaCompra);
+                                            opcionValida = true;
+                                            break;
+
+                                        case 4:
+                                            Console.WriteLine("Ingresa la nueva Fecha de Entrega (dd/mm/yyyy):");
+                                            string nuevaFechaEntrega = Console.ReadLine();
+                                            this._ventasList[i].FechaVenta = DateTime.Parse(nuevaFechaEntrega);
+                                            opcionValida = true;
+                                            break;
+
+                                        default:
+                                            Console.ForegroundColor = ConsoleColor.Red;
+                                            Console.WriteLine("_________________________________________________");
+                                            Console.WriteLine("Opción no válida. Por favor, elige una opción del 1 al 4.");
+                                            Console.WriteLine("_________________________________________________");
+                                            Console.ResetColor();
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Entrada no válida. Debes ingresar un número.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                }
+
+                            } while (!opcionValida);
+                        }
+                    }
+
+                    if (ventaEncontrada)
+                    {
+                        GrabarArchivo(_archivoVentas);
+                        Console.WriteLine("Venta actualizado correctamente");
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("La Venta no existe.");
+                        Console.ResetColor();
+                    }
 
                     break;
 

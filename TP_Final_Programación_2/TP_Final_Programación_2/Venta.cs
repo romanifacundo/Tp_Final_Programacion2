@@ -9,6 +9,7 @@ namespace TP_Final_Programación_2
     internal class Venta : EntidadBase
     {
         //__Propiedades privadas__
+        private int P_IdVenta;
         private int P_IdCliente;
         private int P_IdVehiculo;
         private DateTime P_FechaCompra;
@@ -18,8 +19,9 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Venta(int idCli, int idVehi, string fechaC, string fechaE)
+        public Venta(int idVen, int idCli, int idVehi, string fechaC, string fechaE)
         {
+            this.IdVenta = idVen;
             this.IdCliente = idCli;
             this.IdVehiculo = idVehi;
             this.FechaCompra = DateTime.Parse(fechaC);
@@ -28,6 +30,11 @@ namespace TP_Final_Programación_2
 
 
         //__Metodos de propiedades publicas__
+        public int IdVenta
+        {
+            get { return this.P_IdVenta; }
+            set { P_IdVenta = value; }
+        }
         public int IdCliente
         {
             get { return this.P_IdCliente; }
@@ -81,7 +88,7 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
-            Console.WriteLine($" ID Cliente: {this.IdCliente} | ID Vehículo: {this.IdVehiculo} | " +
+            Console.WriteLine($" VENTA: {this.IdVenta} | ID Cliente: {this.IdCliente} | ID Vehículo: {this.IdVehiculo} | " +
                               $"Fecha de Compra: {this.FechaCompra} | Fecha de Venta: {this.FechaVenta} Subtotal: {this.Subtotal} | IVA: {this.Iva} | Descuento: {this.Descuento} | Total: {this.Total}");
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
