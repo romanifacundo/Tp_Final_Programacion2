@@ -13,6 +13,8 @@ namespace TP_Final_Programación_2
         private int P_IdVehiculo;
         private DateTime P_FechaCompra;
         private DateTime P_FechaEntrega;
+        private float P_PorcentajeDescuento = 10f; 
+        private float P_PorcentajeIva = 21f; 
 
 
         //__Constructores__
@@ -53,24 +55,23 @@ namespace TP_Final_Programación_2
         /* __Propiedades de solo lectura__ */
         public float Subtotal
         {
-            get { return 10.5f /*__A desarrollar*/; }
-        }
-
-        public float Iva
-        {
-            get { return 21.5f /*__A desarrollar*/; }
-        }
-
-        public float Total
-        {
-            get { return 21.5f /*__A desarrollar*/; }
+            get { return this.P_IdVehiculo; }
         }
 
         public float Descuento
         {
-            get { return 10.5f /*__A desarrollar*/; }
+            get { return Subtotal * (P_PorcentajeDescuento / 100); }
         }
 
+        public float Iva
+        {
+            get { return (Subtotal - Descuento) * (P_PorcentajeIva / 100); }
+        }
+
+        public float Total
+        {
+            get { return (Subtotal - Descuento) + Iva; }
+        }
 
         //__Metodos__
         public override void MostrarDatos()
@@ -81,11 +82,7 @@ namespace TP_Final_Programación_2
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
             Console.WriteLine($" ID Cliente: {this.IdCliente} | ID Vehículo: {this.IdVehiculo} | " +
-                              $"Fecha de Compra: {this.FechaCompra} | Fecha de Venta: {this.FechaVenta}");
-
-            //__ Mostrar Subtotal IVA Total  Descuento__
-            Console.WriteLine($"Subtotal: {this.Subtotal} | IVA: {this.Iva} | " +
-                              $"Descuento: {this.Descuento} | Total: {this.Total}");
+                              $"Fecha de Compra: {this.FechaCompra} | Fecha de Venta: {this.FechaVenta} Subtotal: {this.Subtotal} | IVA: {this.Iva} | Descuento: {this.Descuento} | Total: {this.Total}");
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 

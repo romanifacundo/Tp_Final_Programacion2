@@ -85,7 +85,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 1:
                                     {
-
+                                        MenuVentas();
                                         break;
                                     }
                                 case 2:
@@ -199,6 +199,108 @@ namespace TP_Final_Programación_2
                                 case 3:
                                     {
                                         BorrarCliente();
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        variableCorte = false;
+                                        break;
+                                    }
+                            }
+                            break;
+                        }
+                }
+            }
+        }
+
+
+        public void MenuVentas()
+        {
+            string[] subMenuDeOpcionesVenta = { "1) AGREGAR VENTA", "2) LISTAR VENTAS", "3) ACTUALIZAR VENTA", "4) BORRAR VENTA", "5) VOLVER" };
+
+            bool variableCorte = true;
+
+            int seleccion = 0;
+
+            ConsoleKeyInfo tecla;
+
+            Console.CursorVisible = false;
+
+            while (variableCorte)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("╔════════════════════════════════════════════════════════╗");
+                Console.WriteLine("  SELECCIONA UNA OPCION DEL MENU PULSANDO LA TECLA ENTER ");
+                Console.WriteLine("╚════════════════════════════════════════════════════════╝");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+
+
+                Console.WriteLine("╔═════════════════════════╗");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("  ╔══════════════════╗");
+                Console.WriteLine("  ║ SUBMENU VENTAS   ║");
+                Console.WriteLine("  ╚══════════════════╝");
+                Console.ResetColor();
+
+
+                for (int i = 0; i < subMenuDeOpcionesVenta.Length; i++)
+                {
+                    if (seleccion == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("==" + (char)62 + " ");
+                    }
+                    else
+                    {
+                        Console.Write(" . ");
+                    }
+
+                    Console.WriteLine(subMenuDeOpcionesVenta[i]);
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine("╚═════════════════════════╝");
+
+                tecla = Console.ReadKey();
+
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        {
+                            seleccion = Math.Max(0, seleccion - 1); //__Primer valor 0 determina el limite, seleccion - 1 para manejar rango del arrays__  
+                            break;
+                        }
+                    case ConsoleKey.DownArrow:
+                        {
+                            seleccion = Math.Min(subMenuDeOpcionesVenta.Length - 1, seleccion + 1); //__Largo de mi menu -1 para el rango__
+                            break;
+                        }
+                    case ConsoleKey.Enter:
+                        {
+                            switch (seleccion)
+                            {
+                                case 0:
+                                    {
+                                        CargarVenta();
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        ListarVentas();
+                                        Console.ReadKey();
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                       
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        
                                         break;
                                     }
                                 case 4:

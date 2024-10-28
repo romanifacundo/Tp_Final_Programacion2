@@ -42,11 +42,13 @@ namespace TP_Final_Programación_2
         private List<Segmento> _segmentosList;
         private List<Localidad> _localidadesList;
         private List<Provincia> _provinciasList;
+        private List<Vehiculo> _vehiculoList;
 
 
         //__Constructores__
         public Concesionaria()
         {
+            this._vehiculoList = new List<Vehiculo>();
             this._autosCamionetasList = new List<AutoCamioneta>();
             this._motosList = new List<Moto>();
             this._camionesConCajaList = new List<Camion>();
@@ -474,6 +476,38 @@ namespace TP_Final_Programación_2
                     Console.ResetColor();
                 }
             } while (!opcionValida);
+
+        }
+
+
+        public void CargarVenta()
+        {
+            Console.WriteLine("\n**Ingresa el ID del CLIENTE**");
+            ListarClientes();
+            string idCli = Console.ReadLine();
+            idCli = ValidarIdNumericoOExiste(idCli, _archivoVentas); 
+
+            Console.WriteLine("**Ingresa el ID del VEHÍCULO**");
+            ListarVehiculos();
+            string idVehi = Console.ReadLine();
+            idVehi = ValidarIdNumericoOExiste(idVehi, _archivoVentas); 
+     
+            Console.WriteLine("**Ingresa la FECHA DE COMPRA (formato: YYYY-MM-DD)**");
+            string fechaC = Console.ReadLine();
+               
+            Console.WriteLine("**Ingresa la FECHA DE ENTREGA (formato: YYYY-MM-DD)**");
+            string fechaE = Console.ReadLine();
+        
+            Venta nuevaVenta = new Venta(int.Parse(idCli), 
+                                        int.Parse(idVehi), 
+                                        fechaC, 
+                                        fechaE);
+
+            this._ventasList.Add(nuevaVenta);
+
+            Console.WriteLine("\nRegistro de venta creado exitosamente!");
+
+            GrabarArchivo(_archivoVentas);
 
         }
 
@@ -1386,6 +1420,20 @@ namespace TP_Final_Programación_2
         }
 
 
+        public void ListarVentas()
+        {
+            LeerArchivo(_archivoVentas);
+
+            foreach (Venta i in this._ventasList)
+            {
+                i.MostrarDatos();
+            }
+
+            Console.ResetColor();
+
+        }
+
+
         public void ListarProvincias()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -1508,7 +1556,33 @@ namespace TP_Final_Programación_2
         }
 
 
+        private string ObtenerNombreCliente(int idCli, List<Cliente> clientes)
+        {
+            LeerArchivo(_archivoClientes);
+
+            foreach (Cliente c in this._clientesList)
+            {
+                if (c.IdCliente == idCli)
+                {
+                    return c.NombreCliente;
+                }
+            }
+            return "xx";
+        }
+
+
+        //private string ObtenerNombreVehiculo(int idVehi, List<Vehiculo> list)
+        //{
+       
+
+        //    return "xx";
+        //}
+
+
+
         //__Metodos privados de la clase__
+
+
         private void GrabarArchivo(string _archivo)
         {
             LeerArchivo(_archivo);
@@ -1545,6 +1619,23 @@ namespace TP_Final_Programación_2
 
                         x = new FileStream(_archivoVentas, FileMode.Create);
                         grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._ventasList.Count; i++)
+                        {
+                            //for (int z = 0; z < this._clientesList.Count; z++)
+                            //{
+                            //    Cliente cli = this._clientesList[z];
+                            //    string nombreCliente = ObtenerNombreCliente(cli.IdCliente, this._clientesList);
+     
+                            //}
+
+                            grabar.WriteLine(+ this._ventasList[i].IdCliente + "|"
+                                             + this._ventasList[i].IdVehiculo + "|"
+                                             + this._ventasList[i].FechaCompra + "|"
+                                             + this._ventasList[i].FechaVenta);
+                        }
+                        grabar.Close();
+                        x.Close();
 
                         break;
 
@@ -1733,8 +1824,27 @@ namespace TP_Final_Programación_2
 
                     case _archivoVentas:
 
-                        x = new FileStream(_archivoVentas, FileMode.Open);
-                        Leer = new StreamReader(x);
+                        if (this._ventasList.Count == 0)
+                        {
+                            x = new FileStream(_archivoVentas, FileMode.Open);
+                            Leer = new StreamReader(x);
+
+                            while (!Leer.EndOfStream)
+                            {
+                                cadena = Leer.ReadLine();
+                                datos = cadena.Split('|');
+
+                                Venta venta = new Venta(
+                                    int.Parse(datos[0]),  
+                                    int.Parse(datos[1]),
+                                    datos[2],
+                                    datos[3]);
+
+                                this._ventasList.Add(venta);
+                            }
+                            Leer.Close();
+                            x.Close();
+                        }
 
                         break;
 
