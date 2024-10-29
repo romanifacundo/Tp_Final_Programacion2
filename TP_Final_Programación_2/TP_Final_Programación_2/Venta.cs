@@ -17,12 +17,13 @@ namespace TP_Final_Programación_2
         private string P_NombreVehiculo;
         private DateTime P_FechaCompra;
         private DateTime P_FechaEntrega;
+        private int P_PrecioVehiculo;
         private float P_PorcentajeDescuento = 10f; 
         private float P_PorcentajeIva = 21f; 
 
 
         //__Constructores__
-        public Venta(int idVen, int idCli, string nomCli , int idVehi, string nomVehi, string fechaC, string fechaE)
+        public Venta(int idVen, int idCli, string nomCli , int idVehi, string nomVehi, string fechaC, string fechaE, int preVehiculo)
         {
             this.IdVenta = idVen;
             this.IdCliente = idCli;
@@ -31,6 +32,7 @@ namespace TP_Final_Programación_2
             this.NombreVehiculo= nomVehi;
             this.FechaCompra = DateTime.Parse(fechaC);
             this.FechaVenta = DateTime.Parse(fechaE);
+            this.PrecioVehiculo = preVehiculo;
         }
 
 
@@ -64,7 +66,6 @@ namespace TP_Final_Programación_2
             set { this.P_NombreVehiculo = value; }
         }
 
-
         public DateTime FechaCompra
         {
             get { return this.P_FechaCompra; }
@@ -77,10 +78,16 @@ namespace TP_Final_Programación_2
             set { this.P_FechaEntrega = value; }
         }
 
+        public int PrecioVehiculo 
+        {
+            get { return this.P_PrecioVehiculo; }
+            set { this.P_PrecioVehiculo = value; }
+        }
+
         /* __Propiedades de solo lectura__ */
         public float Subtotal
         {
-            get { return this.P_IdVehiculo; }
+            get { return this.P_PrecioVehiculo; }
         }
 
         public float Descuento

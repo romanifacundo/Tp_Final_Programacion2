@@ -21,9 +21,11 @@ namespace TP_Final_Programación_2
 
             Console.CursorVisible = false;
 
+   
+
             while (variableCorte)
             {
-                Console.Clear();
+                Console.ResetColor();
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
@@ -31,6 +33,8 @@ namespace TP_Final_Programación_2
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
                 Console.WriteLine("\n");
+                Console.Clear();
+            
 
                 Console.WriteLine("╔═════════════════╗");
 
@@ -95,6 +99,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 3:
                                     {
+                                        MenuParametricos();
                                         break;
                                     }
                                 case 4:
@@ -397,7 +402,7 @@ namespace TP_Final_Programación_2
                                     }
                                 case 2:
                                     {
-                                        AtualizarVehiculo(); 
+                                        AtualizarVehiculo();
                                         break;
                                     }
                                 case 3:
@@ -416,5 +421,89 @@ namespace TP_Final_Programación_2
                 }
             }
         }
+
+
+        public void MenuParametricos()
+        {
+            string[] subMenuDeOpcionesParametricos = { "1) AGREGAR ", "2) LISTAR ", "3) ACTUALIZAR ", "4) BORRAR ", "5) VOLVER " };
+
+            bool variableCorte = true;
+            int seleccion = 0;
+            ConsoleKeyInfo tecla;
+            Console.CursorVisible = false;
+            Console.Clear();
+
+            while (variableCorte)
+            {
+                Console.Clear();
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("╔════════════════════════════════════════════════════════╗");
+                Console.WriteLine("  SELECCIONA UNA OPCION DEL MENU PULSANDO LA TECLA ENTER ");
+                Console.WriteLine("╚════════════════════════════════════════════════════════╝");
+                Console.ResetColor();
+                Console.WriteLine("\n");
+
+                Console.WriteLine("╔═════════════════════════╗");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("  ╔══════════════════════╗");
+                Console.WriteLine("  ║ SUBMENU PARAMETRICOS ║");
+                Console.WriteLine("  ╚══════════════════════╝");
+                Console.ResetColor();
+
+                for (int i = 0; i < subMenuDeOpcionesParametricos.Length; i++)
+                {
+                    if (seleccion == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("==" + (char)62 + " ");
+                    }
+                    else
+                    {
+                        Console.Write(" . ");
+                    }
+                    Console.WriteLine(subMenuDeOpcionesParametricos[i]);
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine("╚═════════════════════════╝");
+
+                tecla = Console.ReadKey();
+
+                switch (tecla.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        seleccion = Math.Max(0, seleccion - 1);
+                        break;
+                    case ConsoleKey.DownArrow:
+                        seleccion = Math.Min(subMenuDeOpcionesParametricos.Length - 1, seleccion + 1);
+                        break;
+                    case ConsoleKey.Enter:
+                        switch (seleccion)
+                        {
+                            case 0:
+                                CargarParametricos();
+                                break;
+                            case 1:
+                                ListarPrametricos();
+                                Console.WriteLine("Presiona cualquier tecla para volver al menú...");
+                                Console.ReadKey();  
+                                seleccion = 0;
+                                break;
+                            case 2:
+                                ActualizarParametricos();
+                                break;
+                            case 3:
+                                BorrarParametricos();
+                                break;
+                            case 4:
+                                variableCorte = false;
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+
     }
 }

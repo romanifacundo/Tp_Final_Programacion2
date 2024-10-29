@@ -1,1 +1,5 @@
-
+1|JuanPerez|20304567891|CalleFalsa 123|3415123456|juan.perez@mail.com|San Nicolas
+2|MariaLopez|27304567892|Av.Libertad 456|3416234567|maria.lopez@mail.com|Rosario
+3|CarlosGomez|20305678903|Ruta9Km2 00|2474512345|carlos.gomez@mail.com|Pergamino
+4|LauraRuiz|27306789014|CallePrincipa l789|3401234567|laura.ruiz@mail.com|Ramallo
+5|Pedro Martinez|20307890125|CalleCentral 321|3329432123|pedro.martinez@mail.com|Rosario
