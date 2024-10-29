@@ -126,34 +126,27 @@ namespace TP_Final_Programación_2
         public void MenuCliente()
         {
             string[] subMenuDeOpcionesCliente = { "1) AGREGAR CLIENTE", "2) LISTAR CLIENTES", "3) ACTUALIZAR CLIENTE", "4) BORRAR CLIENTE", "5) VOLVER" };
-
             bool variableCorte = true;
-
             int seleccion = 0;
-
             ConsoleKeyInfo tecla;
-
             Console.CursorVisible = false;
 
             while (variableCorte)
             {
+
                 Console.Clear();
-                Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
                 Console.WriteLine("  SELECCIONA UNA OPCION DEL MENU PULSANDO LA TECLA ENTER ");
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
-                Console.WriteLine("\n");
-                Console.Clear();
 
-                Console.WriteLine("╔═════════════════════════╗");
+                Console.WriteLine("\n╔═════════════════════════╗");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("  ╔══════════════════╗");
                 Console.WriteLine("  ║ SUBMENU CLIENTES ║");
                 Console.WriteLine("  ╚══════════════════╝");
                 Console.ResetColor();
-
 
                 for (int i = 0; i < subMenuDeOpcionesCliente.Length; i++)
                 {
@@ -166,7 +159,6 @@ namespace TP_Final_Programación_2
                     {
                         Console.Write(" . ");
                     }
-
                     Console.WriteLine(subMenuDeOpcionesCliente[i]);
                     Console.ResetColor();
                 }
@@ -178,51 +170,48 @@ namespace TP_Final_Programación_2
                 switch (tecla.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        {
-                            seleccion = Math.Max(0, seleccion - 1); //__Primer valor 0 determina el limite, seleccion - 1 para manejar rango del arrays__  
-                            break;
-                        }
+                        seleccion = Math.Max(0, seleccion - 1);
+                        break;
                     case ConsoleKey.DownArrow:
-                        {
-                            seleccion = Math.Min(subMenuDeOpcionesCliente.Length - 1, seleccion + 1); //__Largo de mi menu -1 para el rango__
-                            break;
-                        }
+                        seleccion = Math.Min(subMenuDeOpcionesCliente.Length - 1, seleccion + 1);
+                        break;
                     case ConsoleKey.Enter:
+                        switch (seleccion)
                         {
-                            switch (seleccion)
-                            {
-                                case 0:
-                                    {
-                                        CargarCliente();
-                                        break;
-                                    }
-                                case 1:
-                                    {
-                                        ListarClientes();
-                                        Console.ForegroundColor = ConsoleColor.Magenta;
-                                        Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES>>>>>>");
-                                        Console.ResetColor();
-                                        Console.ReadKey();
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        ActualizarCliente();
-                                        break;
-                                    }
-                                case 3:
-                                    {
-                                        BorrarCliente();
-                                        break;
-                                    }
-                                case 4:
-                                    {
-                                        variableCorte = false;
-                                        break;
-                                    }
-                            }
-                            break;
+                            case 0:
+                                CargarCliente();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                                break;
+                            case 1:
+                                ListarClientes();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                                break;
+                            case 2:
+                                ActualizarCliente();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                                break;
+                            case 3:
+                                BorrarCliente();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
+                                break;
+                            case 4:
+                                variableCorte = false;
+                                break;
                         }
+
+                        break;
                 }
             }
         }
@@ -299,13 +288,17 @@ namespace TP_Final_Programación_2
                                 case 0:
                                     {
                                         CargarVenta();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                        Console.ResetColor();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 1:
                                     {
                                         ListarVentas();
                                         Console.ForegroundColor = ConsoleColor.Magenta;
-                                        Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU VENTAS>>>>>>");
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
                                         Console.ResetColor();
                                         Console.ReadKey();
                                         break;
@@ -313,11 +306,19 @@ namespace TP_Final_Programación_2
                                 case 2:
                                     {
                                         ActualizarVenta();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                        Console.ResetColor();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 3:
                                     {
                                         BorrarVenta();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                        Console.ResetColor();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 4:
@@ -326,6 +327,10 @@ namespace TP_Final_Programación_2
                                         break;
                                     }
                             }
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                            Console.ResetColor();
+                            Console.ReadKey();
                             break;
                         }
                 }
@@ -404,13 +409,17 @@ namespace TP_Final_Programación_2
                                 case 0:
                                     {
                                         CargarVehiculo();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                        Console.ResetColor();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 1:
                                     {
                                         ListarVehiculos();
                                         Console.ForegroundColor = ConsoleColor.Magenta;
-                                        Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU VEHICULO>>>>>>");
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
                                         Console.ResetColor();
                                         Console.ReadKey();
                                         break;
@@ -418,11 +427,19 @@ namespace TP_Final_Programación_2
                                 case 2:
                                     {
                                         AtualizarVehiculo();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                        Console.ResetColor();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 3:
                                     {
                                         BorrarVehiculo();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                        Console.ResetColor();
+                                        Console.ReadKey();
                                         break;
                                     }
                                 case 4:
@@ -497,19 +514,31 @@ namespace TP_Final_Programación_2
                         {
                             case 0:
                                 CargarParametricos();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
                                 break;
                             case 1:
                                 ListarPrametricos();
                                 Console.ForegroundColor = ConsoleColor.Magenta;
-                                Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU PARAMETRICOS>>>>>>");
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
                                 Console.ResetColor();
-                                Console.ReadKey();  
+                                Console.ReadKey();
                                 break;
                             case 2:
                                 ActualizarParametricos();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
                                 break;
                             case 3:
                                 BorrarParametricos();
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<< PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES >>>>>>");
+                                Console.ResetColor();
+                                Console.ReadKey();
                                 break;
                             case 4:
                                 variableCorte = false;

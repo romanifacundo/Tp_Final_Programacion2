@@ -1583,8 +1583,7 @@ namespace TP_Final_Programación_2
 
         public void BorrarVehiculo()
         {
-            ListarVehiculos();
-
+            
             Console.ResetColor();
             Console.WriteLine("\n");
             bool controlDeWhilePrincipal = false;
@@ -1604,6 +1603,8 @@ namespace TP_Final_Programación_2
                     {
                         case 1:
 
+                            ListarMotos();
+                            Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
                             string idMoto = Console.ReadLine();
                             idMoto = ValidarIdSoloNumerico(idMoto);
@@ -1626,6 +1627,8 @@ namespace TP_Final_Programación_2
 
                         case 2:
 
+                            ListarAutoCamionetas();
+                            Console.WriteLine("\n");
                             Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
                             string idAC = Console.ReadLine();
                             idAC = ValidarIdSoloNumerico(idAC);
@@ -1652,6 +1655,7 @@ namespace TP_Final_Programación_2
 
                             while (!controlBucle)
                             {
+                                
                                 Console.WriteLine("**¿Qué tipo de camión desea BORRAR?**");
                                 Console.WriteLine("1. Camión con caja de carga");
                                 Console.WriteLine("2. Camión sin caja de carga");
@@ -1661,7 +1665,8 @@ namespace TP_Final_Programación_2
                                 if (tipoCamion == "1")
                                 {
                                     controlBucle = true;
-
+                                    ListarCamionesConCaja();
+                                    Console.WriteLine("\n");
                                     Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
                                     string idCA = Console.ReadLine();
                                     idCA = ValidarIdSoloNumerico(idCA);
@@ -1683,7 +1688,8 @@ namespace TP_Final_Programación_2
                                 else if (tipoCamion == "2")
                                 {
                                     controlBucle = true;
-
+                                    ListarCamionesSinCaja();
+                                    Console.WriteLine("\n");
                                     Console.WriteLine("**Ingresa el Numero del VEHICULO que desea borrar**");
                                     string idCA = Console.ReadLine();
                                     idCA = ValidarIdSoloNumerico(idCA);
@@ -2052,6 +2058,55 @@ namespace TP_Final_Programación_2
 
 
         //__Metodos privados de la clase__
+        private void ListarCamionesConCaja()
+        {
+            this._camionesConCajaList.Clear();
+            LeerArchivo(_archivoCamionesConCaja);
+
+            Console.WriteLine("CAMIONES CON CAJA:");
+            foreach (Camion i in _camionesConCajaList)
+            {
+                i.MostrarDatos();
+            }
+        }
+
+
+        private void ListarCamionesSinCaja()
+        {
+            this._camionesSinCajaList.Clear();
+            LeerArchivo(_archivoCamionesSinCaja);
+
+            Console.WriteLine("CAMIONES SIN CAJA:");
+            foreach (Camion i in _camionesSinCajaList)
+            {
+                i.MostrarDatosCamionesSinCaja();
+            }
+
+        }
+
+
+        private void ListarMotos()
+        {
+            LeerArchivo(_archivoMotos);
+
+            foreach (Moto i in this._motosList)
+            {
+                i.MostrarDatos();
+            }
+        }
+
+
+        private void ListarAutoCamionetas()
+        {
+            LeerArchivo(_archivoAutosCamionetas);
+
+            foreach (AutoCamioneta i in this._autosCamionetasList)
+            {
+                i.MostrarDatos();
+            }
+        }
+
+
         private void ListarProvincias()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -2266,7 +2321,7 @@ namespace TP_Final_Programación_2
 
                     case _archivoCamionesSinCaja:
 
-                        x = new FileStream(_archivoCamionesSinCaja, FileMode.Open);
+                        x = new FileStream(_archivoCamionesSinCaja, FileMode.Create);
                         grabar = new StreamWriter(x);
 
                         for (int i = 0; i < this._camionesSinCajaList.Count; i++)
@@ -2286,6 +2341,77 @@ namespace TP_Final_Programación_2
                                              + this._camionesSinCajaList[i].NombreSegmento + "|"
                                              + this._camionesSinCajaList[i].IdCombustible + "|"
                                              + this._camionesSinCajaList[i].NombreCombustible);
+                        }
+                        grabar.Close();
+                        x.Close();
+                        break;
+
+                    case _archivoLocalidades:
+
+                        x = new FileStream(_archivoLocalidades, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._localidadesList.Count; i++)
+                        {
+                            grabar.WriteLine(this._localidadesList[i].IdLocalidad + "|"
+                                             + this._localidadesList[i].NombreLocalidad + "|"
+                                             + this._localidadesList[i].IdProvincia);
+                        }
+                        grabar.Close();
+                        x.Close();
+                        break;
+
+                    case _archivoProvincias:
+
+                        x = new FileStream(_archivoProvincias, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._provinciasList.Count; i++)
+                        {
+                            grabar.WriteLine(this._provinciasList[i].IdProvincia + "|"
+                                             + this._provinciasList[i].NombreProvincia);
+                        }
+                        grabar.Close();
+                        x.Close();
+                        break;
+
+                    case _archivoMarcas:
+
+                        x = new FileStream(_archivoMarcas, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._marcasList.Count; i++)
+                        {
+                            grabar.WriteLine(this._marcasList[i].IdMarca + "|"
+                                             + this._marcasList[i].NombreMarca);
+                        }
+                        grabar.Close();
+                        x.Close();
+                        break;
+
+                    case _archivoSegmento:
+
+                        x = new FileStream(_archivoSegmento, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._segmentosList.Count; i++)
+                        {
+                            grabar.WriteLine(this._segmentosList[i].IdSegmento + "|"
+                                             + this._segmentosList[i].SegmentoNombre);
+                        }
+                        grabar.Close();
+                        x.Close();
+                        break;
+
+                    case _archivoCombustible:
+
+                        x = new FileStream(_archivoCombustible, FileMode.Create);
+                        grabar = new StreamWriter(x);
+
+                        for (int i = 0; i < this._combustiblesList.Count; i++)
+                        {
+                            grabar.WriteLine(this._combustiblesList[i].IdCombustible + "|"
+                                             + this._combustiblesList[i].CombustibleNombre);
                         }
                         grabar.Close();
                         x.Close();
@@ -2518,7 +2644,7 @@ namespace TP_Final_Programación_2
 
                         break;
 
-                    case _archivoProvincias: //__Provincias__
+                    case _archivoProvincias: 
 
                         if (this._provinciasList.Count == 0)
                         {
@@ -2542,7 +2668,7 @@ namespace TP_Final_Programación_2
 
                         break;
 
-                    case _archivoLocalidades: //__Localidades__
+                    case _archivoLocalidades:
 
                         if (this._localidadesList.Count == 0)
                         {
@@ -2567,7 +2693,7 @@ namespace TP_Final_Programación_2
 
                         break;
 
-                    case _archivoSegmento: //__Segmentos__
+                    case _archivoSegmento: 
 
                         if (this._segmentosList.Count == 0)
                         {
@@ -2591,7 +2717,7 @@ namespace TP_Final_Programación_2
 
                         break;
 
-                    case _archivoCombustible: //__Combustibles__
+                    case _archivoCombustible: 
 
                         if (this._combustiblesList.Count == 0)
                         {
@@ -2615,7 +2741,7 @@ namespace TP_Final_Programación_2
 
                         break;
 
-                    case _archivoMarcas: //__Marcas__
+                    case _archivoMarcas: 
 
                         if (this._marcasList.Count == 0)
                         {
@@ -2625,11 +2751,11 @@ namespace TP_Final_Programación_2
                             while (!Leer.EndOfStream)
                             {
                                 cadena = Leer.ReadLine();
-                                datos = cadena.Split(';');
+                                datos = cadena.Split('|');
 
                                 Marca mar = new Marca(
                                         int.Parse(datos[0]),
-                                        datos[1].Trim());
+                                        datos[1]);
 
                                 this._marcasList.Add(mar);
                             }
