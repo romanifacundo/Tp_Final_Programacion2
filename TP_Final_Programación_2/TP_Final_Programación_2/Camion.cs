@@ -15,14 +15,14 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Camion(int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, string cajaCar, int dimCaja, int carMax, int idMar, int idSeg, int idCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
+        public Camion(int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, string cajaCar, int dimCaja, int carMax, int idMar, string nomMar, int idSeg, string nomSeg, int idCom, string nomCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, nomMar, idSeg, nomSeg, idCom, nomCom)
         {
             this.CajaCarga = cajaCar;
             this.DimensionCaja = dimCaja;
             this.CargaMaxima = carMax;
         }
 
-        public Camion(int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, string cajaCar, int idMar, int idSeg, int idCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
+        public Camion(int idVehi, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, string cajaCar, int idMar, string nomMar, int idSeg, string nomSeg, int idCom, string nomCom) : base(idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, nomMar, idSeg, nomSeg, idCom, nomCom)
         {
             this.CajaCarga = cajaCar;
         }
@@ -56,20 +56,34 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
-            Console.WriteLine($"Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | KLM: {this.Kilometro} | Año: {this.Anio} | " +
-                              $"Modelo: {this.Modelo} | Precio de Venta: {this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
-                              $"Color: {this.Color} | Marca: {this.IdMarca} | Segmento: {this.IdSegmento} | Combustible: {this.IdCombustible} | Caja de Carga: {this.CajaCarga}");
+            Console.WriteLine($"Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | Kilometraje: {this.Kilometro} KM | Año: {this.Anio} | " +
+                              $"Modelo: {this.Modelo} | Precio de Venta: ${this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
+                              $"Color: {this.Color} | Caja de Carga: {this.CajaCarga} | " +
+                              $"Dimensiones de la Caja: {this.DimensionCaja} m³ | Carga Máxima: {this.CargaMaxima} kg | " +
+                              $"Marca: {this.NombreMarca} | Segmento: {this.NombreSegmento} | Combustible: {this.NombreCombustible}");
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
-     
-            if (this.CajaCarga == "SI")
-            {
-                Console.WriteLine($"Caja de Carga: {this.CajaCarga} | Dimensiones de la Caja: {this.DimensionCaja} | Carga Máxima: {this.CargaMaxima}");
-                Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-            }
+            Console.ResetColor();
+        }
+
+
+        public void MostrarDatosCamionesSinCaja()
+        {
+            Console.WriteLine("\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
+
+            Console.WriteLine($"Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | KLM: {this.Kilometro} | Año: {this.Anio} | " +
+                              $"Modelo: {this.Modelo} | Precio de Venta: ${this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
+                              $"Color: {this.Color} | Caja de Carga: {this.CajaCarga} | " +
+                              $"Marca: {this.NombreMarca} | Segmento: {this.NombreSegmento} | Combustible: {this.NombreCombustible}");
+
+            Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
             Console.ResetColor();
         }
+
     }
 }

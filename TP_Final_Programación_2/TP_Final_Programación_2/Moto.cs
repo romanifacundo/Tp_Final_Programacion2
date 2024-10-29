@@ -13,7 +13,7 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Moto(int idVehi, int cil, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, int idMar, int idSeg, int idCom) : base (idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, idSeg, idCom)
+        public Moto(int idVehi, int cil, string pate, int kil, int anio, string mode, int pVenta, string obser, string col, int idMar, string nomMar, int idSeg, string nomSeg, int idCom, string nomCom) : base (idVehi, pate, kil, anio, mode, pVenta, obser, col, idMar, nomMar, idSeg, nomSeg, idCom, nomCom)
         {
             this.Cilindrada = cil;
         }
@@ -36,15 +36,12 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine($" Vehículo: {this.IdVehiculo} | Patente: {this.Patente} | KLM: {this.Kilometro} | Año: {this.Anio} | " +
                               $"Modelo: {this.Modelo} | Precio de Venta: {this.PrecioVenta} | Observaciones: {this.Observaciones} | " +
-                              $"Color: {this.Color} | Marca: {this.IdMarca} | Segmento: {this.IdSegmento} | Combustible: {this.IdCombustible} | Cilindrada: {this.Cilindrada}");
+                              $"Color: {this.Color} | Marca: {this.NombreMarca} | Segmento: {this.NombreSegmento} | Combustible: {this.NombreCombustible} | Cilindrada: {this.Cilindrada}");
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
             Console.ResetColor();
         }
-
     }
-
-
 }
 

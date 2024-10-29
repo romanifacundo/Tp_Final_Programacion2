@@ -89,7 +89,7 @@ namespace TP_Final_Programación_2
             Console.ForegroundColor = ConsoleColor.Green;
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
-                Console.WriteLine($" ID Cliente:{this.IdCliente} | Nombre:{this.NombreCliente} | CUIT:{this.CUIT} | " +
+                Console.WriteLine($"Cliente:{this.IdCliente} | Nombre:{this.NombreCliente} | CUIT:{this.CUIT} | " +
                                   $"Domicilio:{this.Domicilio} | Teléfono:{this.Telefono} | Correo Electrónico:{this.CorreoElectronico} | " +
                                   $" Localidad:{this.NombreLocalidad}");
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");

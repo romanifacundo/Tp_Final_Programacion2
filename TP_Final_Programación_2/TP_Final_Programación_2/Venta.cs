@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace TP_Final_Programación_2
 {
@@ -11,7 +12,9 @@ namespace TP_Final_Programación_2
         //__Propiedades privadas__
         private int P_IdVenta;
         private int P_IdCliente;
+        private string P_NombreCliente;
         private int P_IdVehiculo;
+        private string P_NombreVehiculo;
         private DateTime P_FechaCompra;
         private DateTime P_FechaEntrega;
         private float P_PorcentajeDescuento = 10f; 
@@ -19,11 +22,13 @@ namespace TP_Final_Programación_2
 
 
         //__Constructores__
-        public Venta(int idVen, int idCli, int idVehi, string fechaC, string fechaE)
+        public Venta(int idVen, int idCli, string nomCli , int idVehi, string nomVehi, string fechaC, string fechaE)
         {
             this.IdVenta = idVen;
             this.IdCliente = idCli;
+            this.NombreCliente = nomCli;
             this.IdVehiculo = idVehi;
+            this.NombreVehiculo= nomVehi;
             this.FechaCompra = DateTime.Parse(fechaC);
             this.FechaVenta = DateTime.Parse(fechaE);
         }
@@ -33,30 +38,43 @@ namespace TP_Final_Programación_2
         public int IdVenta
         {
             get { return this.P_IdVenta; }
-            set { P_IdVenta = value; }
+            set { this.P_IdVenta = value; }
         }
         public int IdCliente
         {
             get { return this.P_IdCliente; }
-            set { P_IdCliente = value; }
+            set { this.P_IdCliente = value; }
+        }
+
+        public string NombreCliente
+        {
+            get { return this.P_NombreCliente; }
+            set { this.P_NombreCliente = value; }
         }
 
         public int IdVehiculo
         {
             get { return this.P_IdVehiculo; }
-            set { P_IdVehiculo = value; }
+            set { this.P_IdVehiculo = value; }
         }
+
+        public string NombreVehiculo
+        {
+            get { return this.P_NombreVehiculo; }
+            set { this.P_NombreVehiculo = value; }
+        }
+
 
         public DateTime FechaCompra
         {
             get { return this.P_FechaCompra; }
-            set { P_FechaCompra = value; }
+            set { this.P_FechaCompra = value; }
         }
 
         public DateTime FechaVenta
         {
             get { return this.P_FechaEntrega; }
-            set { P_FechaEntrega = value; }
+            set { this.P_FechaEntrega = value; }
         }
 
         /* __Propiedades de solo lectura__ */
@@ -88,8 +106,10 @@ namespace TP_Final_Programación_2
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
-            Console.WriteLine($" VENTA: {this.IdVenta} | ID Cliente: {this.IdCliente} | ID Vehículo: {this.IdVehiculo} | " +
-                              $"Fecha de Compra: {this.FechaCompra} | Fecha de Venta: {this.FechaVenta} Subtotal: {this.Subtotal} | IVA: {this.Iva} | Descuento: {this.Descuento} | Total: {this.Total}");
+            Console.WriteLine($" VENTA: {this.IdVenta} | ID Cliente: {this.IdCliente} | Cliente: {this.NombreCliente} | " +
+                              $"ID Vehículo: {this.IdVehiculo} | Vehículo: {this.NombreVehiculo} | " +
+                              $"Fecha de Compra: {this.FechaCompra} | Fecha de Entrega: {this.FechaVenta} | " +
+                              $"Subtotal: {this.Subtotal} | IVA: {this.Iva} | Descuento: {this.Descuento} | Total: {this.Total}");
 
             Console.WriteLine("══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
 
