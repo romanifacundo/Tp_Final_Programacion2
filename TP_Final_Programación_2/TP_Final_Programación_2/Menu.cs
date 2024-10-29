@@ -22,19 +22,25 @@ namespace TP_Final_Programación_2
             Console.CursorVisible = false;
 
    
-
             while (variableCorte)
             {
-                Console.ResetColor();
-                Console.ResetColor();
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
+                Console.WriteLine("             <<<<< SISTEMA DE CONCESIONARIA >>>>>         ");
+                Console.WriteLine("           <<<< VEHÍCULOS USADOS - ADMINISTRACIÓN >>>>    ");
+                Console.WriteLine("╚════════════════════════════════════════════════════════╝");
+                Console.WriteLine();
+                Console.WriteLine(@"          _____");
+                Console.WriteLine(@"  ______/__|__\___");
+                Console.WriteLine(@" |  _  _  _  _  _  |");
+                Console.WriteLine(@"'-(_)----------(_)--'");
+                Console.WriteLine();
                 Console.WriteLine("  SELECCIONA UNA OPCION DEL MENU PULSANDO LA TECLA ENTER ");
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
                 Console.WriteLine("\n");
-                Console.Clear();
-            
+
 
                 Console.WriteLine("╔═════════════════╗");
 
@@ -139,7 +145,7 @@ namespace TP_Final_Programación_2
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
                 Console.WriteLine("\n");
-
+                Console.Clear();
 
                 Console.WriteLine("╔═════════════════════════╗");
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -193,6 +199,9 @@ namespace TP_Final_Programación_2
                                 case 1:
                                     {
                                         ListarClientes();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU CLIENTES>>>>>>");
+                                        Console.ResetColor();
                                         Console.ReadKey();
                                         break;
                                     }
@@ -295,6 +304,9 @@ namespace TP_Final_Programación_2
                                 case 1:
                                     {
                                         ListarVentas();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU VENTAS>>>>>>");
+                                        Console.ResetColor();
                                         Console.ReadKey();
                                         break;
                                     }
@@ -343,7 +355,7 @@ namespace TP_Final_Programación_2
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
                 Console.WriteLine("\n");
-
+                Console.Clear();
 
                 Console.WriteLine("╔═════════════════════════╗");
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -397,6 +409,9 @@ namespace TP_Final_Programación_2
                                 case 1:
                                     {
                                         ListarVehiculos();
+                                        Console.ForegroundColor = ConsoleColor.Magenta;
+                                        Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU VEHICULO>>>>>>");
+                                        Console.ResetColor();
                                         Console.ReadKey();
                                         break;
                                     }
@@ -431,7 +446,6 @@ namespace TP_Final_Programación_2
             int seleccion = 0;
             ConsoleKeyInfo tecla;
             Console.CursorVisible = false;
-            Console.Clear();
 
             while (variableCorte)
             {
@@ -443,7 +457,7 @@ namespace TP_Final_Programación_2
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 Console.ResetColor();
                 Console.WriteLine("\n");
-
+                Console.Clear();
                 Console.WriteLine("╔═════════════════════════╗");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("  ╔══════════════════════╗");
@@ -486,9 +500,10 @@ namespace TP_Final_Programación_2
                                 break;
                             case 1:
                                 ListarPrametricos();
-                                Console.WriteLine("Presiona cualquier tecla para volver al menú...");
+                                Console.ForegroundColor = ConsoleColor.Magenta;
+                                Console.WriteLine("\n<<<<<<PRESIONE ENTER PARA VOLVER AL SUBMENU PARAMETRICOS>>>>>>");
+                                Console.ResetColor();
                                 Console.ReadKey();  
-                                seleccion = 0;
                                 break;
                             case 2:
                                 ActualizarParametricos();
