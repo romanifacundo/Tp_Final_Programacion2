@@ -1,0 +1,5 @@
+1|B100|125000|2015|Ford F-150|43000|BuenEstado|Blanco|SinCaja|2|Ford|8|Camion|2|Diesel
+2|B200|95000|2018|Chevrolet Silverado|49000|EnBuenEstado|Negro|SinCaja|3|Chevrolet|8|Camion|2|Diesel
+3|B300|77000|2020|Toyota Tacoma|46000|ExcelenteEstado|Gris|SinCaja|1|Toyota|8|Camion|2|Diesel
+4|B400|66000|2019|Dodge Ram|45000|MuyBuenEstado|Azul|SinCaja|17|Dodge|8|Camion|2|Diesel
+5|B500|52000|2021|Nissan Titan|53000|Nuevo|Rojo|SinCaja|5|Nissan|8|Camion|2|Diesel

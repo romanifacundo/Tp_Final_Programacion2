@@ -1,0 +1,4 @@
+1|600|MOT123|1500|2020|Kawasaki Ninja|15000|Excelente estado|Negro|19|Kawasaki|7|Ruta|1|Nafta
+2|300|MOT456|2300|2019|Yamaha YZF-R3|12000|Usada|Azul|20|Yamaha|7|Ruta|2|Nafta
+3|750|MOT789|800|2021|Suzuki GSX-R750|18000|Como nueva|Rojo|21|Suzuki|7|Ruta|1|Nafta
+4|390|MOT234|500|2022|KTM RC 390|14000|Sin detalles|Naranja|23|KTM|6|Enduro|3|Nafta

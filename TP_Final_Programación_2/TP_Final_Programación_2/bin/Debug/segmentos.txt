@@ -1,0 +1,8 @@
+1;Sedan
+2;Coupe
+3;Suv
+4;Pickup
+5;Scooter
+6;Enduro
+7;Ruta
+8;Camion

@@ -1,0 +1,4 @@
+1-Nafta
+2-Diesel
+3-Gnc
+4-Electrico

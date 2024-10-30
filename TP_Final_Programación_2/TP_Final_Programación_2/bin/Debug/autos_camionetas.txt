@@ -1,0 +1,5 @@
+1|A500XZ|125000|2018|Ford F-150|45000|Buen estado|Negro|2|Ford|4|Pickup|2|Diesel
+2|B300XY|85000|2019|Chevrolet Silverado|55000|Detalles en pintura|Blanco|3|Chevrolet|4|Pickup|1|Nafta
+3|C700YZ|95000|2020|Toyota Corolla|32000|Mecánica perfecta|Azul|1|Toyota|1|Sedan|3|Gnc
+4|D200XZ|70000|2021|Jeep Wrangler|60000|Listo para aventura|Verde|14|Jeep|3|Suv|2|Diesel
+5|E800WW|110000|2017|Nissan Altima|28000|Neumáticos nuevos|Gris|5|Nissan|1|Sedan|1|Nafta

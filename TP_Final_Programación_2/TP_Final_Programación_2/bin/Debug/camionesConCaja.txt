@@ -1,0 +1,4 @@
+1|A100|120000|2015|Ford F-150|45000|BuenEstado|Blanco|CajaGrande|200|3000|2|Ford|8|Camion|2|Diesel
+2|A200|90000|2018|Chevrolet Silverado|50000|EnBuenEstado|Negro|CajaMediana|180|2800|3|Chevrolet|8|Camion|2|Diesel
+3|A300|75000|2020|Toyota Tacoma|48000|ExcelenteEstado|Gris|CajaGrande|200|3100|1|Toyota|8|Camion|2|Diesel
+4|A400|65000|2019|Dodge Ram|47000|MuyBuenEstado|Azul|CajaMediana|180|2900|17|Dodge|8|Camion|2|Diesel
