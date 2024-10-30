@@ -1934,15 +1934,6 @@ namespace TP_Final_Programación_2
                                     i.MostrarDatosCamionesSinCaja();
                                 }
                             }
-                            else if (opcionCamiones == 3)
-                            {
-                                LeerArchivo(_archivoMotos);
-
-                                foreach (Moto i in this._motosList)
-                                {
-                                    i.MostrarDatos();
-                                }
-                            }
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
@@ -3059,6 +3050,47 @@ namespace TP_Final_Programación_2
 
                 case _archivoVentas:
 
+                    LeerArchivo(_archivoVentas);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._ventasList.Count; i++)
+                            {
+                                if (id == this._ventasList[i].IdVenta)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe una VENTA con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
+
                     break;
 
                 case _archivoMotos:
@@ -3243,17 +3275,181 @@ namespace TP_Final_Programación_2
 
                 case _archivoLocalidades:
 
+                    LeerArchivo(_archivoLocalidades);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._localidadesList.Count; i++)
+                            {
+                                if (id == this._localidadesList[i].IdLocalidad)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe una LOCALIDAD con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
+
                     break;
 
                 case _archivoProvincias:
+
+                    LeerArchivo(_archivoProvincias);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;//__paso bandera a true en caso de que recorra la list y no encuentre un id existente sale del do while__
+
+                            for (int i = 0; i < this._provinciasList.Count; i++)
+                            {
+                                if (id == this._provinciasList[i].IdProvincia)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe una PROVINCIA con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
 
                     break;
 
                 case _archivoSegmento:
 
+                    LeerArchivo(_archivoSegmento);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;
+
+                            for (int i = 0; i < this._segmentosList.Count; i++)
+                            {
+                                if (id == this._segmentosList[i].IdSegmento)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe un SEGMENTO con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
+
                     break;
 
                 case _archivoMarcas:
+
+                    LeerArchivo(_archivoMarcas);
+
+                    do
+                    {
+                        if (!int.TryParse(_id, out id) || id <= 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("_________________________________________________");
+                            Console.WriteLine("ID no válido, deben ser solo números positivos!");
+                            Console.WriteLine("_________________________________________________");
+                            Console.ResetColor();
+                            _id = Console.ReadLine();
+                        }
+                        else
+                        {
+                            idValido = true;
+
+                            for (int i = 0; i < this._marcasList.Count; i++)
+                            {
+                                if (id == this._marcasList[i].IdMarca)
+                                {
+                                    idValido = false;
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.WriteLine("Ya existe una MARCA con ese número de ID.");
+                                    Console.WriteLine("_________________________________________________");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Vuelve a ingresar otro ID:");
+                                    _id = Console.ReadLine();
+                                }
+                            }
+                        }
+                        if (idValido)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("ID válido.");
+                            Console.ResetColor();
+                        }
+                    }
+                    while (!idValido);
 
                     break;
                 default:
