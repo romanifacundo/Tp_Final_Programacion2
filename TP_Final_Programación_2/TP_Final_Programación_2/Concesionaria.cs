@@ -61,7 +61,10 @@ namespace TP_Final_Programación_2
         }
 
 
-        //Metodos de acciones cargar datos__
+        //__________________________________//
+        //__Metodos de acciones cargar datos__
+        //__________________________________//
+
         //__Cliente__
         public void CargarCliente()
         {
@@ -601,6 +604,7 @@ namespace TP_Final_Programación_2
         }
 
 
+        //__Parametricos__
         public void CargarParametricos()
         {
             int opc;
@@ -3503,7 +3507,7 @@ namespace TP_Final_Programación_2
             {
                 /* learn.microsoft.com/en-us/dotnet/api/system.char.isdigit?view=net-8.0 
                  * es.stackoverflow.com/questions/107972/funcion-para-verificar-que-una-cadena-tenga-solo-letras-c-consola
-                 * de aqui se tomo el All(char.IsLetter) All(char.IsDigit) para validar que solo sean num en la cadena o solo letras */
+                 * DE AQUI se tomo el All(char.IsLetter) All(char.IsDigit) para validar que solo sean num en la cadena o solo letras */
 
                 if (!(_cuit.Length == 11 && _cuit.All(char.IsDigit)))
                 {
@@ -3564,9 +3568,12 @@ namespace TP_Final_Programación_2
         {
             bool palabra_Valida = false; // __bandera de corte__
 
+                 /* learn.microsoft.com/en-us/dotnet/api/system.char.isdigit?view=net-8.0 
+                 * es.stackoverflow.com/questions/107972/funcion-para-verificar-que-una-cadena-tenga-solo-letras-c-consola
+                 * DE AQUI se tomo el All(char.IsLetter) All(char.IsDigit) para validar que solo sean num en la cadena o solo letras */
             do
             {
-                if (!_palabra.All(c => char.IsLetter(c) || c == ' ')) //__Vrifica espacios funcion lamda__
+                if (!_palabra.All(c => char.IsLetter(c) || c == ' ')) //__Verifica espacios funcion lamda__
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("_________________________________________________");
